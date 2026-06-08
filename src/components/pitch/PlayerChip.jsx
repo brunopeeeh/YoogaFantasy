@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { motion } from 'framer-motion';
 import { Crown, X, Plus as PlusIcon, AlertTriangle } from 'lucide-react';
 import { popIn } from '../../design/animations';
 
-export default function PlayerChip({
+export default memo(function PlayerChip({
   jogador,
   isCaptain = false,
   isActive = false,
@@ -142,7 +142,7 @@ export default function PlayerChip({
       </div>
     </motion.div>
   );
-}
+});
 
 export function EmptySlot({ posLabel = 'GOL', onClick, isActive = false, isSelected = false, isOver = false, isInvalidDrop = false }) {
   return (

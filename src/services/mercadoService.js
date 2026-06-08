@@ -7,13 +7,14 @@ export async function buscarJogadoresMercado({
   ordemPreco = 'DESC',
   pagina = 0,
   limit = 12,
+  signal,
 }) {
   const de = pagina * limit;
   const ate = de + limit - 1;
 
   let query = supabase
     .from('jogadores')
-    .select('*, selecoes(nome, bandeira_url)', { count: 'exact' });
+    .select('*, selecoes(nome, bandeira_url)', { count: 'exact', signal });
 
   if (posicao) query = query.eq('posicao', posicao);
   if (selecaoId) query = query.eq('selecao_id', Number(selecaoId));

@@ -7,7 +7,9 @@ function formatarDataHora(isoString) {
   });
 }
 
-export default function MercadoFechadoBanner({ config }) {
+import { memo } from 'react';
+
+export default memo(function MercadoFechadoBanner({ config }) {
   if (!config) return null;
   if (config.mercado_aberto !== false) return null;
 
@@ -35,4 +37,4 @@ export default function MercadoFechadoBanner({ config }) {
       </div>
     </div>
   );
-}
+});

@@ -1,7 +1,7 @@
 // Painel lateral (drawer) de contratação de jogadores.
 // Em desktop: sticky à direita. Em mobile: bottom sheet com snap.
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, X, ChevronLeft, ChevronRight, Info, Loader2, Trash2 } from 'lucide-react';
 import CardJogador from '../CardJogador';
@@ -13,7 +13,7 @@ import { slideInRight, slideInUp, fadeIn } from '../../design/animations';
 import { listSelecoes } from '../../services/selecoesService';
 import { useJogosCopa } from '../../hooks/useJogosCopa';
 
-export default function MercadoDrawer({
+export default memo(function MercadoDrawer({
   aberto,
   onFechar,
   slotSelecionado,
@@ -255,4 +255,4 @@ export default function MercadoDrawer({
       )}
     </AnimatePresence>
   );
-}
+});

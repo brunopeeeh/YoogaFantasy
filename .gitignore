@@ -6,3 +6,6 @@ __pycache__/
 .vscode/
 preview-err.log
 preview.log
+
+supabase/.temp/
+supabase/functions/

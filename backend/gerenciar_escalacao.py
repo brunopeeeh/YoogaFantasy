@@ -8,7 +8,7 @@ load_dotenv()
 class GerenciadorEscalacao:
     def __init__(self):
         url = os.getenv("SUPABASE_URL") or os.getenv("VITE_SUPABASE_URL")
-        key = os.getenv("SUPABASE_SERVICE_ROLE_KEY") or os.getenv("SUPABASE_KEY") or os.getenv("VITE_SUPABASE_ANON_KEY")
+        key = os.getenv("SUPABASE_SERVICE_ROLE_KEY") or os.getenv("SUPABASE_KEY")
         
         url = url.strip('"\'')
         key = key.strip('"\'')

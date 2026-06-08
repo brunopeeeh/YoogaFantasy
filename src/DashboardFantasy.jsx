@@ -9,6 +9,9 @@ import PlayerDetailsModal from './components/player/PlayerDetailsModal';
 
 import TokensBar from './components/dashboard/TokensBar';
 
+import DashboardErrorBoundary from './components/dashboard/DashboardErrorBoundary';
+import MercadoErrorBoundary from './components/dashboard/MercadoErrorBoundary';
+
 import { useDragDropElenco } from './hooks/useDragDropElenco';
 import { useFantasy } from './contexts/FantasyContext';
 import { SIGLA_POR_POSICAO } from './lib/posicoes';
@@ -120,40 +123,44 @@ export default function DashboardFantasy() {
         )}
 
         <div className="max-w-[1600px] mx-auto p-3 sm:p-4 lg:p-6 flex flex-col lg:flex-row gap-4 lg:gap-6 lg:items-center lg:justify-center">
-          <div className={`flex-1 w-full bg-fifa-navy-900/40 rounded-xl overflow-y-auto overflow-x-hidden relative transition-all duration-300 shadow-glass border border-white/5 lg:h-[80vh] lg:max-h-[900px] ${mercadoAberto ? 'lg:flex-none lg:w-[55%]' : ''}`}>
-            <div className="min-h-full py-6 flex items-center justify-center px-4 overflow-hidden">
-              <Pitch
-                elenco={elencoDraft}
-                onSlotClick={handleAbrirMercado}
-                onRemoverJogador={handleRemoverJogador}
-                capitaoId={capitaoDraftId}
-                onDefinirCapitao={handleDefinirCapitao}
-                overSlot={overSlot}
-                activeJogador={activeDrag?.data?.current?.jogador}
-                slotSelecionado={slotSelecionado}
-                onFilterPosicao={(sigla) => {
-                  if (posicaoFiltrada === sigla) {
-                    setPosicaoFiltrada(null);
-                  } else {
-                    setPosicaoFiltrada(sigla);
-                    setMercadoAberto(true);
-                  }
-                }}
-                posicaoFiltrada={posicaoFiltrada}
-                onDetalhes={setDetalheJogador}
-              />
+          <DashboardErrorBoundary onReset={refetch}>
+            <div className={`flex-1 w-full bg-fifa-navy-900/40 rounded-xl overflow-y-auto overflow-x-hidden relative transition-all duration-300 shadow-glass border border-white/5 lg:h-[80vh] lg:max-h-[900px] ${mercadoAberto ? 'lg:flex-none lg:w-[55%]' : ''}`}>
+              <div className="min-h-full py-6 flex items-center justify-center px-4 overflow-hidden">
+                <Pitch
+                  elenco={elencoDraft}
+                  onSlotClick={handleAbrirMercado}
+                  onRemoverJogador={handleRemoverJogador}
+                  capitaoId={capitaoDraftId}
+                  onDefinirCapitao={handleDefinirCapitao}
+                  overSlot={overSlot}
+                  activeJogador={activeDrag?.data?.current?.jogador}
+                  slotSelecionado={slotSelecionado}
+                  onFilterPosicao={(sigla) => {
+                    if (posicaoFiltrada === sigla) {
+                      setPosicaoFiltrada(null);
+                    } else {
+                      setPosicaoFiltrada(sigla);
+                      setMercadoAberto(true);
+                    }
+                  }}
+                  posicaoFiltrada={posicaoFiltrada}
+                  onDetalhes={setDetalheJogador}
+                />
+              </div>
             </div>
-          </div>
+          </DashboardErrorBoundary>
 
-          <MercadoDrawer
-            aberto={mercadoAberto}
-            onFechar={handleFecharMercado}
-            elenco={elencoDraft}
-            slotSelecionado={slotSelecionado}
-            onContratar={handleContratarJogador}
-            mercado={mercado}
-            onDetalhes={setDetalheJogador}
-          />
+          <MercadoErrorBoundary>
+            <MercadoDrawer
+              aberto={mercadoAberto}
+              onFechar={handleFecharMercado}
+              elenco={elencoDraft}
+              slotSelecionado={slotSelecionado}
+              onContratar={handleContratarJogador}
+              mercado={mercado}
+              onDetalhes={setDetalheJogador}
+            />
+          </MercadoErrorBoundary>
         </div>
       </div>
 

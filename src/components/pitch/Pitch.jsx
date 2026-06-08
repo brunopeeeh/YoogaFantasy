@@ -1,7 +1,4 @@
-// Componente principal do campo de futebol (Pitch).
-// Orquestra: PitchField (gramado), slots de jogador com PlayerChip/EmptySlot, e drag-and-drop via @dnd-kit.
-
-import React from 'react';
+import React, { memo } from 'react';
 import { useDroppable } from '@dnd-kit/core';
 
 import PitchField from './PitchField';
@@ -40,7 +37,7 @@ function isValidPosicao(sigla, esperado) {
   return sigla === esperado;
 }
 
-export default function Pitch({
+export default memo(function Pitch({
   elenco,
   onSlotClick,
   onRemoverJogador,
@@ -132,4 +129,4 @@ export default function Pitch({
       </div>
     </div>
   );
-}
+});

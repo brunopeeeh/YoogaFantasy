@@ -86,7 +86,6 @@ def salvar_no_supabase(jogadores, selecoes):
     key = (
         os.getenv("SUPABASE_SERVICE_ROLE_KEY")
         or os.getenv("SUPABASE_KEY")
-        or os.getenv("VITE_SUPABASE_ANON_KEY")
     )
 
     if not url or not key:

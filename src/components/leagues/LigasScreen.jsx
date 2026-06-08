@@ -4,6 +4,7 @@ import { Trophy, Plus, LogIn, Users, Copy, Check, X, Pencil, Trash2 } from 'luci
 import { buscarMinhasLigas, criarLiga, entrarLigaPorCodigo, buscarLeaderboard, atualizarLiga, excluirLiga } from '../../services/ligasService';
 import { useAuth } from '../../contexts/AuthContext';
 import toast from 'react-hot-toast';
+import LigasErrorBoundary from './LigasErrorBoundary';
 
 export default function LigasScreen() {
   const location = useLocation();
@@ -147,6 +148,7 @@ export default function LigasScreen() {
   const ehCriador = ligaSelecionada && user && ligaSelecionada.criado_por === user.id;
 
   return (
+    <LigasErrorBoundary>
     <div className="w-full max-w-4xl mx-auto px-4 py-6 md:py-10">
 
       {ligaSelecionada ? (
@@ -493,5 +495,6 @@ export default function LigasScreen() {
         </div>
       )}
     </div>
+    </LigasErrorBoundary>
   );
 }

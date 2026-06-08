@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Crown } from 'lucide-react';
 
 const DESCRICAO = 'Triplica os pontos do capitão na rodada (1 por temporada).';
@@ -56,7 +57,7 @@ function TokenCard({ total, disponiveis, usando, onUsar, desabilitado }) {
   );
 }
 
-export default function TokensBar({
+export default memo(function TokensBar({
   tokens,
   mercadoAberto,
   usando,
@@ -90,4 +91,4 @@ export default function TokensBar({
       </div>
     </div>
   );
-}
+});

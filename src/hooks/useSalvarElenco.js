@@ -1,6 +1,15 @@
 import { useState, useCallback } from 'react';
-import { salvarElencoRpc } from '../services/elencoService';
-import { validarElencoDraft, elencoDraftParaPayloadRpc, contarTransferencias } from '../lib/diffElenco';
+import { salvarElencoRpc, validarElencoRpc } from '../services/elencoService';
+import { elencoParaLista, validarElencoDraft, elencoDraftParaPayloadRpc, contarTransferencias } from '../lib/diffElenco';
+
+function elencoParaPayloadValidacao(elencoDraft) {
+  return elencoParaLista(elencoDraft).map(j => ({
+    id: Number(j.id),
+    posicao: j.posicao,
+    preco: Number(j.preco || 0),
+    selecao_id: j.selecaoId || j.selecao_id || null,
+  }));
+}
 
 export function useSalvarElenco({ onSuccess, elencoSalvo, rodadaAtual } = {}) {
   const [salvando, setSalvando] = useState(false);
@@ -13,6 +22,19 @@ export function useSalvarElenco({ onSuccess, elencoSalvo, rodadaAtual } = {}) {
       const e = new Error(errosValidacao.join('\n'));
       setErro(e);
       return { ok: false, error: e, validationErrors: errosValidacao };
+    }
+
+    if (rodadaAtual != null) {
+      const payloadRpc = elencoParaPayloadValidacao(elencoDraft);
+      validarElencoRpc(payloadRpc, rodadaAtual)
+        .then((res) => {
+          if (!res?.valido && res?.erros?.length > 0) {
+            console.warn('[Validação RPC] Discrepância com validação JS:', res.erros);
+          }
+        })
+        .catch((e) => {
+          console.warn('[Validação RPC] Erro ao validar (não bloqueante):', e.message);
+        });
     }
 
     const transferenciasUsadas = rodadaAtual != null

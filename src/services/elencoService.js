@@ -26,3 +26,12 @@ export async function salvarElencoRpc({ jogadores, orcamentoGasto, transferencia
   if (error) throw error;
   return data;
 }
+
+export async function validarElencoRpc(jogadores, rodada) {
+  const { data, error } = await supabase.rpc('validar_elenco', {
+    p_jogadores: jogadores,
+    p_rodada: rodada,
+  });
+  if (error) throw error;
+  return data;
+}
