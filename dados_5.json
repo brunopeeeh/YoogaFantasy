@@ -1,0 +1,2048 @@
+{
+    "players": [
+        {
+            "fantasyPlayer": {
+                "player": {
+                    "name": "Ala'a Al-Hejji",
+                    "slug": "alaa-al-hejji",
+                    "shortName": "A. Al-Hejji",
+                    "position": "M",
+                    "jerseyNumber": "18",
+                    "userCount": 44,
+                    "gender": "M",
+                    "id": 826242,
+                    "fieldTranslations": {
+                        "nameTranslation": {
+                            "ar": "\u0639\u0644\u0627\u0621 \u0622\u0644 \u062d\u062c\u064a",
+                            "bn": "\u0986\u09b2\u09be\u0986 \u0986\u09b2-\u09b9\u09c7\u099c\u09cd\u099c\u09bf",
+                            "hi": "\u0905\u0932\u093e \u0905\u0932-\u0939\u0947\u091c\u094d\u091c\u0940"
+                        },
+                        "shortNameTranslation": {
+                            "ar": "\u0639. \u0622\u0644-\u062d\u062c\u064a",
+                            "bn": "\u098f. \u0986\u09b2-\u09b9\u09c7\u099c\u09cd\u099c\u09bf",
+                            "hi": "\u0905. \u0905\u0932-\u0939\u0947\u091c\u094d\u091c\u0940"
+                        }
+                    }
+                },
+                "team": {
+                    "name": "Saudi Arabia",
+                    "slug": "saudi-arabia",
+                    "shortName": "Saudi Arabia",
+                    "gender": "M",
+                    "sport": {
+                        "name": "Football",
+                        "slug": "football",
+                        "id": 1
+                    },
+                    "category": {
+                        "name": "World",
+                        "slug": "world",
+                        "sport": {
+                            "name": "Football",
+                            "slug": "football",
+                            "id": 1
+                        },
+                        "priority": 20,
+                        "id": 1468,
+                        "flag": "international",
+                        "fieldTranslations": {
+                            "nameTranslation": {
+                                "ar": "\u0627\u0644\u0639\u0627\u0644\u0645",
+                                "bn": "\u09ac\u09bf\u09b6\u09cd\u09ac",
+                                "hi": "\u0935\u093f\u0936\u094d\u0935",
+                                "ru": "\u041c\u0438\u0440"
+                            },
+                            "shortNameTranslation": {}
+                        }
+                    },
+                    "tournament": {
+                        "name": "World Cup Qualification, AFC, Round 3, Group B",
+                        "slug": "world-championship-qual-afc-r-3-gr-b",
+                        "category": {
+                            "name": "Asia",
+                            "slug": "asia",
+                            "sport": {
+                                "name": "Football",
+                                "slug": "football",
+                                "id": 1
+                            },
+                            "priority": 17,
+                            "id": 1467,
+                            "flag": "asia",
+                            "fieldTranslations": {
+                                "nameTranslation": {
+                                    "ar": "\u0622\u0633\u064a\u0627",
+                                    "ru": "\u0410\u0437\u0438\u044f"
+                                },
+                                "shortNameTranslation": {}
+                            }
+                        },
+                        "uniqueTournament": {
+                            "name": "World Cup Qual. AFC",
+                            "slug": "world-championship-qual-afc",
+                            "primaryColorHex": "#9a1133",
+                            "secondaryColorHex": "#c11541",
+                            "category": {
+                                "name": "Asia",
+                                "slug": "asia",
+                                "sport": {
+                                    "name": "Football",
+                                    "slug": "football",
+                                    "id": 1
+                                },
+                                "priority": 17,
+                                "id": 1467,
+                                "flag": "asia",
+                                "fieldTranslations": {
+                                    "nameTranslation": {
+                                        "ar": "\u0622\u0633\u064a\u0627",
+                                        "ru": "\u0410\u0437\u0438\u044f"
+                                    },
+                                    "shortNameTranslation": {}
+                                }
+                            },
+                            "userCount": 49852,
+                            "hasPerformanceGraphFeature": false,
+                            "id": 308,
+                            "displayInverseHomeAwayTeams": false,
+                            "fieldTranslations": {
+                                "nameTranslation": {
+                                    "ar": "\u062a\u0635\u0641\u064a\u0627\u062a \u0643\u0623\u0633 \u0627\u0644\u0639\u0627\u0644\u0645 \u0644\u0644\u0627\u062a\u062d\u0627\u062f \u0627\u0644\u0622\u0633\u064a\u0648\u064a \u0644\u0643\u0631\u0629 \u0627\u0644\u0642\u062f\u0645",
+                                    "bn": "\u0993\u09af\u09bc\u09be\u09b0\u09cd\u09b2\u09cd\u09a1 \u099a\u09cd\u09af\u09be\u09ae\u09cd\u09aa\u09bf\u09af\u09bc\u09a8\u09b6\u09bf\u09aa  \u0995\u09cb\u09df\u09be\u09b2. \u098f\u098f\u09ab\u09b8\u09bf",
+                                    "hi": "\u0935\u0930\u094d\u0932\u094d\u0921 \u091a\u0948\u0902\u092a\u093f\u092f\u0928\u0936\u093f\u092a \u0915\u094d\u0935\u093e\u0932\u0940\u092b\u093e\u092f\u0930 \u090f\u090f\u092b\u0938\u0940"
+                                },
+                                "shortNameTranslation": {}
+                            }
+                        },
+                        "priority": 543,
+                        "groupSign": "B",
+                        "isLive": false,
+                        "id": 8519,
+                        "fieldTranslations": {
+                            "nameTranslation": {
+                                "ar": "\u062a\u0635\u0641\u064a\u0627\u062a \u0643\u0623\u0633 \u0627\u0644\u0639\u0627\u0644\u0645\u060c \u0627\u0644\u0627\u062a\u062d\u0627\u062f \u0627\u0644\u0623\u0633\u064a\u0648\u064a \u0644\u0643\u0631\u0629 \u0627\u0644\u0642\u062f\u0645\u060c \u0627\u0644\u062c\u0648\u0644\u0629 3\u060c \u0627\u0644\u0645\u062c\u0645\u0648\u0639\u0629 B",
+                                "bn": "\u0993\u09af\u09bc\u09be\u09b0\u09cd\u09b2\u09cd\u09a1\u0995\u09be\u09aa \u0995\u09cb\u09df\u09be\u09b2\u09bf\u09ab\u09bf\u0995\u09c7\u09b6\u09a8, \u098f\u098f\u09ab\u09b8\u09bf, \u09b0\u09be\u0989\u09a8\u09cd\u09a1 3, \u0997\u09cd\u09b0\u09c1\u09aa \u09ac\u09bf",
+                                "hi": "\u0935\u0930\u094d\u0932\u094d\u0921 \u0915\u092a \u0915\u094d\u0935\u093e\u0932\u0940\u092b\u093f\u0915\u0947\u0936\u0928, \u090f\u090f\u092b\u0938\u0940, \u0930\u093e\u0909\u0902\u0921 3, \u0917\u094d\u0930\u0941\u092a \u092c\u0940"
+                            },
+                            "shortNameTranslation": {}
+                        }
+                    },
+                    "primaryUniqueTournament": {
+                        "name": "AFC Asian Cup",
+                        "slug": "afc-asian-cup",
+                        "primaryColorHex": "#FCBD00",
+                        "secondaryColorHex": "#FC1302",
+                        "category": {
+                            "name": "Asia",
+                            "slug": "asia",
+                            "sport": {
+                                "name": "Football",
+                                "slug": "football",
+                                "id": 1
+                            },
+                            "priority": 17,
+                            "id": 1467,
+                            "flag": "asia",
+                            "fieldTranslations": {
+                                "nameTranslation": {
+                                    "ar": "\u0622\u0633\u064a\u0627",
+                                    "ru": "\u0410\u0437\u0438\u044f"
+                                },
+                                "shortNameTranslation": {}
+                            }
+                        },
+                        "userCount": 65387,
+                        "hasPerformanceGraphFeature": false,
+                        "id": 246,
+                        "displayInverseHomeAwayTeams": false,
+                        "fieldTranslations": {
+                            "nameTranslation": {
+                                "ar": "\u0643\u0623\u0633 \u0622\u0633\u064a\u0627 \u0644\u0644\u0627\u062a\u062d\u0627\u062f \u0627\u0644\u0622\u0633\u064a\u0648\u064a \u0644\u0643\u0631\u0629 \u0627\u0644\u0642\u062f\u0645",
+                                "bn": "\u098f\u098f\u09ab\u09b8\u09bf \u098f\u09b6\u09bf\u09af\u09bc\u09be\u09a8 \u0995\u09be\u09aa",
+                                "hi": "\u090f\u090f\u092b\u0938\u0940 \u090f\u0936\u093f\u092f\u0928 \u0915\u092a"
+                            },
+                            "shortNameTranslation": {}
+                        }
+                    },
+                    "userCount": 156398,
+                    "nameCode": "KSA",
+                    "ranking": 61,
+                    "disabled": false,
+                    "national": true,
+                    "type": 0,
+                    "id": 4834,
+                    "fullName": "Saudi Arabia",
+                    "teamColors": {
+                        "primary": "#ffffff",
+                        "secondary": "#008000",
+                        "text": "#008000"
+                    },
+                    "fieldTranslations": {
+                        "nameTranslation": {
+                            "ar": "\u0627\u0644\u0645\u0645\u0644\u0643\u0629 \u0627\u0644\u0639\u0631\u0628\u064a\u0629 \u0627\u0644\u0633\u0639\u0648\u062f\u064a\u0629",
+                            "bn": "\u09b8\u09cc\u09a6\u09bf \u0986\u09b0\u09ac",
+                            "hi": "\u0938\u090a\u0926\u0940 \u0905\u0930\u092c",
+                            "ru": "\u0421\u0430\u0443\u0434\u043e\u0432\u0441\u043a\u0430\u044f \u0410\u0440\u0430\u0432\u0438\u044f"
+                        },
+                        "shortNameTranslation": {
+                            "ar": "\u0627\u0644\u0633\u0639\u0648\u062f\u064a\u0629",
+                            "ru": "\u0421\u0430\u0443\u0434\u043e\u0432\u0441\u043a\u0430\u044f \u0410\u0440\u0430\u0432\u0438\u044f"
+                        }
+                    }
+                },
+                "position": "M",
+                "price": 4,
+                "averageScore": 0,
+                "averageScoreRank": 384,
+                "totalScore": 0,
+                "totalScoreRank": 384,
+                "form": 0,
+                "formRank": 384,
+                "ownedCount": 769,
+                "ownedRank": 152,
+                "ownedPercentage": 0.8,
+                "adds": 53,
+                "drops": 53,
+                "totalPlayersOnPosition": 494,
+                "hasLeftCompetition": false,
+                "id": 88007
+            },
+            "team": {
+                "name": "Saudi Arabia",
+                "slug": "saudi-arabia",
+                "shortName": "Saudi Arabia",
+                "gender": "M",
+                "sport": {
+                    "name": "Football",
+                    "slug": "football",
+                    "id": 1
+                },
+                "category": {
+                    "name": "World",
+                    "slug": "world",
+                    "sport": {
+                        "name": "Football",
+                        "slug": "football",
+                        "id": 1
+                    },
+                    "priority": 20,
+                    "id": 1468,
+                    "flag": "international",
+                    "fieldTranslations": {
+                        "nameTranslation": {
+                            "ar": "\u0627\u0644\u0639\u0627\u0644\u0645",
+                            "bn": "\u09ac\u09bf\u09b6\u09cd\u09ac",
+                            "hi": "\u0935\u093f\u0936\u094d\u0935",
+                            "ru": "\u041c\u0438\u0440"
+                        },
+                        "shortNameTranslation": {}
+                    }
+                },
+                "tournament": {
+                    "name": "World Cup Qualification, AFC, Round 3, Group B",
+                    "slug": "world-championship-qual-afc-r-3-gr-b",
+                    "category": {
+                        "name": "Asia",
+                        "slug": "asia",
+                        "sport": {
+                            "name": "Football",
+                            "slug": "football",
+                            "id": 1
+                        },
+                        "priority": 17,
+                        "id": 1467,
+                        "flag": "asia",
+                        "fieldTranslations": {
+                            "nameTranslation": {
+                                "ar": "\u0622\u0633\u064a\u0627",
+                                "ru": "\u0410\u0437\u0438\u044f"
+                            },
+                            "shortNameTranslation": {}
+                        }
+                    },
+                    "uniqueTournament": {
+                        "name": "World Cup Qual. AFC",
+                        "slug": "world-championship-qual-afc",
+                        "primaryColorHex": "#9a1133",
+                        "secondaryColorHex": "#c11541",
+                        "category": {
+                            "name": "Asia",
+                            "slug": "asia",
+                            "sport": {
+                                "name": "Football",
+                                "slug": "football",
+                                "id": 1
+                            },
+                            "priority": 17,
+                            "id": 1467,
+                            "flag": "asia",
+                            "fieldTranslations": {
+                                "nameTranslation": {
+                                    "ar": "\u0622\u0633\u064a\u0627",
+                                    "ru": "\u0410\u0437\u0438\u044f"
+                                },
+                                "shortNameTranslation": {}
+                            }
+                        },
+                        "userCount": 49852,
+                        "hasPerformanceGraphFeature": false,
+                        "id": 308,
+                        "displayInverseHomeAwayTeams": false,
+                        "fieldTranslations": {
+                            "nameTranslation": {
+                                "ar": "\u062a\u0635\u0641\u064a\u0627\u062a \u0643\u0623\u0633 \u0627\u0644\u0639\u0627\u0644\u0645 \u0644\u0644\u0627\u062a\u062d\u0627\u062f \u0627\u0644\u0622\u0633\u064a\u0648\u064a \u0644\u0643\u0631\u0629 \u0627\u0644\u0642\u062f\u0645",
+                                "bn": "\u0993\u09af\u09bc\u09be\u09b0\u09cd\u09b2\u09cd\u09a1 \u099a\u09cd\u09af\u09be\u09ae\u09cd\u09aa\u09bf\u09af\u09bc\u09a8\u09b6\u09bf\u09aa  \u0995\u09cb\u09df\u09be\u09b2. \u098f\u098f\u09ab\u09b8\u09bf",
+                                "hi": "\u0935\u0930\u094d\u0932\u094d\u0921 \u091a\u0948\u0902\u092a\u093f\u092f\u0928\u0936\u093f\u092a \u0915\u094d\u0935\u093e\u0932\u0940\u092b\u093e\u092f\u0930 \u090f\u090f\u092b\u0938\u0940"
+                            },
+                            "shortNameTranslation": {}
+                        }
+                    },
+                    "priority": 543,
+                    "groupSign": "B",
+                    "isLive": false,
+                    "id": 8519,
+                    "fieldTranslations": {
+                        "nameTranslation": {
+                            "ar": "\u062a\u0635\u0641\u064a\u0627\u062a \u0643\u0623\u0633 \u0627\u0644\u0639\u0627\u0644\u0645\u060c \u0627\u0644\u0627\u062a\u062d\u0627\u062f \u0627\u0644\u0623\u0633\u064a\u0648\u064a \u0644\u0643\u0631\u0629 \u0627\u0644\u0642\u062f\u0645\u060c \u0627\u0644\u062c\u0648\u0644\u0629 3\u060c \u0627\u0644\u0645\u062c\u0645\u0648\u0639\u0629 B",
+                            "bn": "\u0993\u09af\u09bc\u09be\u09b0\u09cd\u09b2\u09cd\u09a1\u0995\u09be\u09aa \u0995\u09cb\u09df\u09be\u09b2\u09bf\u09ab\u09bf\u0995\u09c7\u09b6\u09a8, \u098f\u098f\u09ab\u09b8\u09bf, \u09b0\u09be\u0989\u09a8\u09cd\u09a1 3, \u0997\u09cd\u09b0\u09c1\u09aa \u09ac\u09bf",
+                            "hi": "\u0935\u0930\u094d\u0932\u094d\u0921 \u0915\u092a \u0915\u094d\u0935\u093e\u0932\u0940\u092b\u093f\u0915\u0947\u0936\u0928, \u090f\u090f\u092b\u0938\u0940, \u0930\u093e\u0909\u0902\u0921 3, \u0917\u094d\u0930\u0941\u092a \u092c\u0940"
+                        },
+                        "shortNameTranslation": {}
+                    }
+                },
+                "primaryUniqueTournament": {
+                    "name": "AFC Asian Cup",
+                    "slug": "afc-asian-cup",
+                    "primaryColorHex": "#FCBD00",
+                    "secondaryColorHex": "#FC1302",
+                    "category": {
+                        "name": "Asia",
+                        "slug": "asia",
+                        "sport": {
+                            "name": "Football",
+                            "slug": "football",
+                            "id": 1
+                        },
+                        "priority": 17,
+                        "id": 1467,
+                        "flag": "asia",
+                        "fieldTranslations": {
+                            "nameTranslation": {
+                                "ar": "\u0622\u0633\u064a\u0627",
+                                "ru": "\u0410\u0437\u0438\u044f"
+                            },
+                            "shortNameTranslation": {}
+                        }
+                    },
+                    "userCount": 65387,
+                    "hasPerformanceGraphFeature": false,
+                    "id": 246,
+                    "displayInverseHomeAwayTeams": false,
+                    "fieldTranslations": {
+                        "nameTranslation": {
+                            "ar": "\u0643\u0623\u0633 \u0622\u0633\u064a\u0627 \u0644\u0644\u0627\u062a\u062d\u0627\u062f \u0627\u0644\u0622\u0633\u064a\u0648\u064a \u0644\u0643\u0631\u0629 \u0627\u0644\u0642\u062f\u0645",
+                            "bn": "\u098f\u098f\u09ab\u09b8\u09bf \u098f\u09b6\u09bf\u09af\u09bc\u09be\u09a8 \u0995\u09be\u09aa",
+                            "hi": "\u090f\u090f\u092b\u0938\u0940 \u090f\u0936\u093f\u092f\u0928 \u0915\u092a"
+                        },
+                        "shortNameTranslation": {}
+                    }
+                },
+                "userCount": 156398,
+                "nameCode": "KSA",
+                "ranking": 61,
+                "disabled": false,
+                "national": true,
+                "type": 0,
+                "id": 4834,
+                "fullName": "Saudi Arabia",
+                "teamColors": {
+                    "primary": "#ffffff",
+                    "secondary": "#008000",
+                    "text": "#008000"
+                },
+                "fieldTranslations": {
+                    "nameTranslation": {
+                        "ar": "\u0627\u0644\u0645\u0645\u0644\u0643\u0629 \u0627\u0644\u0639\u0631\u0628\u064a\u0629 \u0627\u0644\u0633\u0639\u0648\u062f\u064a\u0629",
+                        "bn": "\u09b8\u09cc\u09a6\u09bf \u0986\u09b0\u09ac",
+                        "hi": "\u0938\u090a\u0926\u0940 \u0905\u0930\u092c",
+                        "ru": "\u0421\u0430\u0443\u0434\u043e\u0432\u0441\u043a\u0430\u044f \u0410\u0440\u0430\u0432\u0438\u044f"
+                    },
+                    "shortNameTranslation": {
+                        "ar": "\u0627\u0644\u0633\u0639\u0648\u062f\u064a\u0629",
+                        "ru": "\u0421\u0430\u0443\u0434\u043e\u0432\u0441\u043a\u0430\u044f \u0410\u0440\u0430\u0432\u0438\u044f"
+                    }
+                }
+            },
+            "fixtures": [
+                {
+                    "eventId": 15186811,
+                    "eventStatusType": "notstarted",
+                    "locationType": "N",
+                    "team": {
+                        "name": "Uruguay",
+                        "slug": "uruguay",
+                        "shortName": "Uruguay",
+                        "gender": "M",
+                        "sport": {
+                            "name": "Football",
+                            "slug": "football",
+                            "id": 1
+                        },
+                        "category": {
+                            "name": "World",
+                            "slug": "world",
+                            "sport": {
+                                "name": "Football",
+                                "slug": "football",
+                                "id": 1
+                            },
+                            "priority": 20,
+                            "id": 1468,
+                            "flag": "international",
+                            "fieldTranslations": {
+                                "nameTranslation": {
+                                    "ar": "\u0627\u0644\u0639\u0627\u0644\u0645",
+                                    "bn": "\u09ac\u09bf\u09b6\u09cd\u09ac",
+                                    "hi": "\u0935\u093f\u0936\u094d\u0935",
+                                    "ru": "\u041c\u0438\u0440"
+                                },
+                                "shortNameTranslation": {}
+                            }
+                        },
+                        "tournament": {
+                            "name": "World Cup Qualification, CONMEBOL",
+                            "slug": "world-cup-qualification-conmebol",
+                            "category": {
+                                "name": "South America",
+                                "slug": "south-america",
+                                "sport": {
+                                    "name": "Football",
+                                    "slug": "football",
+                                    "id": 1
+                                },
+                                "priority": 18,
+                                "id": 1470,
+                                "flag": "south-america",
+                                "fieldTranslations": {
+                                    "nameTranslation": {
+                                        "ar": "\u0623\u0645\u0631\u064a\u0643\u0627 \u0627\u0644\u062c\u0646\u0648\u0628\u064a\u0629",
+                                        "ru": "\u042e\u0436\u043d\u0430\u044f \u0410\u043c\u0435\u0440\u0438\u043a\u0430"
+                                    },
+                                    "shortNameTranslation": {}
+                                }
+                            },
+                            "uniqueTournament": {
+                                "name": "World Cup Qual. CONMEBOL",
+                                "slug": "world-championship-qual-conmebol",
+                                "primaryColorHex": "#9a1133",
+                                "secondaryColorHex": "#c11541",
+                                "category": {
+                                    "name": "South America",
+                                    "slug": "south-america",
+                                    "sport": {
+                                        "name": "Football",
+                                        "slug": "football",
+                                        "id": 1
+                                    },
+                                    "priority": 18,
+                                    "id": 1470,
+                                    "flag": "south-america",
+                                    "fieldTranslations": {
+                                        "nameTranslation": {
+                                            "ar": "\u0623\u0645\u0631\u064a\u0643\u0627 \u0627\u0644\u062c\u0646\u0648\u0628\u064a\u0629",
+                                            "ru": "\u042e\u0436\u043d\u0430\u044f \u0410\u043c\u0435\u0440\u0438\u043a\u0430"
+                                        },
+                                        "shortNameTranslation": {}
+                                    }
+                                },
+                                "userCount": 167879,
+                                "hasPerformanceGraphFeature": false,
+                                "id": 295,
+                                "displayInverseHomeAwayTeams": false,
+                                "fieldTranslations": {
+                                    "nameTranslation": {
+                                        "ar": "\u062a\u0635\u0641\u064a\u0627\u062a \u0643\u0623\u0633 \u0627\u0644\u0639\u0627\u0644\u0645 \u0641\u064a \u0623\u0645\u0631\u064a\u0643\u0627 \u0627\u0644\u062c\u0646\u0648\u0628\u064a\u0629",
+                                        "bn": "\u0993\u09af\u09bc\u09be\u09b0\u09cd\u09b2\u09cd\u09a1 \u099a\u09cd\u09af\u09be\u09ae\u09cd\u09aa\u09bf\u09af\u09bc\u09a8\u09b6\u09bf\u09aa \u0995\u09cb\u09df\u09be\u09b2. \u0995\u09a8\u09ae\u09c7\u09ac\u09b2",
+                                        "hi": "\u0935\u0930\u094d\u0932\u094d\u0921 \u091a\u0948\u0902\u092a\u093f\u092f\u0928\u0936\u093f\u092a \u0915\u094d\u0935\u093e\u0932\u0940\u092b\u093f\u0915\u0947\u0936\u0928 \u0915\u0949\u0928\u092e\u0947\u092c\u094b\u0932"
+                                    },
+                                    "shortNameTranslation": {}
+                                }
+                            },
+                            "priority": 619,
+                            "isLive": false,
+                            "id": 1434,
+                            "fieldTranslations": {
+                                "nameTranslation": {
+                                    "ar": "\u062a\u0635\u0641\u064a\u0627\u062a \u0643\u0623\u0633 \u0627\u0644\u0639\u0627\u0644\u0645 - \u0643\u0648\u0646\u0645\u064a\u0628\u0648\u0644",
+                                    "bn": "\u0993\u09af\u09bc\u09be\u09b0\u09cd\u09b2\u09cd\u09a1\u0995\u09be\u09aa \u0995\u09cb\u09df\u09be\u09b2\u09bf\u09ab\u09bf\u0995\u09c7\u09b6\u09a8, \u0995\u09a8\u09ae\u09c7\u09ac\u09b2",
+                                    "hi": "\u0935\u0930\u094d\u0932\u094d\u0921 \u0915\u092a \u0915\u094d\u0935\u093e\u0932\u093f\u092b\u093f\u0915\u0947\u0936\u0928, \u0915\u0949\u0928\u092e\u0947\u092c\u094b\u0932"
+                                },
+                                "shortNameTranslation": {}
+                            }
+                        },
+                        "primaryUniqueTournament": {
+                            "name": "FIFA World Cup",
+                            "slug": "world-championship",
+                            "primaryColorHex": "#d20a11",
+                            "secondaryColorHex": "#e8bb57",
+                            "category": {
+                                "name": "World",
+                                "slug": "world",
+                                "sport": {
+                                    "name": "Football",
+                                    "slug": "football",
+                                    "id": 1
+                                },
+                                "priority": 20,
+                                "id": 1468,
+                                "flag": "international",
+                                "fieldTranslations": {
+                                    "nameTranslation": {
+                                        "ar": "\u0627\u0644\u0639\u0627\u0644\u0645",
+                                        "bn": "\u09ac\u09bf\u09b6\u09cd\u09ac",
+                                        "hi": "\u0935\u093f\u0936\u094d\u0935",
+                                        "ru": "\u041c\u0438\u0440"
+                                    },
+                                    "shortNameTranslation": {}
+                                }
+                            },
+                            "userCount": 900305,
+                            "hasPerformanceGraphFeature": false,
+                            "id": 16,
+                            "displayInverseHomeAwayTeams": false,
+                            "fieldTranslations": {
+                                "nameTranslation": {
+                                    "pt-pt": "Mundial",
+                                    "ar": "\u0643\u0623\u0633 \u0627\u0644\u0639\u0627\u0644\u0645",
+                                    "bn": "\u0993\u09af\u09bc\u09be\u09b0\u09cd\u09b2\u09cd\u09a1 \u099a\u09cd\u09af\u09be\u09ae\u09cd\u09aa\u09bf\u09af\u09bc\u09a8\u09b6\u09bf\u09aa",
+                                    "hi": "\u0935\u0930\u094d\u0932\u094d\u0921 \u091a\u0948\u0902\u092a\u093f\u092f\u0928\u0936\u093f\u092a",
+                                    "hr": "FIFA Svjetsko prvenstvo",
+                                    "az": "F\u0130FA D\u00fcnya Kuboku",
+                                    "nl": "Wereldkampioenschap",
+                                    "fr": "Coupe du monde",
+                                    "de": "Weltmeisterschaft",
+                                    "el": "\u03a0\u03b1\u03b3\u03ba\u03cc\u03c3\u03bc\u03b9\u03bf \u039a\u03cd\u03c0\u03b5\u03bb\u03bb\u03bf",
+                                    "hu": "FIFA Vil\u00e1gbajnoks\u00e1g",
+                                    "id": "Piala Dunia FIFA",
+                                    "it": "Coppa del Mondo FIFA",
+                                    "ja": "FIFA\u30ef\u30fc\u30eb\u30c9\u30ab\u30c3\u30d7",
+                                    "ko": "FIFA \uc6d4\ub4dc\ucef5",
+                                    "no": "Verdensmesterskapet",
+                                    "pl": "Mistrzostwa \u015awiata",
+                                    "pt": "Copa do Mundo FIFA",
+                                    "ro": "Campionatul Mondial",
+                                    "es": "Copa Mundial",
+                                    "es-la": "Copa Mundial",
+                                    "sv": "V\u00e4rldsm\u00e4sterskapet",
+                                    "th": "\u0e1f\u0e38\u0e15\u0e1a\u0e2d\u0e25\u0e42\u0e25\u0e01",
+                                    "tr": "FIFA D\u00fcnya Kupas\u0131",
+                                    "vi": "Gi\u1ea3i V\u00f4 \u0110\u1ecbch Th\u1ebf Gi\u1edbi",
+                                    "ru": "\u0427\u0435\u043c\u043f\u0438\u043e\u043d\u0430\u0442 \u043c\u0438\u0440\u0430",
+                                    "sr": "\u0421\u0432\u0435\u0442\u0441\u043a\u043e \u043f\u0440\u0432\u0435\u043d\u0441\u0442\u0432\u043e"
+                                },
+                                "shortNameTranslation": {}
+                            }
+                        },
+                        "userCount": 247951,
+                        "nameCode": "URU",
+                        "ranking": 17,
+                        "disabled": false,
+                        "national": true,
+                        "type": 0,
+                        "id": 4725,
+                        "fullName": "Uruguay",
+                        "teamColors": {
+                            "primary": "#7eacfe",
+                            "secondary": "#000000",
+                            "text": "#000000"
+                        },
+                        "fieldTranslations": {
+                            "nameTranslation": {
+                                "ar": "\u0623\u0648\u0631\u0648\u063a\u0648\u0627\u064a",
+                                "bn": "\u0989\u09b0\u09c1\u0997\u09c1\u09af\u09bc\u09c7",
+                                "hi": "\u0909\u0930\u0941\u0917\u094d\u0935\u0947",
+                                "ru": "\u0423\u0440\u0443\u0433\u0432\u0430\u0439"
+                            },
+                            "shortNameTranslation": {}
+                        }
+                    },
+                    "tournament": {
+                        "name": "FIFA World Cup, Group H",
+                        "slug": "world-championship-gr-h",
+                        "category": {
+                            "name": "World",
+                            "slug": "world",
+                            "sport": {
+                                "name": "Football",
+                                "slug": "football",
+                                "id": 1
+                            },
+                            "priority": 20,
+                            "id": 1468,
+                            "flag": "international",
+                            "fieldTranslations": {
+                                "nameTranslation": {
+                                    "ar": "\u0627\u0644\u0639\u0627\u0644\u0645",
+                                    "bn": "\u09ac\u09bf\u09b6\u09cd\u09ac",
+                                    "hi": "\u0935\u093f\u0936\u094d\u0935",
+                                    "ru": "\u041c\u0438\u0440"
+                                },
+                                "shortNameTranslation": {}
+                            }
+                        },
+                        "uniqueTournament": {
+                            "name": "FIFA World Cup",
+                            "slug": "world-championship",
+                            "primaryColorHex": "#d20a11",
+                            "secondaryColorHex": "#e8bb57",
+                            "category": {
+                                "name": "World",
+                                "slug": "world",
+                                "sport": {
+                                    "name": "Football",
+                                    "slug": "football",
+                                    "id": 1
+                                },
+                                "priority": 20,
+                                "id": 1468,
+                                "flag": "international",
+                                "fieldTranslations": {
+                                    "nameTranslation": {
+                                        "ar": "\u0627\u0644\u0639\u0627\u0644\u0645",
+                                        "bn": "\u09ac\u09bf\u09b6\u09cd\u09ac",
+                                        "hi": "\u0935\u093f\u0936\u094d\u0935",
+                                        "ru": "\u041c\u0438\u0440"
+                                    },
+                                    "shortNameTranslation": {}
+                                }
+                            },
+                            "userCount": 900305,
+                            "hasPerformanceGraphFeature": false,
+                            "id": 16,
+                            "displayInverseHomeAwayTeams": false,
+                            "fieldTranslations": {
+                                "nameTranslation": {
+                                    "pt-pt": "Mundial",
+                                    "ar": "\u0643\u0623\u0633 \u0627\u0644\u0639\u0627\u0644\u0645",
+                                    "bn": "\u0993\u09af\u09bc\u09be\u09b0\u09cd\u09b2\u09cd\u09a1 \u099a\u09cd\u09af\u09be\u09ae\u09cd\u09aa\u09bf\u09af\u09bc\u09a8\u09b6\u09bf\u09aa",
+                                    "hi": "\u0935\u0930\u094d\u0932\u094d\u0921 \u091a\u0948\u0902\u092a\u093f\u092f\u0928\u0936\u093f\u092a",
+                                    "hr": "FIFA Svjetsko prvenstvo",
+                                    "az": "F\u0130FA D\u00fcnya Kuboku",
+                                    "nl": "Wereldkampioenschap",
+                                    "fr": "Coupe du monde",
+                                    "de": "Weltmeisterschaft",
+                                    "el": "\u03a0\u03b1\u03b3\u03ba\u03cc\u03c3\u03bc\u03b9\u03bf \u039a\u03cd\u03c0\u03b5\u03bb\u03bb\u03bf",
+                                    "hu": "FIFA Vil\u00e1gbajnoks\u00e1g",
+                                    "id": "Piala Dunia FIFA",
+                                    "it": "Coppa del Mondo FIFA",
+                                    "ja": "FIFA\u30ef\u30fc\u30eb\u30c9\u30ab\u30c3\u30d7",
+                                    "ko": "FIFA \uc6d4\ub4dc\ucef5",
+                                    "no": "Verdensmesterskapet",
+                                    "pl": "Mistrzostwa \u015awiata",
+                                    "pt": "Copa do Mundo FIFA",
+                                    "ro": "Campionatul Mondial",
+                                    "es": "Copa Mundial",
+                                    "es-la": "Copa Mundial",
+                                    "sv": "V\u00e4rldsm\u00e4sterskapet",
+                                    "th": "\u0e1f\u0e38\u0e15\u0e1a\u0e2d\u0e25\u0e42\u0e25\u0e01",
+                                    "tr": "FIFA D\u00fcnya Kupas\u0131",
+                                    "vi": "Gi\u1ea3i V\u00f4 \u0110\u1ecbch Th\u1ebf Gi\u1edbi",
+                                    "ru": "\u0427\u0435\u043c\u043f\u0438\u043e\u043d\u0430\u0442 \u043c\u0438\u0440\u0430",
+                                    "sr": "\u0421\u0432\u0435\u0442\u0441\u043a\u043e \u043f\u0440\u0432\u0435\u043d\u0441\u0442\u0432\u043e"
+                                },
+                                "shortNameTranslation": {}
+                            }
+                        },
+                        "priority": 806,
+                        "groupSign": "H",
+                        "isLive": false,
+                        "id": 3961,
+                        "fieldTranslations": {
+                            "nameTranslation": {
+                                "bn": "\u0993\u09af\u09bc\u09be\u09b0\u09cd\u09b2\u09cd\u09a1 \u099a\u09cd\u09af\u09be\u09ae\u09cd\u09aa\u09bf\u09af\u09bc\u09a8\u09b6\u09bf\u09aa, \u0997\u09cd\u09b0. \u098f\u0987\u099a",
+                                "hi": "\u0935\u0930\u094d\u0932\u094d\u0921 \u091a\u0948\u0902\u092a\u093f\u092f\u0928\u0936\u093f\u092a, \u0917\u094d\u0930\u0947\u0921 \u090f\u091a",
+                                "hr": "FIFA Svjetsko prvenstvo, Grupa H",
+                                "az": "F\u0130FA D\u00fcnya Kuboku, Qrup H",
+                                "nl": "Wereldkampioenschap, Groep H",
+                                "fr": "Coupe du monde, Groupe H",
+                                "de": "Weltmeisterschaft, Gruppe H",
+                                "el": "\u03a0\u03b1\u03b3\u03ba\u03cc\u03c3\u03bc\u03b9\u03bf \u039a\u03cd\u03c0\u03b5\u03bb\u03bb\u03bf, \u038c\u03bc\u03b9\u03bb\u03bf\u03c2 H",
+                                "pt-pt": "Mundial, Grupo H",
+                                "ar": "\u0628\u0637\u0648\u0644\u0629 \u0627\u0644\u0639\u0627\u0644\u0645\u060c \u0627\u0644\u0645\u062c\u0645\u0648\u0639\u0629 H",
+                                "th": "\u0e1f\u0e38\u0e15\u0e1a\u0e2d\u0e25\u0e42\u0e25\u0e01, \u0e01\u0e25\u0e38\u0e48\u0e21 H",
+                                "tr": "FIFA D\u00fcnya Kupas\u0131, Grup H",
+                                "hu": "Vil\u00e1gbajnoks\u00e1g, Csoport H",
+                                "id": "Piala Dunia FIFA, Grup H",
+                                "it": "Coppa del Mondo, Gruppo H",
+                                "ja": "FIFA\u30ef\u30fc\u30eb\u30c9\u30ab\u30c3\u30d7, \u30b0\u30eb\u30fc\u30d7H",
+                                "ko": "FIFA \uc6d4\ub4dc\ucef5, \uadf8\ub8f9 H",
+                                "no": "Verdensmesterskapet, Gruppe H",
+                                "pl": "Mistrzostwa \u015awiata, Grupa H",
+                                "pt": "Copa do Mundo FIFA, Grupo H",
+                                "ro": "Campionatul Mondial, Grupa H",
+                                "es": "Copa Mundial, Grupo H",
+                                "es-la": "Copa Mundial, Grupo H",
+                                "sv": "V\u00e4rldsm\u00e4sterskapet, Grupp H",
+                                "vi": "Gi\u1ea3i V\u00f4 \u0110\u1ecbch Th\u1ebf Gi\u1edbi, B\u1ea3ng H",
+                                "ru": "\u0427\u0435\u043c\u043f\u0438\u043e\u043d\u0430\u0442 \u043c\u0438\u0440\u0430, \u0413\u0440\u0443\u043f\u043f\u0430 H",
+                                "sr": "\u0421\u0432\u0435\u0442\u0441\u043a\u043e \u043f\u0440\u0432\u0435\u043d\u0441\u0442\u0432\u043e, \u0413\u0440\u0443\u043f\u0430 \u0425"
+                            },
+                            "shortNameTranslation": {}
+                        }
+                    },
+                    "eventStartTimestamp": 1781560800,
+                    "fixtureDifficulty": "hard"
+                }
+            ],
+            "roundPlayerId": 733748,
+            "id": 733748,
+            "price": 4,
+            "priceHistory": {
+                "1": 4
+            }
+        },
+        {
+            "fantasyPlayer": {
+                "player": {
+                    "name": "Anas Badawi",
+                    "firstName": "Anas Badawi",
+                    "slug": "anas-badawi",
+                    "shortName": "A. Badawi",
+                    "position": "D",
+                    "jerseyNumber": "21",
+                    "userCount": 41,
+                    "gender": "M",
+                    "id": 2239188,
+                    "fieldTranslations": {
+                        "nameTranslation": {
+                            "ar": "\u0623\u0646\u0633 \u0628\u062f\u0648\u064a"
+                        },
+                        "shortNameTranslation": {
+                            "ar": "\u0623. \u0628\u062f\u0648\u064a"
+                        }
+                    }
+                },
+                "team": {
+                    "name": "Jordan",
+                    "slug": "jordan",
+                    "shortName": "Jordan",
+                    "gender": "M",
+                    "sport": {
+                        "name": "Football",
+                        "slug": "football",
+                        "id": 1
+                    },
+                    "category": {
+                        "name": "World",
+                        "slug": "world",
+                        "sport": {
+                            "name": "Football",
+                            "slug": "football",
+                            "id": 1
+                        },
+                        "priority": 20,
+                        "id": 1468,
+                        "flag": "international",
+                        "fieldTranslations": {
+                            "nameTranslation": {
+                                "ar": "\u0627\u0644\u0639\u0627\u0644\u0645",
+                                "bn": "\u09ac\u09bf\u09b6\u09cd\u09ac",
+                                "hi": "\u0935\u093f\u0936\u094d\u0935",
+                                "ru": "\u041c\u0438\u0440"
+                            },
+                            "shortNameTranslation": {}
+                        }
+                    },
+                    "tournament": {
+                        "name": "World Cup Qualification, AFC, Round 2, Group B",
+                        "slug": "world-cup-qualification-afc-round-2-group-b",
+                        "category": {
+                            "name": "Asia",
+                            "slug": "asia",
+                            "sport": {
+                                "name": "Football",
+                                "slug": "football",
+                                "id": 1
+                            },
+                            "priority": 17,
+                            "id": 1467,
+                            "flag": "asia",
+                            "fieldTranslations": {
+                                "nameTranslation": {
+                                    "ar": "\u0622\u0633\u064a\u0627",
+                                    "ru": "\u0410\u0437\u0438\u044f"
+                                },
+                                "shortNameTranslation": {}
+                            }
+                        },
+                        "uniqueTournament": {
+                            "name": "World Cup Qual. AFC",
+                            "slug": "world-championship-qual-afc",
+                            "primaryColorHex": "#9a1133",
+                            "secondaryColorHex": "#c11541",
+                            "category": {
+                                "name": "Asia",
+                                "slug": "asia",
+                                "sport": {
+                                    "name": "Football",
+                                    "slug": "football",
+                                    "id": 1
+                                },
+                                "priority": 17,
+                                "id": 1467,
+                                "flag": "asia",
+                                "fieldTranslations": {
+                                    "nameTranslation": {
+                                        "ar": "\u0622\u0633\u064a\u0627",
+                                        "ru": "\u0410\u0437\u0438\u044f"
+                                    },
+                                    "shortNameTranslation": {}
+                                }
+                            },
+                            "userCount": 49852,
+                            "hasPerformanceGraphFeature": false,
+                            "id": 308,
+                            "displayInverseHomeAwayTeams": false,
+                            "fieldTranslations": {
+                                "nameTranslation": {
+                                    "ar": "\u062a\u0635\u0641\u064a\u0627\u062a \u0643\u0623\u0633 \u0627\u0644\u0639\u0627\u0644\u0645 \u0644\u0644\u0627\u062a\u062d\u0627\u062f \u0627\u0644\u0622\u0633\u064a\u0648\u064a \u0644\u0643\u0631\u0629 \u0627\u0644\u0642\u062f\u0645",
+                                    "bn": "\u0993\u09af\u09bc\u09be\u09b0\u09cd\u09b2\u09cd\u09a1 \u099a\u09cd\u09af\u09be\u09ae\u09cd\u09aa\u09bf\u09af\u09bc\u09a8\u09b6\u09bf\u09aa  \u0995\u09cb\u09df\u09be\u09b2. \u098f\u098f\u09ab\u09b8\u09bf",
+                                    "hi": "\u0935\u0930\u094d\u0932\u094d\u0921 \u091a\u0948\u0902\u092a\u093f\u092f\u0928\u0936\u093f\u092a \u0915\u094d\u0935\u093e\u0932\u0940\u092b\u093e\u092f\u0930 \u090f\u090f\u092b\u0938\u0940"
+                                },
+                                "shortNameTranslation": {}
+                            }
+                        },
+                        "priority": 608,
+                        "groupSign": "B",
+                        "isLive": false,
+                        "id": 7239,
+                        "fieldTranslations": {
+                            "nameTranslation": {
+                                "ar": "\u062a\u0635\u0641\u064a\u0627\u062a \u0643\u0623\u0633 \u0627\u0644\u0639\u0627\u0644\u0645\u060c \u0627\u0644\u0627\u062a\u062d\u0627\u062f \u0627\u0644\u0623\u0633\u064a\u0648\u064a \u0644\u0643\u0631\u0629 \u0627\u0644\u0642\u062f\u0645\u060c \u0627\u0644\u062c\u0648\u0644\u0629 2\u060c \u0627\u0644\u0645\u062c\u0645\u0648\u0639\u0629 B",
+                                "bn": "\u0993\u09af\u09bc\u09be\u09b0\u09cd\u09b2\u09cd\u09a1\u0995\u09be\u09aa \u0995\u09cb\u09df\u09be\u09b2\u09bf\u09ab\u09bf\u0995\u09c7\u09b6\u09a8, \u098f\u098f\u09ab\u09b8\u09bf, \u09b0\u09be\u0989\u09a8\u09cd\u09a1 2, \u0997\u09cd\u09b0\u09c1\u09aa \u09ac\u09bf",
+                                "hi": "\u0935\u0930\u094d\u0932\u094d\u0921 \u0915\u092a \u0915\u094d\u0935\u093e\u0932\u0940\u092b\u093f\u0915\u0947\u0936\u0928, \u090f\u090f\u092b\u0938\u0940, \u0930\u093e\u0909\u0902\u0921 2, \u0917\u094d\u0930\u0941\u092a \u092c\u0940"
+                            },
+                            "shortNameTranslation": {}
+                        }
+                    },
+                    "primaryUniqueTournament": {
+                        "name": "AFC Asian Cup",
+                        "slug": "afc-asian-cup",
+                        "primaryColorHex": "#FCBD00",
+                        "secondaryColorHex": "#FC1302",
+                        "category": {
+                            "name": "Asia",
+                            "slug": "asia",
+                            "sport": {
+                                "name": "Football",
+                                "slug": "football",
+                                "id": 1
+                            },
+                            "priority": 17,
+                            "id": 1467,
+                            "flag": "asia",
+                            "fieldTranslations": {
+                                "nameTranslation": {
+                                    "ar": "\u0622\u0633\u064a\u0627",
+                                    "ru": "\u0410\u0437\u0438\u044f"
+                                },
+                                "shortNameTranslation": {}
+                            }
+                        },
+                        "userCount": 65387,
+                        "hasPerformanceGraphFeature": false,
+                        "id": 246,
+                        "displayInverseHomeAwayTeams": false,
+                        "fieldTranslations": {
+                            "nameTranslation": {
+                                "ar": "\u0643\u0623\u0633 \u0622\u0633\u064a\u0627 \u0644\u0644\u0627\u062a\u062d\u0627\u062f \u0627\u0644\u0622\u0633\u064a\u0648\u064a \u0644\u0643\u0631\u0629 \u0627\u0644\u0642\u062f\u0645",
+                                "bn": "\u098f\u098f\u09ab\u09b8\u09bf \u098f\u09b6\u09bf\u09af\u09bc\u09be\u09a8 \u0995\u09be\u09aa",
+                                "hi": "\u090f\u090f\u092b\u0938\u0940 \u090f\u0936\u093f\u092f\u0928 \u0915\u092a"
+                            },
+                            "shortNameTranslation": {}
+                        }
+                    },
+                    "userCount": 57679,
+                    "nameCode": "JOR",
+                    "ranking": 63,
+                    "disabled": false,
+                    "national": true,
+                    "type": 0,
+                    "id": 4771,
+                    "fullName": "Jordan",
+                    "teamColors": {
+                        "primary": "#ffffff",
+                        "secondary": "#ff0000",
+                        "text": "#ff0000"
+                    },
+                    "fieldTranslations": {
+                        "nameTranslation": {
+                            "ar": "\u0627\u0644\u0623\u0631\u062f\u0646",
+                            "bn": "\u099c\u09b0\u09cd\u09a1\u09be\u09a8",
+                            "hi": "\u091c\u0949\u0930\u094d\u0921\u0928",
+                            "ru": "\u0418\u043e\u0440\u0434\u0430\u043d\u0438\u044f"
+                        },
+                        "shortNameTranslation": {}
+                    }
+                },
+                "position": "D",
+                "price": 4,
+                "averageScore": 0,
+                "averageScoreRank": 246,
+                "totalScore": 0,
+                "totalScoreRank": 246,
+                "form": 0,
+                "formRank": 246,
+                "ownedCount": 674,
+                "ownedRank": 96,
+                "ownedPercentage": 0.7,
+                "adds": 45,
+                "drops": 43,
+                "totalPlayersOnPosition": 416,
+                "hasLeftCompetition": false,
+                "id": 88951
+            },
+            "team": {
+                "name": "Jordan",
+                "slug": "jordan",
+                "shortName": "Jordan",
+                "gender": "M",
+                "sport": {
+                    "name": "Football",
+                    "slug": "football",
+                    "id": 1
+                },
+                "category": {
+                    "name": "World",
+                    "slug": "world",
+                    "sport": {
+                        "name": "Football",
+                        "slug": "football",
+                        "id": 1
+                    },
+                    "priority": 20,
+                    "id": 1468,
+                    "flag": "international",
+                    "fieldTranslations": {
+                        "nameTranslation": {
+                            "ar": "\u0627\u0644\u0639\u0627\u0644\u0645",
+                            "bn": "\u09ac\u09bf\u09b6\u09cd\u09ac",
+                            "hi": "\u0935\u093f\u0936\u094d\u0935",
+                            "ru": "\u041c\u0438\u0440"
+                        },
+                        "shortNameTranslation": {}
+                    }
+                },
+                "tournament": {
+                    "name": "World Cup Qualification, AFC, Round 2, Group B",
+                    "slug": "world-cup-qualification-afc-round-2-group-b",
+                    "category": {
+                        "name": "Asia",
+                        "slug": "asia",
+                        "sport": {
+                            "name": "Football",
+                            "slug": "football",
+                            "id": 1
+                        },
+                        "priority": 17,
+                        "id": 1467,
+                        "flag": "asia",
+                        "fieldTranslations": {
+                            "nameTranslation": {
+                                "ar": "\u0622\u0633\u064a\u0627",
+                                "ru": "\u0410\u0437\u0438\u044f"
+                            },
+                            "shortNameTranslation": {}
+                        }
+                    },
+                    "uniqueTournament": {
+                        "name": "World Cup Qual. AFC",
+                        "slug": "world-championship-qual-afc",
+                        "primaryColorHex": "#9a1133",
+                        "secondaryColorHex": "#c11541",
+                        "category": {
+                            "name": "Asia",
+                            "slug": "asia",
+                            "sport": {
+                                "name": "Football",
+                                "slug": "football",
+                                "id": 1
+                            },
+                            "priority": 17,
+                            "id": 1467,
+                            "flag": "asia",
+                            "fieldTranslations": {
+                                "nameTranslation": {
+                                    "ar": "\u0622\u0633\u064a\u0627",
+                                    "ru": "\u0410\u0437\u0438\u044f"
+                                },
+                                "shortNameTranslation": {}
+                            }
+                        },
+                        "userCount": 49852,
+                        "hasPerformanceGraphFeature": false,
+                        "id": 308,
+                        "displayInverseHomeAwayTeams": false,
+                        "fieldTranslations": {
+                            "nameTranslation": {
+                                "ar": "\u062a\u0635\u0641\u064a\u0627\u062a \u0643\u0623\u0633 \u0627\u0644\u0639\u0627\u0644\u0645 \u0644\u0644\u0627\u062a\u062d\u0627\u062f \u0627\u0644\u0622\u0633\u064a\u0648\u064a \u0644\u0643\u0631\u0629 \u0627\u0644\u0642\u062f\u0645",
+                                "bn": "\u0993\u09af\u09bc\u09be\u09b0\u09cd\u09b2\u09cd\u09a1 \u099a\u09cd\u09af\u09be\u09ae\u09cd\u09aa\u09bf\u09af\u09bc\u09a8\u09b6\u09bf\u09aa  \u0995\u09cb\u09df\u09be\u09b2. \u098f\u098f\u09ab\u09b8\u09bf",
+                                "hi": "\u0935\u0930\u094d\u0932\u094d\u0921 \u091a\u0948\u0902\u092a\u093f\u092f\u0928\u0936\u093f\u092a \u0915\u094d\u0935\u093e\u0932\u0940\u092b\u093e\u092f\u0930 \u090f\u090f\u092b\u0938\u0940"
+                            },
+                            "shortNameTranslation": {}
+                        }
+                    },
+                    "priority": 608,
+                    "groupSign": "B",
+                    "isLive": false,
+                    "id": 7239,
+                    "fieldTranslations": {
+                        "nameTranslation": {
+                            "ar": "\u062a\u0635\u0641\u064a\u0627\u062a \u0643\u0623\u0633 \u0627\u0644\u0639\u0627\u0644\u0645\u060c \u0627\u0644\u0627\u062a\u062d\u0627\u062f \u0627\u0644\u0623\u0633\u064a\u0648\u064a \u0644\u0643\u0631\u0629 \u0627\u0644\u0642\u062f\u0645\u060c \u0627\u0644\u062c\u0648\u0644\u0629 2\u060c \u0627\u0644\u0645\u062c\u0645\u0648\u0639\u0629 B",
+                            "bn": "\u0993\u09af\u09bc\u09be\u09b0\u09cd\u09b2\u09cd\u09a1\u0995\u09be\u09aa \u0995\u09cb\u09df\u09be\u09b2\u09bf\u09ab\u09bf\u0995\u09c7\u09b6\u09a8, \u098f\u098f\u09ab\u09b8\u09bf, \u09b0\u09be\u0989\u09a8\u09cd\u09a1 2, \u0997\u09cd\u09b0\u09c1\u09aa \u09ac\u09bf",
+                            "hi": "\u0935\u0930\u094d\u0932\u094d\u0921 \u0915\u092a \u0915\u094d\u0935\u093e\u0932\u0940\u092b\u093f\u0915\u0947\u0936\u0928, \u090f\u090f\u092b\u0938\u0940, \u0930\u093e\u0909\u0902\u0921 2, \u0917\u094d\u0930\u0941\u092a \u092c\u0940"
+                        },
+                        "shortNameTranslation": {}
+                    }
+                },
+                "primaryUniqueTournament": {
+                    "name": "AFC Asian Cup",
+                    "slug": "afc-asian-cup",
+                    "primaryColorHex": "#FCBD00",
+                    "secondaryColorHex": "#FC1302",
+                    "category": {
+                        "name": "Asia",
+                        "slug": "asia",
+                        "sport": {
+                            "name": "Football",
+                            "slug": "football",
+                            "id": 1
+                        },
+                        "priority": 17,
+                        "id": 1467,
+                        "flag": "asia",
+                        "fieldTranslations": {
+                            "nameTranslation": {
+                                "ar": "\u0622\u0633\u064a\u0627",
+                                "ru": "\u0410\u0437\u0438\u044f"
+                            },
+                            "shortNameTranslation": {}
+                        }
+                    },
+                    "userCount": 65387,
+                    "hasPerformanceGraphFeature": false,
+                    "id": 246,
+                    "displayInverseHomeAwayTeams": false,
+                    "fieldTranslations": {
+                        "nameTranslation": {
+                            "ar": "\u0643\u0623\u0633 \u0622\u0633\u064a\u0627 \u0644\u0644\u0627\u062a\u062d\u0627\u062f \u0627\u0644\u0622\u0633\u064a\u0648\u064a \u0644\u0643\u0631\u0629 \u0627\u0644\u0642\u062f\u0645",
+                            "bn": "\u098f\u098f\u09ab\u09b8\u09bf \u098f\u09b6\u09bf\u09af\u09bc\u09be\u09a8 \u0995\u09be\u09aa",
+                            "hi": "\u090f\u090f\u092b\u0938\u0940 \u090f\u0936\u093f\u092f\u0928 \u0915\u092a"
+                        },
+                        "shortNameTranslation": {}
+                    }
+                },
+                "userCount": 57679,
+                "nameCode": "JOR",
+                "ranking": 63,
+                "disabled": false,
+                "national": true,
+                "type": 0,
+                "id": 4771,
+                "fullName": "Jordan",
+                "teamColors": {
+                    "primary": "#ffffff",
+                    "secondary": "#ff0000",
+                    "text": "#ff0000"
+                },
+                "fieldTranslations": {
+                    "nameTranslation": {
+                        "ar": "\u0627\u0644\u0623\u0631\u062f\u0646",
+                        "bn": "\u099c\u09b0\u09cd\u09a1\u09be\u09a8",
+                        "hi": "\u091c\u0949\u0930\u094d\u0921\u0928",
+                        "ru": "\u0418\u043e\u0440\u0434\u0430\u043d\u0438\u044f"
+                    },
+                    "shortNameTranslation": {}
+                }
+            },
+            "fixtures": [
+                {
+                    "eventId": 15186751,
+                    "eventStatusType": "notstarted",
+                    "locationType": "N",
+                    "team": {
+                        "name": "Austria",
+                        "slug": "austria",
+                        "shortName": "Austria",
+                        "gender": "M",
+                        "sport": {
+                            "name": "Football",
+                            "slug": "football",
+                            "id": 1
+                        },
+                        "category": {
+                            "name": "International",
+                            "slug": "international",
+                            "sport": {
+                                "name": "Football",
+                                "slug": "football",
+                                "id": 1
+                            },
+                            "priority": 12,
+                            "id": 4,
+                            "flag": "international",
+                            "fieldTranslations": {
+                                "nameTranslation": {
+                                    "ar": "\u062f\u0648\u0644\u064a",
+                                    "ru": "\u041c\u0435\u0436\u0434\u0443\u043d\u0430\u0440\u043e\u0434\u043d\u044b\u0435"
+                                },
+                                "shortNameTranslation": {}
+                            }
+                        },
+                        "tournament": {
+                            "name": "World Cup Qual. UEFA F",
+                            "slug": "world-championship-qual-uefa-f",
+                            "category": {
+                                "name": "Europe",
+                                "slug": "europe",
+                                "sport": {
+                                    "name": "Football",
+                                    "slug": "football",
+                                    "id": 1
+                                },
+                                "priority": 19,
+                                "id": 1465,
+                                "flag": "europe",
+                                "fieldTranslations": {
+                                    "nameTranslation": {
+                                        "ar": "\u0623\u0648\u0631\u0648\u0628\u0627",
+                                        "bn": "\u0987\u0989\u09b0\u09cb\u09aa",
+                                        "hi": "\u092f\u0942\u0930\u094b\u092a",
+                                        "ru": "\u0415\u0432\u0440\u043e\u043f\u0430"
+                                    },
+                                    "shortNameTranslation": {}
+                                }
+                            },
+                            "uniqueTournament": {
+                                "name": "World Cup Qual. UEFA",
+                                "slug": "world-championship-qual-uefa",
+                                "primaryColorHex": "#9a1133",
+                                "secondaryColorHex": "#c11541",
+                                "category": {
+                                    "name": "Europe",
+                                    "slug": "europe",
+                                    "sport": {
+                                        "name": "Football",
+                                        "slug": "football",
+                                        "id": 1
+                                    },
+                                    "priority": 19,
+                                    "id": 1465,
+                                    "flag": "europe",
+                                    "fieldTranslations": {
+                                        "nameTranslation": {
+                                            "ar": "\u0623\u0648\u0631\u0648\u0628\u0627",
+                                            "bn": "\u0987\u0989\u09b0\u09cb\u09aa",
+                                            "hi": "\u092f\u0942\u0930\u094b\u092a",
+                                            "ru": "\u0415\u0432\u0440\u043e\u043f\u0430"
+                                        },
+                                        "shortNameTranslation": {}
+                                    }
+                                },
+                                "userCount": 209021,
+                                "hasPerformanceGraphFeature": false,
+                                "id": 11,
+                                "displayInverseHomeAwayTeams": false,
+                                "fieldTranslations": {
+                                    "nameTranslation": {
+                                        "ar": "\u062a\u0635\u0641\u064a\u0627\u062a \u0643\u0623\u0633 \u0627\u0644\u0639\u0627\u0644\u0645 \u0644\u0644\u0627\u062a\u062d\u0627\u062f \u0627\u0644\u0623\u0648\u0631\u0648\u0628\u064a \u0644\u0643\u0631\u0629 \u0627\u0644\u0642\u062f\u0645",
+                                        "bn": "\u0993\u09af\u09bc\u09be\u09b0\u09cd\u09b2\u09cd\u09a1 \u099a\u09cd\u09af\u09be\u09ae\u09cd\u09aa\u09bf\u09af\u09bc\u09a8\u09b6\u09bf\u09aa \u0995\u09cb\u09af\u09bc\u09be\u09b2. \u0989\u09af\u09bc\u09c7\u09ab\u09be",
+                                        "hi": "\u0935\u0930\u094d\u0932\u094d\u0921 \u091a\u0948\u0902\u092a\u093f\u092f\u0928\u0936\u093f\u092a \u0915\u094d\u0935\u093e\u0932\u0940\u092b\u093e\u0907\u0902\u0917 \u092f\u0942\u0908\u090f\u092b\u090f"
+                                    },
+                                    "shortNameTranslation": {}
+                                }
+                            },
+                            "priority": 645,
+                            "groupSign": "F",
+                            "isLive": false,
+                            "id": 1762,
+                            "fieldTranslations": {
+                                "nameTranslation": {
+                                    "ar": "\u062a\u0635\u0641\u064a\u0627\u062a \u0643\u0623\u0633 \u0627\u0644\u0639\u0627\u0644\u0645 - \u0627\u0644\u0627\u062a\u062d\u0627\u062f \u0627\u0644\u0623\u0648\u0631\u0648\u0628\u064a F",
+                                    "bn": "\u0993\u09af\u09bc\u09be\u09b0\u09cd\u09b2\u09cd\u09a1 \u099a\u09cd\u09af\u09be\u09ae\u09cd\u09aa\u09bf\u09af\u09bc\u09a8\u09b6\u09bf\u09aa \u0995\u09cb\u09af\u09bc\u09be\u09b2. \u0989\u09af\u09bc\u09c7\u09ab\u09be \u098f\u09ab",
+                                    "hi": "\u0935\u0930\u094d\u0932\u094d\u0921 \u091a\u0948\u0902\u092a\u093f\u092f\u0928\u0936\u093f\u092a \u0915\u094d\u0935\u093e\u0932\u093f\u092b\u093f\u0915\u0947\u0936\u0928 \u092f\u0942\u0908\u090f\u092b\u090f \u090f\u092b"
+                                },
+                                "shortNameTranslation": {}
+                            }
+                        },
+                        "primaryUniqueTournament": {
+                            "name": "UEFA Nations League",
+                            "slug": "uefa-nations-league",
+                            "primaryColorHex": "#3a4179",
+                            "secondaryColorHex": "#e5a422",
+                            "category": {
+                                "name": "Europe",
+                                "slug": "europe",
+                                "sport": {
+                                    "name": "Football",
+                                    "slug": "football",
+                                    "id": 1
+                                },
+                                "priority": 19,
+                                "id": 1465,
+                                "flag": "europe",
+                                "fieldTranslations": {
+                                    "nameTranslation": {
+                                        "ar": "\u0623\u0648\u0631\u0648\u0628\u0627",
+                                        "bn": "\u0987\u0989\u09b0\u09cb\u09aa",
+                                        "hi": "\u092f\u0942\u0930\u094b\u092a",
+                                        "ru": "\u0415\u0432\u0440\u043e\u043f\u0430"
+                                    },
+                                    "shortNameTranslation": {}
+                                }
+                            },
+                            "userCount": 268444,
+                            "hasPerformanceGraphFeature": false,
+                            "id": 10783,
+                            "displayInverseHomeAwayTeams": false,
+                            "fieldTranslations": {
+                                "nameTranslation": {
+                                    "ar": "\u062f\u0648\u0631\u064a \u0623\u0645\u0645 \u0623\u0648\u0631\u0648\u0628\u0627",
+                                    "bn": "\u0989\u09af\u09bc\u09c7\u09ab\u09be \u09a8\u09c7\u09b6\u09a8\u09b8 \u09b2\u09bf\u0997",
+                                    "hi": "\u092f\u0942\u0908\u090f\u092b\u090f \u0928\u0947\u0936\u0902\u0938 \u0932\u0940\u0917"
+                                },
+                                "shortNameTranslation": {}
+                            }
+                        },
+                        "userCount": 116193,
+                        "nameCode": "AUT",
+                        "ranking": 24,
+                        "disabled": false,
+                        "national": true,
+                        "type": 0,
+                        "id": 4718,
+                        "fullName": "Austria",
+                        "teamColors": {
+                            "primary": "#ff0000",
+                            "secondary": "#ffffff",
+                            "text": "#ffffff"
+                        },
+                        "fieldTranslations": {
+                            "nameTranslation": {
+                                "ar": "\u0627\u0644\u0646\u0645\u0633\u0627",
+                                "bn": "\u0985\u09b8\u09cd\u099f\u09cd\u09b0\u09bf\u09af\u09bc\u09be",
+                                "hi": "\u0911\u0938\u094d\u091f\u094d\u0930\u093f\u092f\u093e",
+                                "ru": "\u0410\u0432\u0441\u0442\u0440\u0438\u044f"
+                            },
+                            "shortNameTranslation": {}
+                        }
+                    },
+                    "tournament": {
+                        "name": "FIFA World Cup, Group J",
+                        "slug": "world-championship-gr-j",
+                        "category": {
+                            "name": "World",
+                            "slug": "world",
+                            "sport": {
+                                "name": "Football",
+                                "slug": "football",
+                                "id": 1
+                            },
+                            "priority": 20,
+                            "id": 1468,
+                            "flag": "international",
+                            "fieldTranslations": {
+                                "nameTranslation": {
+                                    "ar": "\u0627\u0644\u0639\u0627\u0644\u0645",
+                                    "bn": "\u09ac\u09bf\u09b6\u09cd\u09ac",
+                                    "hi": "\u0935\u093f\u0936\u094d\u0935",
+                                    "ru": "\u041c\u0438\u0440"
+                                },
+                                "shortNameTranslation": {}
+                            }
+                        },
+                        "uniqueTournament": {
+                            "name": "FIFA World Cup",
+                            "slug": "world-championship",
+                            "primaryColorHex": "#d20a11",
+                            "secondaryColorHex": "#e8bb57",
+                            "category": {
+                                "name": "World",
+                                "slug": "world",
+                                "sport": {
+                                    "name": "Football",
+                                    "slug": "football",
+                                    "id": 1
+                                },
+                                "priority": 20,
+                                "id": 1468,
+                                "flag": "international",
+                                "fieldTranslations": {
+                                    "nameTranslation": {
+                                        "ar": "\u0627\u0644\u0639\u0627\u0644\u0645",
+                                        "bn": "\u09ac\u09bf\u09b6\u09cd\u09ac",
+                                        "hi": "\u0935\u093f\u0936\u094d\u0935",
+                                        "ru": "\u041c\u0438\u0440"
+                                    },
+                                    "shortNameTranslation": {}
+                                }
+                            },
+                            "userCount": 900305,
+                            "hasPerformanceGraphFeature": false,
+                            "id": 16,
+                            "displayInverseHomeAwayTeams": false,
+                            "fieldTranslations": {
+                                "nameTranslation": {
+                                    "pt-pt": "Mundial",
+                                    "ar": "\u0643\u0623\u0633 \u0627\u0644\u0639\u0627\u0644\u0645",
+                                    "bn": "\u0993\u09af\u09bc\u09be\u09b0\u09cd\u09b2\u09cd\u09a1 \u099a\u09cd\u09af\u09be\u09ae\u09cd\u09aa\u09bf\u09af\u09bc\u09a8\u09b6\u09bf\u09aa",
+                                    "hi": "\u0935\u0930\u094d\u0932\u094d\u0921 \u091a\u0948\u0902\u092a\u093f\u092f\u0928\u0936\u093f\u092a",
+                                    "hr": "FIFA Svjetsko prvenstvo",
+                                    "az": "F\u0130FA D\u00fcnya Kuboku",
+                                    "nl": "Wereldkampioenschap",
+                                    "fr": "Coupe du monde",
+                                    "de": "Weltmeisterschaft",
+                                    "el": "\u03a0\u03b1\u03b3\u03ba\u03cc\u03c3\u03bc\u03b9\u03bf \u039a\u03cd\u03c0\u03b5\u03bb\u03bb\u03bf",
+                                    "hu": "FIFA Vil\u00e1gbajnoks\u00e1g",
+                                    "id": "Piala Dunia FIFA",
+                                    "it": "Coppa del Mondo FIFA",
+                                    "ja": "FIFA\u30ef\u30fc\u30eb\u30c9\u30ab\u30c3\u30d7",
+                                    "ko": "FIFA \uc6d4\ub4dc\ucef5",
+                                    "no": "Verdensmesterskapet",
+                                    "pl": "Mistrzostwa \u015awiata",
+                                    "pt": "Copa do Mundo FIFA",
+                                    "ro": "Campionatul Mondial",
+                                    "es": "Copa Mundial",
+                                    "es-la": "Copa Mundial",
+                                    "sv": "V\u00e4rldsm\u00e4sterskapet",
+                                    "th": "\u0e1f\u0e38\u0e15\u0e1a\u0e2d\u0e25\u0e42\u0e25\u0e01",
+                                    "tr": "FIFA D\u00fcnya Kupas\u0131",
+                                    "vi": "Gi\u1ea3i V\u00f4 \u0110\u1ecbch Th\u1ebf Gi\u1edbi",
+                                    "ru": "\u0427\u0435\u043c\u043f\u0438\u043e\u043d\u0430\u0442 \u043c\u0438\u0440\u0430",
+                                    "sr": "\u0421\u0432\u0435\u0442\u0441\u043a\u043e \u043f\u0440\u0432\u0435\u043d\u0441\u0442\u0432\u043e"
+                                },
+                                "shortNameTranslation": {}
+                            }
+                        },
+                        "priority": 802,
+                        "groupSign": "J",
+                        "id": 139404,
+                        "fieldTranslations": {
+                            "nameTranslation": {
+                                "bn": "\u0993\u09af\u09bc\u09be\u09b0\u09cd\u09b2\u09cd\u09a1 \u099a\u09cd\u09af\u09be\u09ae\u09cd\u09aa\u09bf\u09af\u09bc\u09a8\u09b6\u09bf\u09aa, \u0997\u09cd\u09b0. \u099c\u09c7",
+                                "hi": "\u0935\u0930\u094d\u0932\u094d\u0921 \u091a\u0948\u0902\u092a\u093f\u092f\u0928\u0936\u093f\u092a, \u0917\u094d\u0930\u0947\u0921 \u091c\u0947",
+                                "hr": "FIFA Svjetsko prvenstvo, Grupa J",
+                                "az": "F\u0130FA D\u00fcnya Kuboku, Qrup J",
+                                "nl": "Wereldkampioenschap, Groep J",
+                                "fr": "Coupe du monde, Groupe J",
+                                "de": "Weltmeisterschaft, Gruppe J",
+                                "el": "\u03a0\u03b1\u03b3\u03ba\u03cc\u03c3\u03bc\u03b9\u03bf \u039a\u03cd\u03c0\u03b5\u03bb\u03bb\u03bf, \u038c\u03bc\u03b9\u03bb\u03bf\u03c2 J",
+                                "hu": "Vil\u00e1gbajnoks\u00e1g, Csoport J",
+                                "id": "Piala Dunia FIFA, Grup J",
+                                "it": "Coppa del Mondo, Gruppo J",
+                                "pt-pt": "Mundial, Grupo J",
+                                "ru": "\u0427\u0435\u043c\u043f\u0438\u043e\u043d\u0430\u0442 \u043c\u0438\u0440\u0430, \u0413\u0440\u0443\u043f\u043f\u0430 J",
+                                "ar": "\u0628\u0637\u0648\u0644\u0629 \u0627\u0644\u0639\u0627\u0644\u0645\u060c \u0627\u0644\u0645\u062c\u0645\u0648\u0639\u0629 J",
+                                "ja": "FIFA\u30ef\u30fc\u30eb\u30c9\u30ab\u30c3\u30d7, \u30b0\u30eb\u30fc\u30d7J",
+                                "ko": "FIFA \uc6d4\ub4dc\ucef5, \uadf8\ub8f9 J",
+                                "no": "Verdensmesterskapet, Gruppe J",
+                                "pl": "Mistrzostwa \u015awiata, Grupa J",
+                                "pt": "Copa do Mundo FIFA, Grupo J",
+                                "ro": "Campionatul Mondial, Grupa J",
+                                "es": "Copa Mundial, Grupo J",
+                                "es-la": "Copa Mundial, Grupo J",
+                                "sv": "V\u00e4rldsm\u00e4sterskapet, Grupp J",
+                                "th": "\u0e1f\u0e38\u0e15\u0e1a\u0e2d\u0e25\u0e42\u0e25\u0e01, \u0e01\u0e25\u0e38\u0e48\u0e21 J",
+                                "tr": "FIFA D\u00fcnya Kupas\u0131, Grup J",
+                                "vi": "Gi\u1ea3i V\u00f4 \u0110\u1ecbch Th\u1ebf Gi\u1edbi, B\u1ea3ng J",
+                                "sr": "\u0421\u0432\u0435\u0442\u0441\u043a\u043e \u043f\u0440\u0432\u0435\u043d\u0441\u0442\u0432\u043e, \u0413\u0440\u0443\u043f\u0430 J"
+                            },
+                            "shortNameTranslation": {}
+                        }
+                    },
+                    "eventStartTimestamp": 1781668800,
+                    "fixtureDifficulty": "hard"
+                }
+            ],
+            "roundPlayerId": 734189,
+            "id": 734189,
+            "price": 4,
+            "priceHistory": {
+                "1": 4
+            }
+        },
+        {
+            "fantasyPlayer": {
+                "player": {
+                    "name": "Alhashmi Mohialdin",
+                    "firstName": "",
+                    "lastName": "",
+                    "slug": "mohialdin-alhashmi",
+                    "shortName": "A. Mohialdin",
+                    "position": "D",
+                    "jerseyNumber": "4",
+                    "userCount": 33,
+                    "gender": "M",
+                    "id": 1474258,
+                    "fieldTranslations": {
+                        "nameTranslation": {
+                            "ar": "\u0627\u0644\u0647\u0627\u0634\u0645\u064a \u0627\u0644\u062d\u0633\u064a\u0646"
+                        },
+                        "shortNameTranslation": {
+                            "ar": "\u0627. \u0627\u0644\u062d\u0633\u064a\u0646"
+                        }
+                    }
+                },
+                "team": {
+                    "name": "Qatar",
+                    "slug": "qatar",
+                    "shortName": "Qatar",
+                    "gender": "M",
+                    "sport": {
+                        "name": "Football",
+                        "slug": "football",
+                        "id": 1
+                    },
+                    "category": {
+                        "name": "World",
+                        "slug": "world",
+                        "sport": {
+                            "name": "Football",
+                            "slug": "football",
+                            "id": 1
+                        },
+                        "priority": 20,
+                        "id": 1468,
+                        "flag": "international",
+                        "fieldTranslations": {
+                            "nameTranslation": {
+                                "ar": "\u0627\u0644\u0639\u0627\u0644\u0645",
+                                "bn": "\u09ac\u09bf\u09b6\u09cd\u09ac",
+                                "hi": "\u0935\u093f\u0936\u094d\u0935",
+                                "ru": "\u041c\u0438\u0440"
+                            },
+                            "shortNameTranslation": {}
+                        }
+                    },
+                    "tournament": {
+                        "name": "CONCACAF Gold Cup, Group D",
+                        "slug": "concacaf-gold-cup-group-d",
+                        "category": {
+                            "name": "North & Central America",
+                            "slug": "north-central-america",
+                            "sport": {
+                                "name": "Football",
+                                "slug": "football",
+                                "id": 1
+                            },
+                            "priority": 15,
+                            "id": 1469,
+                            "flag": "north-and-central-america",
+                            "fieldTranslations": {
+                                "nameTranslation": {
+                                    "ar": "\u0623\u0645\u0631\u064a\u0643\u0627 \u0627\u0644\u0634\u0645\u0627\u0644\u064a\u0629 \u0648\u0627\u0644\u0648\u0633\u0637\u0649",
+                                    "ru": "\u0421\u0435\u0432\u0435\u0440\u043d\u0430\u044f \u0438 \u0426\u0435\u043d\u0442\u0440\u0430\u043b\u044c\u043d\u0430\u044f \u0410\u043c\u0435\u0440\u0438\u043a\u0430"
+                                },
+                                "shortNameTranslation": {}
+                            }
+                        },
+                        "uniqueTournament": {
+                            "name": "CONCACAF Gold Cup",
+                            "slug": "concacaf-gold-cup",
+                            "primaryColorHex": "#031236",
+                            "secondaryColorHex": "#ffc84e",
+                            "category": {
+                                "name": "North & Central America",
+                                "slug": "north-central-america",
+                                "sport": {
+                                    "name": "Football",
+                                    "slug": "football",
+                                    "id": 1
+                                },
+                                "priority": 15,
+                                "id": 1469,
+                                "flag": "north-and-central-america",
+                                "fieldTranslations": {
+                                    "nameTranslation": {
+                                        "ar": "\u0623\u0645\u0631\u064a\u0643\u0627 \u0627\u0644\u0634\u0645\u0627\u0644\u064a\u0629 \u0648\u0627\u0644\u0648\u0633\u0637\u0649",
+                                        "ru": "\u0421\u0435\u0432\u0435\u0440\u043d\u0430\u044f \u0438 \u0426\u0435\u043d\u0442\u0440\u0430\u043b\u044c\u043d\u0430\u044f \u0410\u043c\u0435\u0440\u0438\u043a\u0430"
+                                    },
+                                    "shortNameTranslation": {}
+                                }
+                            },
+                            "userCount": 41329,
+                            "hasPerformanceGraphFeature": false,
+                            "id": 140,
+                            "displayInverseHomeAwayTeams": false,
+                            "fieldTranslations": {
+                                "nameTranslation": {
+                                    "ar": "\u0643\u0623\u0633 \u0627\u0644\u0643\u0648\u0646\u0643\u0627\u0643\u0627\u0641 \u0627\u0644\u0630\u0647\u0628\u064a",
+                                    "bn": "\u0995\u09a8\u0995\u09be\u0995\u09cd\u09af\u09be\u09ab \u0997\u09cb\u09b2\u09cd\u09a1 \u0995\u09be\u09aa",
+                                    "hi": "\u0915\u094b\u0902\u0915\u093e\u0915\u093e\u092b \u0917\u094b\u0932\u094d\u0921 \u0915\u092a"
+                                },
+                                "shortNameTranslation": {}
+                            }
+                        },
+                        "priority": 115,
+                        "groupSign": "D",
+                        "isLive": false,
+                        "id": 72316,
+                        "fieldTranslations": {
+                            "nameTranslation": {
+                                "ar": "\u0643\u0623\u0633 \u0627\u0644\u0643\u0648\u0646\u0643\u0627\u0643\u0627\u0641 \u0627\u0644\u0630\u0647\u0628\u064a\u0629\u060c \u0627\u0644\u0645\u062c\u0645\u0648\u0639\u0629 D",
+                                "bn": "\u0995\u09a8\u0995\u09be\u0995\u09be\u09ab \u0997\u09cb\u09b2\u09cd\u09a1 \u0995\u09be\u09aa, \u0997\u09cd\u09b0\u09c1\u09aa \u09a1\u09bf",
+                                "hi": "\u0915\u0949\u0928\u0915\u0948\u0915\u093e\u092b\u093c \u0917\u094b\u0932\u094d\u0921 \u0915\u092a, \u0917\u094d\u0930\u0941\u092a \u0921\u0940"
+                            },
+                            "shortNameTranslation": {}
+                        }
+                    },
+                    "primaryUniqueTournament": {
+                        "name": "AFC Asian Cup",
+                        "slug": "afc-asian-cup",
+                        "primaryColorHex": "#FCBD00",
+                        "secondaryColorHex": "#FC1302",
+                        "category": {
+                            "name": "Asia",
+                            "slug": "asia",
+                            "sport": {
+                                "name": "Football",
+                                "slug": "football",
+                                "id": 1
+                            },
+                            "priority": 17,
+                            "id": 1467,
+                            "flag": "asia",
+                            "fieldTranslations": {
+                                "nameTranslation": {
+                                    "ar": "\u0622\u0633\u064a\u0627",
+                                    "ru": "\u0410\u0437\u0438\u044f"
+                                },
+                                "shortNameTranslation": {}
+                            }
+                        },
+                        "userCount": 65387,
+                        "hasPerformanceGraphFeature": false,
+                        "id": 246,
+                        "displayInverseHomeAwayTeams": false,
+                        "fieldTranslations": {
+                            "nameTranslation": {
+                                "ar": "\u0643\u0623\u0633 \u0622\u0633\u064a\u0627 \u0644\u0644\u0627\u062a\u062d\u0627\u062f \u0627\u0644\u0622\u0633\u064a\u0648\u064a \u0644\u0643\u0631\u0629 \u0627\u0644\u0642\u062f\u0645",
+                                "bn": "\u098f\u098f\u09ab\u09b8\u09bf \u098f\u09b6\u09bf\u09af\u09bc\u09be\u09a8 \u0995\u09be\u09aa",
+                                "hi": "\u090f\u090f\u092b\u0938\u0940 \u090f\u0936\u093f\u092f\u0928 \u0915\u092a"
+                            },
+                            "shortNameTranslation": {}
+                        }
+                    },
+                    "userCount": 50822,
+                    "nameCode": "QAT",
+                    "ranking": 55,
+                    "disabled": false,
+                    "national": true,
+                    "type": 0,
+                    "id": 4792,
+                    "fullName": "Qatar",
+                    "teamColors": {
+                        "primary": "#660000",
+                        "secondary": "#ffffff",
+                        "text": "#ffffff"
+                    },
+                    "fieldTranslations": {
+                        "nameTranslation": {
+                            "ar": "\u0642\u0637\u0631",
+                            "bn": "\u0995\u09be\u09a4\u09be\u09b0",
+                            "hi": "\u0915\u093c\u0924\u0930",
+                            "ru": "\u041a\u0430\u0442\u0430\u0440"
+                        },
+                        "shortNameTranslation": {}
+                    }
+                },
+                "position": "D",
+                "price": 4,
+                "averageScore": 0,
+                "averageScoreRank": 219,
+                "totalScore": 0,
+                "totalScoreRank": 219,
+                "form": 0,
+                "formRank": 219,
+                "ownedCount": 286,
+                "ownedRank": 135,
+                "ownedPercentage": 0.3,
+                "adds": 21,
+                "drops": 14,
+                "totalPlayersOnPosition": 416,
+                "hasLeftCompetition": false,
+                "id": 88797
+            },
+            "team": {
+                "name": "Qatar",
+                "slug": "qatar",
+                "shortName": "Qatar",
+                "gender": "M",
+                "sport": {
+                    "name": "Football",
+                    "slug": "football",
+                    "id": 1
+                },
+                "category": {
+                    "name": "World",
+                    "slug": "world",
+                    "sport": {
+                        "name": "Football",
+                        "slug": "football",
+                        "id": 1
+                    },
+                    "priority": 20,
+                    "id": 1468,
+                    "flag": "international",
+                    "fieldTranslations": {
+                        "nameTranslation": {
+                            "ar": "\u0627\u0644\u0639\u0627\u0644\u0645",
+                            "bn": "\u09ac\u09bf\u09b6\u09cd\u09ac",
+                            "hi": "\u0935\u093f\u0936\u094d\u0935",
+                            "ru": "\u041c\u0438\u0440"
+                        },
+                        "shortNameTranslation": {}
+                    }
+                },
+                "tournament": {
+                    "name": "CONCACAF Gold Cup, Group D",
+                    "slug": "concacaf-gold-cup-group-d",
+                    "category": {
+                        "name": "North & Central America",
+                        "slug": "north-central-america",
+                        "sport": {
+                            "name": "Football",
+                            "slug": "football",
+                            "id": 1
+                        },
+                        "priority": 15,
+                        "id": 1469,
+                        "flag": "north-and-central-america",
+                        "fieldTranslations": {
+                            "nameTranslation": {
+                                "ar": "\u0623\u0645\u0631\u064a\u0643\u0627 \u0627\u0644\u0634\u0645\u0627\u0644\u064a\u0629 \u0648\u0627\u0644\u0648\u0633\u0637\u0649",
+                                "ru": "\u0421\u0435\u0432\u0435\u0440\u043d\u0430\u044f \u0438 \u0426\u0435\u043d\u0442\u0440\u0430\u043b\u044c\u043d\u0430\u044f \u0410\u043c\u0435\u0440\u0438\u043a\u0430"
+                            },
+                            "shortNameTranslation": {}
+                        }
+                    },
+                    "uniqueTournament": {
+                        "name": "CONCACAF Gold Cup",
+                        "slug": "concacaf-gold-cup",
+                        "primaryColorHex": "#031236",
+                        "secondaryColorHex": "#ffc84e",
+                        "category": {
+                            "name": "North & Central America",
+                            "slug": "north-central-america",
+                            "sport": {
+                                "name": "Football",
+                                "slug": "football",
+                                "id": 1
+                            },
+                            "priority": 15,
+                            "id": 1469,
+                            "flag": "north-and-central-america",
+                            "fieldTranslations": {
+                                "nameTranslation": {
+                                    "ar": "\u0623\u0645\u0631\u064a\u0643\u0627 \u0627\u0644\u0634\u0645\u0627\u0644\u064a\u0629 \u0648\u0627\u0644\u0648\u0633\u0637\u0649",
+                                    "ru": "\u0421\u0435\u0432\u0435\u0440\u043d\u0430\u044f \u0438 \u0426\u0435\u043d\u0442\u0440\u0430\u043b\u044c\u043d\u0430\u044f \u0410\u043c\u0435\u0440\u0438\u043a\u0430"
+                                },
+                                "shortNameTranslation": {}
+                            }
+                        },
+                        "userCount": 41329,
+                        "hasPerformanceGraphFeature": false,
+                        "id": 140,
+                        "displayInverseHomeAwayTeams": false,
+                        "fieldTranslations": {
+                            "nameTranslation": {
+                                "ar": "\u0643\u0623\u0633 \u0627\u0644\u0643\u0648\u0646\u0643\u0627\u0643\u0627\u0641 \u0627\u0644\u0630\u0647\u0628\u064a",
+                                "bn": "\u0995\u09a8\u0995\u09be\u0995\u09cd\u09af\u09be\u09ab \u0997\u09cb\u09b2\u09cd\u09a1 \u0995\u09be\u09aa",
+                                "hi": "\u0915\u094b\u0902\u0915\u093e\u0915\u093e\u092b \u0917\u094b\u0932\u094d\u0921 \u0915\u092a"
+                            },
+                            "shortNameTranslation": {}
+                        }
+                    },
+                    "priority": 115,
+                    "groupSign": "D",
+                    "isLive": false,
+                    "id": 72316,
+                    "fieldTranslations": {
+                        "nameTranslation": {
+                            "ar": "\u0643\u0623\u0633 \u0627\u0644\u0643\u0648\u0646\u0643\u0627\u0643\u0627\u0641 \u0627\u0644\u0630\u0647\u0628\u064a\u0629\u060c \u0627\u0644\u0645\u062c\u0645\u0648\u0639\u0629 D",
+                            "bn": "\u0995\u09a8\u0995\u09be\u0995\u09be\u09ab \u0997\u09cb\u09b2\u09cd\u09a1 \u0995\u09be\u09aa, \u0997\u09cd\u09b0\u09c1\u09aa \u09a1\u09bf",
+                            "hi": "\u0915\u0949\u0928\u0915\u0948\u0915\u093e\u092b\u093c \u0917\u094b\u0932\u094d\u0921 \u0915\u092a, \u0917\u094d\u0930\u0941\u092a \u0921\u0940"
+                        },
+                        "shortNameTranslation": {}
+                    }
+                },
+                "primaryUniqueTournament": {
+                    "name": "AFC Asian Cup",
+                    "slug": "afc-asian-cup",
+                    "primaryColorHex": "#FCBD00",
+                    "secondaryColorHex": "#FC1302",
+                    "category": {
+                        "name": "Asia",
+                        "slug": "asia",
+                        "sport": {
+                            "name": "Football",
+                            "slug": "football",
+                            "id": 1
+                        },
+                        "priority": 17,
+                        "id": 1467,
+                        "flag": "asia",
+                        "fieldTranslations": {
+                            "nameTranslation": {
+                                "ar": "\u0622\u0633\u064a\u0627",
+                                "ru": "\u0410\u0437\u0438\u044f"
+                            },
+                            "shortNameTranslation": {}
+                        }
+                    },
+                    "userCount": 65387,
+                    "hasPerformanceGraphFeature": false,
+                    "id": 246,
+                    "displayInverseHomeAwayTeams": false,
+                    "fieldTranslations": {
+                        "nameTranslation": {
+                            "ar": "\u0643\u0623\u0633 \u0622\u0633\u064a\u0627 \u0644\u0644\u0627\u062a\u062d\u0627\u062f \u0627\u0644\u0622\u0633\u064a\u0648\u064a \u0644\u0643\u0631\u0629 \u0627\u0644\u0642\u062f\u0645",
+                            "bn": "\u098f\u098f\u09ab\u09b8\u09bf \u098f\u09b6\u09bf\u09af\u09bc\u09be\u09a8 \u0995\u09be\u09aa",
+                            "hi": "\u090f\u090f\u092b\u0938\u0940 \u090f\u0936\u093f\u092f\u0928 \u0915\u092a"
+                        },
+                        "shortNameTranslation": {}
+                    }
+                },
+                "userCount": 50822,
+                "nameCode": "QAT",
+                "ranking": 55,
+                "disabled": false,
+                "national": true,
+                "type": 0,
+                "id": 4792,
+                "fullName": "Qatar",
+                "teamColors": {
+                    "primary": "#660000",
+                    "secondary": "#ffffff",
+                    "text": "#ffffff"
+                },
+                "fieldTranslations": {
+                    "nameTranslation": {
+                        "ar": "\u0642\u0637\u0631",
+                        "bn": "\u0995\u09be\u09a4\u09be\u09b0",
+                        "hi": "\u0915\u093c\u0924\u0930",
+                        "ru": "\u041a\u0430\u0442\u0430\u0440"
+                    },
+                    "shortNameTranslation": {}
+                }
+            },
+            "fixtures": [
+                {
+                    "eventId": 15186526,
+                    "eventStatusType": "notstarted",
+                    "locationType": "N",
+                    "team": {
+                        "name": "Switzerland",
+                        "slug": "switzerland",
+                        "shortName": "Switzerland",
+                        "gender": "M",
+                        "sport": {
+                            "name": "Football",
+                            "slug": "football",
+                            "id": 1
+                        },
+                        "category": {
+                            "name": "International",
+                            "slug": "international",
+                            "sport": {
+                                "name": "Football",
+                                "slug": "football",
+                                "id": 1
+                            },
+                            "priority": 12,
+                            "id": 4,
+                            "flag": "international",
+                            "fieldTranslations": {
+                                "nameTranslation": {
+                                    "ar": "\u062f\u0648\u0644\u064a",
+                                    "ru": "\u041c\u0435\u0436\u0434\u0443\u043d\u0430\u0440\u043e\u0434\u043d\u044b\u0435"
+                                },
+                                "shortNameTranslation": {}
+                            }
+                        },
+                        "tournament": {
+                            "name": "World Cup Qual. UEFA C",
+                            "slug": "world-championship-qual-uefa-c",
+                            "category": {
+                                "name": "Europe",
+                                "slug": "europe",
+                                "sport": {
+                                    "name": "Football",
+                                    "slug": "football",
+                                    "id": 1
+                                },
+                                "priority": 19,
+                                "id": 1465,
+                                "flag": "europe",
+                                "fieldTranslations": {
+                                    "nameTranslation": {
+                                        "ar": "\u0623\u0648\u0631\u0648\u0628\u0627",
+                                        "bn": "\u0987\u0989\u09b0\u09cb\u09aa",
+                                        "hi": "\u092f\u0942\u0930\u094b\u092a",
+                                        "ru": "\u0415\u0432\u0440\u043e\u043f\u0430"
+                                    },
+                                    "shortNameTranslation": {}
+                                }
+                            },
+                            "uniqueTournament": {
+                                "name": "World Cup Qual. UEFA",
+                                "slug": "world-championship-qual-uefa",
+                                "primaryColorHex": "#9a1133",
+                                "secondaryColorHex": "#c11541",
+                                "category": {
+                                    "name": "Europe",
+                                    "slug": "europe",
+                                    "sport": {
+                                        "name": "Football",
+                                        "slug": "football",
+                                        "id": 1
+                                    },
+                                    "priority": 19,
+                                    "id": 1465,
+                                    "flag": "europe",
+                                    "fieldTranslations": {
+                                        "nameTranslation": {
+                                            "ar": "\u0623\u0648\u0631\u0648\u0628\u0627",
+                                            "bn": "\u0987\u0989\u09b0\u09cb\u09aa",
+                                            "hi": "\u092f\u0942\u0930\u094b\u092a",
+                                            "ru": "\u0415\u0432\u0440\u043e\u043f\u0430"
+                                        },
+                                        "shortNameTranslation": {}
+                                    }
+                                },
+                                "userCount": 209021,
+                                "hasPerformanceGraphFeature": false,
+                                "id": 11,
+                                "displayInverseHomeAwayTeams": false,
+                                "fieldTranslations": {
+                                    "nameTranslation": {
+                                        "ar": "\u062a\u0635\u0641\u064a\u0627\u062a \u0643\u0623\u0633 \u0627\u0644\u0639\u0627\u0644\u0645 \u0644\u0644\u0627\u062a\u062d\u0627\u062f \u0627\u0644\u0623\u0648\u0631\u0648\u0628\u064a \u0644\u0643\u0631\u0629 \u0627\u0644\u0642\u062f\u0645",
+                                        "bn": "\u0993\u09af\u09bc\u09be\u09b0\u09cd\u09b2\u09cd\u09a1 \u099a\u09cd\u09af\u09be\u09ae\u09cd\u09aa\u09bf\u09af\u09bc\u09a8\u09b6\u09bf\u09aa \u0995\u09cb\u09af\u09bc\u09be\u09b2. \u0989\u09af\u09bc\u09c7\u09ab\u09be",
+                                        "hi": "\u0935\u0930\u094d\u0932\u094d\u0921 \u091a\u0948\u0902\u092a\u093f\u092f\u0928\u0936\u093f\u092a \u0915\u094d\u0935\u093e\u0932\u0940\u092b\u093e\u0907\u0902\u0917 \u092f\u0942\u0908\u090f\u092b\u090f"
+                                    },
+                                    "shortNameTranslation": {}
+                                }
+                            },
+                            "priority": 648,
+                            "groupSign": "C",
+                            "isLive": false,
+                            "id": 1759,
+                            "fieldTranslations": {
+                                "nameTranslation": {
+                                    "ar": "\u062a\u0635\u0641\u064a\u0627\u062a \u0643\u0623\u0633 \u0627\u0644\u0639\u0627\u0644\u0645 - \u0627\u0644\u0627\u062a\u062d\u0627\u062f \u0627\u0644\u0623\u0648\u0631\u0648\u0628\u064a C",
+                                    "bn": "\u0993\u09af\u09bc\u09be\u09b0\u09cd\u09b2\u09cd\u09a1 \u099a\u09cd\u09af\u09be\u09ae\u09cd\u09aa\u09bf\u09af\u09bc\u09a8\u09b6\u09bf\u09aa \u0995\u09cb\u09af\u09bc\u09be\u09b2. \u0989\u09af\u09bc\u09c7\u09ab\u09be \u09b8\u09bf",
+                                    "hi": "\u0935\u0930\u094d\u0932\u094d\u0921 \u091a\u0948\u0902\u092a\u093f\u092f\u0928\u0936\u093f\u092a \u0915\u094d\u0935\u093e\u0932\u093f\u092b\u093f\u0915\u0947\u0936\u0928 \u092f\u0942\u0908\u090f\u092b\u090f \u0938\u0940"
+                                },
+                                "shortNameTranslation": {}
+                            }
+                        },
+                        "primaryUniqueTournament": {
+                            "name": "UEFA Nations League",
+                            "slug": "uefa-nations-league",
+                            "primaryColorHex": "#3a4179",
+                            "secondaryColorHex": "#e5a422",
+                            "category": {
+                                "name": "Europe",
+                                "slug": "europe",
+                                "sport": {
+                                    "name": "Football",
+                                    "slug": "football",
+                                    "id": 1
+                                },
+                                "priority": 19,
+                                "id": 1465,
+                                "flag": "europe",
+                                "fieldTranslations": {
+                                    "nameTranslation": {
+                                        "ar": "\u0623\u0648\u0631\u0648\u0628\u0627",
+                                        "bn": "\u0987\u0989\u09b0\u09cb\u09aa",
+                                        "hi": "\u092f\u0942\u0930\u094b\u092a",
+                                        "ru": "\u0415\u0432\u0440\u043e\u043f\u0430"
+                                    },
+                                    "shortNameTranslation": {}
+                                }
+                            },
+                            "userCount": 268444,
+                            "hasPerformanceGraphFeature": false,
+                            "id": 10783,
+                            "displayInverseHomeAwayTeams": false,
+                            "fieldTranslations": {
+                                "nameTranslation": {
+                                    "ar": "\u062f\u0648\u0631\u064a \u0623\u0645\u0645 \u0623\u0648\u0631\u0648\u0628\u0627",
+                                    "bn": "\u0989\u09af\u09bc\u09c7\u09ab\u09be \u09a8\u09c7\u09b6\u09a8\u09b8 \u09b2\u09bf\u0997",
+                                    "hi": "\u092f\u0942\u0908\u090f\u092b\u090f \u0928\u0947\u0936\u0902\u0938 \u0932\u0940\u0917"
+                                },
+                                "shortNameTranslation": {}
+                            }
+                        },
+                        "userCount": 161584,
+                        "nameCode": "SUI",
+                        "ranking": 19,
+                        "disabled": false,
+                        "national": true,
+                        "type": 0,
+                        "id": 4699,
+                        "fullName": "Switzerland",
+                        "teamColors": {
+                            "primary": "#ff0000",
+                            "secondary": "#ffffff",
+                            "text": "#ffffff"
+                        },
+                        "fieldTranslations": {
+                            "nameTranslation": {
+                                "ar": "\u0633\u0648\u064a\u0633\u0631\u0627",
+                                "bn": "\u09b8\u09c1\u0987\u099c\u09be\u09b0\u09b2\u09cd\u09af\u09be\u09a8\u09cd\u09a1",
+                                "hi": "\u0938\u094d\u0935\u093f\u091f\u094d\u091c\u093c\u0930\u0932\u0948\u0902\u0921",
+                                "ru": "\u0428\u0432\u0435\u0439\u0446\u0430\u0440\u0438\u044f"
+                            },
+                            "shortNameTranslation": {}
+                        }
+                    },
+                    "tournament": {
+                        "name": "FIFA World Cup, Group B",
+                        "slug": "world-championship-gr-b",
+                        "category": {
+                            "name": "World",
+                            "slug": "world",
+                            "sport": {
+                                "name": "Football",
+                                "slug": "football",
+                                "id": 1
+                            },
+                            "priority": 20,
+                            "id": 1468,
+                            "flag": "international",
+                            "fieldTranslations": {
+                                "nameTranslation": {
+                                    "ar": "\u0627\u0644\u0639\u0627\u0644\u0645",
+                                    "bn": "\u09ac\u09bf\u09b6\u09cd\u09ac",
+                                    "hi": "\u0935\u093f\u0936\u094d\u0935",
+                                    "ru": "\u041c\u0438\u0440"
+                                },
+                                "shortNameTranslation": {}
+                            }
+                        },
+                        "uniqueTournament": {
+                            "name": "FIFA World Cup",
+                            "slug": "world-championship",
+                            "primaryColorHex": "#d20a11",
+                            "secondaryColorHex": "#e8bb57",
+                            "category": {
+                                "name": "World",
+                                "slug": "world",
+                                "sport": {
+                                    "name": "Football",
+                                    "slug": "football",
+                                    "id": 1
+                                },
+                                "priority": 20,
+                                "id": 1468,
+                                "flag": "international",
+                                "fieldTranslations": {
+                                    "nameTranslation": {
+                                        "ar": "\u0627\u0644\u0639\u0627\u0644\u0645",
+                                        "bn": "\u09ac\u09bf\u09b6\u09cd\u09ac",
+                                        "hi": "\u0935\u093f\u0936\u094d\u0935",
+                                        "ru": "\u041c\u0438\u0440"
+                                    },
+                                    "shortNameTranslation": {}
+                                }
+                            },
+                            "userCount": 900305,
+                            "hasPerformanceGraphFeature": false,
+                            "id": 16,
+                            "displayInverseHomeAwayTeams": false,
+                            "fieldTranslations": {
+                                "nameTranslation": {
+                                    "pt-pt": "Mundial",
+                                    "ar": "\u0643\u0623\u0633 \u0627\u0644\u0639\u0627\u0644\u0645",
+                                    "bn": "\u0993\u09af\u09bc\u09be\u09b0\u09cd\u09b2\u09cd\u09a1 \u099a\u09cd\u09af\u09be\u09ae\u09cd\u09aa\u09bf\u09af\u09bc\u09a8\u09b6\u09bf\u09aa",
+                                    "hi": "\u0935\u0930\u094d\u0932\u094d\u0921 \u091a\u0948\u0902\u092a\u093f\u092f\u0928\u0936\u093f\u092a",
+                                    "hr": "FIFA Svjetsko prvenstvo",
+                                    "az": "F\u0130FA D\u00fcnya Kuboku",
+                                    "nl": "Wereldkampioenschap",
+                                    "fr": "Coupe du monde",
+                                    "de": "Weltmeisterschaft",
+                                    "el": "\u03a0\u03b1\u03b3\u03ba\u03cc\u03c3\u03bc\u03b9\u03bf \u039a\u03cd\u03c0\u03b5\u03bb\u03bb\u03bf",
+                                    "hu": "FIFA Vil\u00e1gbajnoks\u00e1g",
+                                    "id": "Piala Dunia FIFA",
+                                    "it": "Coppa del Mondo FIFA",
+                                    "ja": "FIFA\u30ef\u30fc\u30eb\u30c9\u30ab\u30c3\u30d7",
+                                    "ko": "FIFA \uc6d4\ub4dc\ucef5",
+                                    "no": "Verdensmesterskapet",
+                                    "pl": "Mistrzostwa \u015awiata",
+                                    "pt": "Copa do Mundo FIFA",
+                                    "ro": "Campionatul Mondial",
+                                    "es": "Copa Mundial",
+                                    "es-la": "Copa Mundial",
+                                    "sv": "V\u00e4rldsm\u00e4sterskapet",
+                                    "th": "\u0e1f\u0e38\u0e15\u0e1a\u0e2d\u0e25\u0e42\u0e25\u0e01",
+                                    "tr": "FIFA D\u00fcnya Kupas\u0131",
+                                    "vi": "Gi\u1ea3i V\u00f4 \u0110\u1ecbch Th\u1ebf Gi\u1edbi",
+                                    "ru": "\u0427\u0435\u043c\u043f\u0438\u043e\u043d\u0430\u0442 \u043c\u0438\u0440\u0430",
+                                    "sr": "\u0421\u0432\u0435\u0442\u0441\u043a\u043e \u043f\u0440\u0432\u0435\u043d\u0441\u0442\u0432\u043e"
+                                },
+                                "shortNameTranslation": {}
+                            }
+                        },
+                        "priority": 812,
+                        "groupSign": "B",
+                        "isLive": false,
+                        "id": 3955,
+                        "fieldTranslations": {
+                            "nameTranslation": {
+                                "ar": "\u0628\u0637\u0648\u0644\u0629 \u0627\u0644\u0639\u0627\u0644\u0645\u060c \u0627\u0644\u0645\u062c\u0645\u0648\u0639\u0629 B",
+                                "bn": "\u0993\u09af\u09bc\u09be\u09b0\u09cd\u09b2\u09cd\u09a1 \u099a\u09cd\u09af\u09be\u09ae\u09cd\u09aa\u09bf\u09af\u09bc\u09a8\u09b6\u09bf\u09aa, \u0997\u09cd\u09b0. \u09ac\u09bf",
+                                "hr": "FIFA Svjetsko prvenstvo, Grupa B",
+                                "az": "F\u0130FA D\u00fcnya Kuboku, Qrup B",
+                                "nl": "Wereldkampioenschap, Groep B",
+                                "fr": "Coupe du monde, Groupe B",
+                                "de": "Weltmeisterschaft, Gruppe B",
+                                "el": "\u03a0\u03b1\u03b3\u03ba\u03cc\u03c3\u03bc\u03b9\u03bf \u039a\u03cd\u03c0\u03b5\u03bb\u03bb\u03bf, \u038c\u03bc\u03b9\u03bb\u03bf\u03c2 B",
+                                "hu": "Vil\u00e1gbajnoks\u00e1g, Csoport B",
+                                "id": "Piala Dunia FIFA, Grup B",
+                                "it": "Coppa del Mondo, Gruppo B",
+                                "ja": "FIFA\u30ef\u30fc\u30eb\u30c9\u30ab\u30c3\u30d7, \u30b0\u30eb\u30fc\u30d7B",
+                                "ko": "FIFA \uc6d4\ub4dc\ucef5, \uadf8\ub8f9 B",
+                                "no": "Verdensmesterskapet, Gruppe B",
+                                "pl": "Mistrzostwa \u015awiata, Grupa B",
+                                "pt": "Copa do Mundo FIFA, Grupo B",
+                                "ro": "Campionatul Mondial, Grupa B",
+                                "es": "Copa Mundial, Grupo B",
+                                "es-la": "Copa Mundial, Grupo B",
+                                "pt-pt": "Mundial, Grupo B",
+                                "ru": "\u0427\u0435\u043c\u043f\u0438\u043e\u043d\u0430\u0442 \u043c\u0438\u0440\u0430, \u0413\u0440\u0443\u043f\u043f\u0430 B",
+                                "hi": "\u0935\u0930\u094d\u0932\u094d\u0921 \u091a\u0948\u0902\u092a\u093f\u092f\u0928\u0936\u093f\u092a, \u0917\u094d\u0930\u0947\u0921 \u092c\u0940",
+                                "sv": "V\u00e4rldsm\u00e4sterskapet, Grupp B",
+                                "th": "\u0e1f\u0e38\u0e15\u0e1a\u0e2d\u0e25\u0e42\u0e25\u0e01, \u0e01\u0e25\u0e38\u0e48\u0e21 B",
+                                "tr": "FIFA D\u00fcnya Kupas\u0131, Grup B",
+                                "vi": "Gi\u1ea3i V\u00f4 \u0110\u1ecbch Th\u1ebf Gi\u1edbi, B\u1ea3ng B",
+                                "sr": "\u0421\u0432\u0435\u0442\u0441\u043a\u043e \u043f\u0440\u0432\u0435\u043d\u0441\u0442\u0432\u043e, \u0413\u0440\u0443\u043f\u0430 \u0411"
+                            },
+                            "shortNameTranslation": {}
+                        }
+                    },
+                    "eventStartTimestamp": 1781377200,
+                    "fixtureDifficulty": "hard"
+                }
+            ],
+            "roundPlayerId": 733956,
+            "id": 733956,
+            "price": 4,
+            "priceHistory": {
+                "1": 4
+            }
+        }
+    ],
+    "hasNextPage": false
+}

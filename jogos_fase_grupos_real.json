@@ -1,0 +1,650 @@
+[
+    {
+        "id_sofascore": 15186710,
+        "rodada_numero": 1,
+        "grupo_rodada": "Rodada 1",
+        "time_casa": "Mexico",
+        "time_fora": "South Africa",
+        "timestamp_bruto": 1781204400,
+        "data_local_brt": "11/06/2026 16:00"
+    },
+    {
+        "id_sofascore": 15186720,
+        "rodada_numero": 1,
+        "grupo_rodada": "Rodada 1",
+        "time_casa": "South Korea",
+        "time_fora": "Czechia",
+        "timestamp_bruto": 1781229600,
+        "data_local_brt": "11/06/2026 23:00"
+    },
+    {
+        "id_sofascore": 15186836,
+        "rodada_numero": 1,
+        "grupo_rodada": "Rodada 1",
+        "time_casa": "Canada",
+        "time_fora": "Bosnia & Herzegovina",
+        "timestamp_bruto": 1781290800,
+        "data_local_brt": "12/06/2026 16:00"
+    },
+    {
+        "id_sofascore": 15186873,
+        "rodada_numero": 1,
+        "grupo_rodada": "Rodada 1",
+        "time_casa": "USA",
+        "time_fora": "Paraguay",
+        "timestamp_bruto": 1781312400,
+        "data_local_brt": "12/06/2026 22:00"
+    },
+    {
+        "id_sofascore": 15186526,
+        "rodada_numero": 1,
+        "grupo_rodada": "Rodada 1",
+        "time_casa": "Qatar",
+        "time_fora": "Switzerland",
+        "timestamp_bruto": 1781377200,
+        "data_local_brt": "13/06/2026 16:00"
+    },
+    {
+        "id_sofascore": 15186850,
+        "rodada_numero": 1,
+        "grupo_rodada": "Rodada 1",
+        "time_casa": "Brazil",
+        "time_fora": "Morocco",
+        "timestamp_bruto": 1781388000,
+        "data_local_brt": "13/06/2026 19:00"
+    },
+    {
+        "id_sofascore": 15186853,
+        "rodada_numero": 1,
+        "grupo_rodada": "Rodada 1",
+        "time_casa": "Haiti",
+        "time_fora": "Scotland",
+        "timestamp_bruto": 1781398800,
+        "data_local_brt": "13/06/2026 22:00"
+    },
+    {
+        "id_sofascore": 15186874,
+        "rodada_numero": 1,
+        "grupo_rodada": "Rodada 1",
+        "time_casa": "Australia",
+        "time_fora": "Türkiye",
+        "timestamp_bruto": 1781409600,
+        "data_local_brt": "14/06/2026 01:00"
+    },
+    {
+        "id_sofascore": 15186899,
+        "rodada_numero": 1,
+        "grupo_rodada": "Rodada 1",
+        "time_casa": "Germany",
+        "time_fora": "Curaçao",
+        "timestamp_bruto": 1781456400,
+        "data_local_brt": "14/06/2026 14:00"
+    },
+    {
+        "id_sofascore": 15186945,
+        "rodada_numero": 1,
+        "grupo_rodada": "Rodada 1",
+        "time_casa": "Netherlands",
+        "time_fora": "Japan",
+        "timestamp_bruto": 1781467200,
+        "data_local_brt": "14/06/2026 17:00"
+    },
+    {
+        "id_sofascore": 15186904,
+        "rodada_numero": 1,
+        "grupo_rodada": "Rodada 1",
+        "time_casa": "Côte d'Ivoire",
+        "time_fora": "Ecuador",
+        "timestamp_bruto": 1781478000,
+        "data_local_brt": "14/06/2026 20:00"
+    },
+    {
+        "id_sofascore": 15186951,
+        "rodada_numero": 1,
+        "grupo_rodada": "Rodada 1",
+        "time_casa": "Sweden",
+        "time_fora": "Tunisia",
+        "timestamp_bruto": 1781488800,
+        "data_local_brt": "14/06/2026 23:00"
+    },
+    {
+        "id_sofascore": 15186783,
+        "rodada_numero": 1,
+        "grupo_rodada": "Rodada 1",
+        "time_casa": "Spain",
+        "time_fora": "Cabo Verde",
+        "timestamp_bruto": 1781539200,
+        "data_local_brt": "15/06/2026 13:00"
+    },
+    {
+        "id_sofascore": 15186837,
+        "rodada_numero": 1,
+        "grupo_rodada": "Rodada 1",
+        "time_casa": "Belgium",
+        "time_fora": "Egypt",
+        "timestamp_bruto": 1781550000,
+        "data_local_brt": "15/06/2026 16:00"
+    },
+    {
+        "id_sofascore": 15186811,
+        "rodada_numero": 1,
+        "grupo_rodada": "Rodada 1",
+        "time_casa": "Saudi Arabia",
+        "time_fora": "Uruguay",
+        "timestamp_bruto": 1781560800,
+        "data_local_brt": "15/06/2026 19:00"
+    },
+    {
+        "id_sofascore": 15186832,
+        "rodada_numero": 1,
+        "grupo_rodada": "Rodada 1",
+        "time_casa": "Iran",
+        "time_fora": "New Zealand",
+        "timestamp_bruto": 1781571600,
+        "data_local_brt": "15/06/2026 22:00"
+    },
+    {
+        "id_sofascore": 15186501,
+        "rodada_numero": 1,
+        "grupo_rodada": "Rodada 1",
+        "time_casa": "France",
+        "time_fora": "Senegal",
+        "timestamp_bruto": 1781636400,
+        "data_local_brt": "16/06/2026 16:00"
+    },
+    {
+        "id_sofascore": 15186773,
+        "rodada_numero": 1,
+        "grupo_rodada": "Rodada 1",
+        "time_casa": "Iraq",
+        "time_fora": "Norway",
+        "timestamp_bruto": 1781647200,
+        "data_local_brt": "16/06/2026 19:00"
+    },
+    {
+        "id_sofascore": 15186854,
+        "rodada_numero": 1,
+        "grupo_rodada": "Rodada 1",
+        "time_casa": "Argentina",
+        "time_fora": "Algeria",
+        "timestamp_bruto": 1781658000,
+        "data_local_brt": "16/06/2026 22:00"
+    },
+    {
+        "id_sofascore": 15186751,
+        "rodada_numero": 1,
+        "grupo_rodada": "Rodada 1",
+        "time_casa": "Austria",
+        "time_fora": "Jordan",
+        "timestamp_bruto": 1781668800,
+        "data_local_brt": "17/06/2026 01:00"
+    },
+    {
+        "id_sofascore": 15186709,
+        "rodada_numero": 1,
+        "grupo_rodada": "Rodada 1",
+        "time_casa": "Portugal",
+        "time_fora": "DR Congo",
+        "timestamp_bruto": 1781715600,
+        "data_local_brt": "17/06/2026 14:00"
+    },
+    {
+        "id_sofascore": 15186504,
+        "rodada_numero": 1,
+        "grupo_rodada": "Rodada 1",
+        "time_casa": "England",
+        "time_fora": "Croatia",
+        "timestamp_bruto": 1781726400,
+        "data_local_brt": "17/06/2026 17:00"
+    },
+    {
+        "id_sofascore": 15186687,
+        "rodada_numero": 1,
+        "grupo_rodada": "Rodada 1",
+        "time_casa": "Ghana",
+        "time_fora": "Panama",
+        "timestamp_bruto": 1781737200,
+        "data_local_brt": "17/06/2026 20:00"
+    },
+    {
+        "id_sofascore": 15186722,
+        "rodada_numero": 1,
+        "grupo_rodada": "Rodada 1",
+        "time_casa": "Uzbekistan",
+        "time_fora": "Colombia",
+        "timestamp_bruto": 1781748000,
+        "data_local_brt": "17/06/2026 23:00"
+    },
+    {
+        "id_sofascore": 15186731,
+        "rodada_numero": 2,
+        "grupo_rodada": "Rodada 2",
+        "time_casa": "Czechia",
+        "time_fora": "South Africa",
+        "timestamp_bruto": 1781798400,
+        "data_local_brt": "18/06/2026 13:00"
+    },
+    {
+        "id_sofascore": 15186806,
+        "rodada_numero": 2,
+        "grupo_rodada": "Rodada 2",
+        "time_casa": "Switzerland",
+        "time_fora": "Bosnia & Herzegovina",
+        "timestamp_bruto": 1781809200,
+        "data_local_brt": "18/06/2026 16:00"
+    },
+    {
+        "id_sofascore": 15186798,
+        "rodada_numero": 2,
+        "grupo_rodada": "Rodada 2",
+        "time_casa": "Canada",
+        "time_fora": "Qatar",
+        "timestamp_bruto": 1781820000,
+        "data_local_brt": "18/06/2026 19:00"
+    },
+    {
+        "id_sofascore": 15186490,
+        "rodada_numero": 2,
+        "grupo_rodada": "Rodada 2",
+        "time_casa": "Mexico",
+        "time_fora": "South Korea",
+        "timestamp_bruto": 1781830800,
+        "data_local_brt": "18/06/2026 22:00"
+    },
+    {
+        "id_sofascore": 15186878,
+        "rodada_numero": 2,
+        "grupo_rodada": "Rodada 2",
+        "time_casa": "USA",
+        "time_fora": "Australia",
+        "timestamp_bruto": 1781895600,
+        "data_local_brt": "19/06/2026 16:00"
+    },
+    {
+        "id_sofascore": 15186859,
+        "rodada_numero": 2,
+        "grupo_rodada": "Rodada 2",
+        "time_casa": "Scotland",
+        "time_fora": "Morocco",
+        "timestamp_bruto": 1781906400,
+        "data_local_brt": "19/06/2026 19:00"
+    },
+    {
+        "id_sofascore": 15186856,
+        "rodada_numero": 2,
+        "grupo_rodada": "Rodada 2",
+        "time_casa": "Brazil",
+        "time_fora": "Haiti",
+        "timestamp_bruto": 1781915400,
+        "data_local_brt": "19/06/2026 21:30"
+    },
+    {
+        "id_sofascore": 15186879,
+        "rodada_numero": 2,
+        "grupo_rodada": "Rodada 2",
+        "time_casa": "Türkiye",
+        "time_fora": "Paraguay",
+        "timestamp_bruto": 1781924400,
+        "data_local_brt": "20/06/2026 00:00"
+    },
+    {
+        "id_sofascore": 15186957,
+        "rodada_numero": 2,
+        "grupo_rodada": "Rodada 2",
+        "time_casa": "Netherlands",
+        "time_fora": "Sweden",
+        "timestamp_bruto": 1781974800,
+        "data_local_brt": "20/06/2026 14:00"
+    },
+    {
+        "id_sofascore": 15186905,
+        "rodada_numero": 2,
+        "grupo_rodada": "Rodada 2",
+        "time_casa": "Germany",
+        "time_fora": "Côte d'Ivoire",
+        "timestamp_bruto": 1781985600,
+        "data_local_brt": "20/06/2026 17:00"
+    },
+    {
+        "id_sofascore": 15186906,
+        "rodada_numero": 2,
+        "grupo_rodada": "Rodada 2",
+        "time_casa": "Ecuador",
+        "time_fora": "Curaçao",
+        "timestamp_bruto": 1782000000,
+        "data_local_brt": "20/06/2026 21:00"
+    },
+    {
+        "id_sofascore": 15186963,
+        "rodada_numero": 2,
+        "grupo_rodada": "Rodada 2",
+        "time_casa": "Tunisia",
+        "time_fora": "Japan",
+        "timestamp_bruto": 1782014400,
+        "data_local_brt": "21/06/2026 01:00"
+    },
+    {
+        "id_sofascore": 15186840,
+        "rodada_numero": 2,
+        "grupo_rodada": "Rodada 2",
+        "time_casa": "Spain",
+        "time_fora": "Saudi Arabia",
+        "timestamp_bruto": 1782057600,
+        "data_local_brt": "21/06/2026 13:00"
+    },
+    {
+        "id_sofascore": 15186499,
+        "rodada_numero": 2,
+        "grupo_rodada": "Rodada 2",
+        "time_casa": "Belgium",
+        "time_fora": "Iran",
+        "timestamp_bruto": 1782068400,
+        "data_local_brt": "21/06/2026 16:00"
+    },
+    {
+        "id_sofascore": 15186800,
+        "rodada_numero": 2,
+        "grupo_rodada": "Rodada 2",
+        "time_casa": "Uruguay",
+        "time_fora": "Cabo Verde",
+        "timestamp_bruto": 1782079200,
+        "data_local_brt": "21/06/2026 19:00"
+    },
+    {
+        "id_sofascore": 15186827,
+        "rodada_numero": 2,
+        "grupo_rodada": "Rodada 2",
+        "time_casa": "New Zealand",
+        "time_fora": "Egypt",
+        "timestamp_bruto": 1782090000,
+        "data_local_brt": "21/06/2026 22:00"
+    },
+    {
+        "id_sofascore": 15186502,
+        "rodada_numero": 2,
+        "grupo_rodada": "Rodada 2",
+        "time_casa": "Argentina",
+        "time_fora": "Austria",
+        "timestamp_bruto": 1782147600,
+        "data_local_brt": "22/06/2026 14:00"
+    },
+    {
+        "id_sofascore": 15186769,
+        "rodada_numero": 2,
+        "grupo_rodada": "Rodada 2",
+        "time_casa": "France",
+        "time_fora": "Iraq",
+        "timestamp_bruto": 1782162000,
+        "data_local_brt": "22/06/2026 18:00"
+    },
+    {
+        "id_sofascore": 15186770,
+        "rodada_numero": 2,
+        "grupo_rodada": "Rodada 2",
+        "time_casa": "Norway",
+        "time_fora": "Senegal",
+        "timestamp_bruto": 1782172800,
+        "data_local_brt": "22/06/2026 21:00"
+    },
+    {
+        "id_sofascore": 15186740,
+        "rodada_numero": 2,
+        "grupo_rodada": "Rodada 2",
+        "time_casa": "Jordan",
+        "time_fora": "Algeria",
+        "timestamp_bruto": 1782183600,
+        "data_local_brt": "23/06/2026 00:00"
+    },
+    {
+        "id_sofascore": 15186858,
+        "rodada_numero": 2,
+        "grupo_rodada": "Rodada 2",
+        "time_casa": "Portugal",
+        "time_fora": "Uzbekistan",
+        "timestamp_bruto": 1782234000,
+        "data_local_brt": "23/06/2026 14:00"
+    },
+    {
+        "id_sofascore": 15186672,
+        "rodada_numero": 2,
+        "grupo_rodada": "Rodada 2",
+        "time_casa": "England",
+        "time_fora": "Ghana",
+        "timestamp_bruto": 1782244800,
+        "data_local_brt": "23/06/2026 17:00"
+    },
+    {
+        "id_sofascore": 15186520,
+        "rodada_numero": 2,
+        "grupo_rodada": "Rodada 2",
+        "time_casa": "Panama",
+        "time_fora": "Croatia",
+        "timestamp_bruto": 1782255600,
+        "data_local_brt": "23/06/2026 20:00"
+    },
+    {
+        "id_sofascore": 15186713,
+        "rodada_numero": 2,
+        "grupo_rodada": "Rodada 2",
+        "time_casa": "Colombia",
+        "time_fora": "DR Congo",
+        "timestamp_bruto": 1782266400,
+        "data_local_brt": "23/06/2026 23:00"
+    },
+    {
+        "id_sofascore": 15186829,
+        "rodada_numero": 3,
+        "grupo_rodada": "Rodada 3",
+        "time_casa": "Bosnia & Herzegovina",
+        "time_fora": "Qatar",
+        "timestamp_bruto": 1782327600,
+        "data_local_brt": "24/06/2026 16:00"
+    },
+    {
+        "id_sofascore": 15186821,
+        "rodada_numero": 3,
+        "grupo_rodada": "Rodada 3",
+        "time_casa": "Switzerland",
+        "time_fora": "Canada",
+        "timestamp_bruto": 1782327600,
+        "data_local_brt": "24/06/2026 16:00"
+    },
+    {
+        "id_sofascore": 15186864,
+        "rodada_numero": 3,
+        "grupo_rodada": "Rodada 3",
+        "time_casa": "Morocco",
+        "time_fora": "Haiti",
+        "timestamp_bruto": 1782338400,
+        "data_local_brt": "24/06/2026 19:00"
+    },
+    {
+        "id_sofascore": 15186861,
+        "rodada_numero": 3,
+        "grupo_rodada": "Rodada 3",
+        "time_casa": "Scotland",
+        "time_fora": "Brazil",
+        "timestamp_bruto": 1782338400,
+        "data_local_brt": "24/06/2026 19:00"
+    },
+    {
+        "id_sofascore": 15186732,
+        "rodada_numero": 3,
+        "grupo_rodada": "Rodada 3",
+        "time_casa": "Czechia",
+        "time_fora": "Mexico",
+        "timestamp_bruto": 1782349200,
+        "data_local_brt": "24/06/2026 22:00"
+    },
+    {
+        "id_sofascore": 15186744,
+        "rodada_numero": 3,
+        "grupo_rodada": "Rodada 3",
+        "time_casa": "South Africa",
+        "time_fora": "South Korea",
+        "timestamp_bruto": 1782349200,
+        "data_local_brt": "24/06/2026 22:00"
+    },
+    {
+        "id_sofascore": 15186908,
+        "rodada_numero": 3,
+        "grupo_rodada": "Rodada 3",
+        "time_casa": "Curaçao",
+        "time_fora": "Côte d'Ivoire",
+        "timestamp_bruto": 1782417600,
+        "data_local_brt": "25/06/2026 17:00"
+    },
+    {
+        "id_sofascore": 15186907,
+        "rodada_numero": 3,
+        "grupo_rodada": "Rodada 3",
+        "time_casa": "Ecuador",
+        "time_fora": "Germany",
+        "timestamp_bruto": 1782417600,
+        "data_local_brt": "25/06/2026 17:00"
+    },
+    {
+        "id_sofascore": 15186972,
+        "rodada_numero": 3,
+        "grupo_rodada": "Rodada 3",
+        "time_casa": "Japan",
+        "time_fora": "Sweden",
+        "timestamp_bruto": 1782428400,
+        "data_local_brt": "25/06/2026 20:00"
+    },
+    {
+        "id_sofascore": 15186973,
+        "rodada_numero": 3,
+        "grupo_rodada": "Rodada 3",
+        "time_casa": "Tunisia",
+        "time_fora": "Netherlands",
+        "timestamp_bruto": 1782428400,
+        "data_local_brt": "25/06/2026 20:00"
+    },
+    {
+        "id_sofascore": 15186891,
+        "rodada_numero": 3,
+        "grupo_rodada": "Rodada 3",
+        "time_casa": "Paraguay",
+        "time_fora": "Australia",
+        "timestamp_bruto": 1782439200,
+        "data_local_brt": "25/06/2026 23:00"
+    },
+    {
+        "id_sofascore": 15186887,
+        "rodada_numero": 3,
+        "grupo_rodada": "Rodada 3",
+        "time_casa": "Türkiye",
+        "time_fora": "USA",
+        "timestamp_bruto": 1782439200,
+        "data_local_brt": "25/06/2026 23:00"
+    },
+    {
+        "id_sofascore": 15186537,
+        "rodada_numero": 3,
+        "grupo_rodada": "Rodada 3",
+        "time_casa": "Norway",
+        "time_fora": "France",
+        "timestamp_bruto": 1782500400,
+        "data_local_brt": "26/06/2026 16:00"
+    },
+    {
+        "id_sofascore": 15186771,
+        "rodada_numero": 3,
+        "grupo_rodada": "Rodada 3",
+        "time_casa": "Senegal",
+        "time_fora": "Iraq",
+        "timestamp_bruto": 1782500400,
+        "data_local_brt": "26/06/2026 16:00"
+    },
+    {
+        "id_sofascore": 15186803,
+        "rodada_numero": 3,
+        "grupo_rodada": "Rodada 3",
+        "time_casa": "Cabo Verde",
+        "time_fora": "Saudi Arabia",
+        "timestamp_bruto": 1782518400,
+        "data_local_brt": "26/06/2026 21:00"
+    },
+    {
+        "id_sofascore": 15186841,
+        "rodada_numero": 3,
+        "grupo_rodada": "Rodada 3",
+        "time_casa": "Uruguay",
+        "time_fora": "Spain",
+        "timestamp_bruto": 1782518400,
+        "data_local_brt": "26/06/2026 21:00"
+    },
+    {
+        "id_sofascore": 15186828,
+        "rodada_numero": 3,
+        "grupo_rodada": "Rodada 3",
+        "time_casa": "Egypt",
+        "time_fora": "Iran",
+        "timestamp_bruto": 1782529200,
+        "data_local_brt": "27/06/2026 00:00"
+    },
+    {
+        "id_sofascore": 15186822,
+        "rodada_numero": 3,
+        "grupo_rodada": "Rodada 3",
+        "time_casa": "New Zealand",
+        "time_fora": "Belgium",
+        "timestamp_bruto": 1782529200,
+        "data_local_brt": "27/06/2026 00:00"
+    },
+    {
+        "id_sofascore": 15186624,
+        "rodada_numero": 3,
+        "grupo_rodada": "Rodada 3",
+        "time_casa": "Croatia",
+        "time_fora": "Ghana",
+        "timestamp_bruto": 1782594000,
+        "data_local_brt": "27/06/2026 18:00"
+    },
+    {
+        "id_sofascore": 15186676,
+        "rodada_numero": 3,
+        "grupo_rodada": "Rodada 3",
+        "time_casa": "Panama",
+        "time_fora": "England",
+        "timestamp_bruto": 1782594000,
+        "data_local_brt": "27/06/2026 18:00"
+    },
+    {
+        "id_sofascore": 15186696,
+        "rodada_numero": 3,
+        "grupo_rodada": "Rodada 3",
+        "time_casa": "Colombia",
+        "time_fora": "Portugal",
+        "timestamp_bruto": 1782603000,
+        "data_local_brt": "27/06/2026 20:30"
+    },
+    {
+        "id_sofascore": 15186717,
+        "rodada_numero": 3,
+        "grupo_rodada": "Rodada 3",
+        "time_casa": "DR Congo",
+        "time_fora": "Uzbekistan",
+        "timestamp_bruto": 1782603000,
+        "data_local_brt": "27/06/2026 20:30"
+    },
+    {
+        "id_sofascore": 15186747,
+        "rodada_numero": 3,
+        "grupo_rodada": "Rodada 3",
+        "time_casa": "Algeria",
+        "time_fora": "Austria",
+        "timestamp_bruto": 1782612000,
+        "data_local_brt": "27/06/2026 23:00"
+    },
+    {
+        "id_sofascore": 15186734,
+        "rodada_numero": 3,
+        "grupo_rodada": "Rodada 3",
+        "time_casa": "Jordan",
+        "time_fora": "Argentina",
+        "timestamp_bruto": 1782612000,
+        "data_local_brt": "27/06/2026 23:00"
+    }
+]

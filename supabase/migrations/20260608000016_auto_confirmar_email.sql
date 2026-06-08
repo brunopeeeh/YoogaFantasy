@@ -1,0 +1,3 @@
+-- 016 - Auto-confirmar email de novos usuários
+-- NOTA: Substituído pela migration 17 (BEFORE INSERT).
+-- Esta migration foi aplicada com AFTER INSERT, mas a 17 corrige para BEFORE INSERT.
