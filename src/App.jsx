@@ -1,3 +1,4 @@
+import ErrorBoundary from './components/ErrorBoundary';
 import { useAuth } from './contexts/AuthContext';
 import LoginScreen from './components/auth/LoginScreen';
 import OnboardingGate from './components/auth/OnboardingGate';
@@ -65,5 +66,9 @@ function AuthGate() {
 }
 
 export default function App() {
-  return <AuthGate />;
+  return (
+    <ErrorBoundary>
+      <AuthGate />
+    </ErrorBoundary>
+  );
 }
