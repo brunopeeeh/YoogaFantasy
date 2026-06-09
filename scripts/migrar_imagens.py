@@ -137,10 +137,25 @@ def migrar(tabela: str, coluna_id: str, coluna_url: str, caminho_prefixo: str, l
             exec.submit(processar_item, create_client(SUPABASE_URL, SUPABASE_KEY), tabela, coluna_url, coluna_id, caminho_prefixo, p): p
             for p in pendentes
         }
+
+        log(f"    Iniciando {MAX_WORKERS} workers para {total} pendentes...")
+
+        def _heartbeat():
+            while not all(f.done() for f in futuros):
+                ativos = sum(1 for f in futuros if f.running())
+                prontos = sum(1 for f in futuros if f.done())
+                log(f"    ⌛ {ativos} ativos, {prontos}/{total} concluídos — {ok} ok, {erros} erros")
+                time.sleep(10)
+
+        threading.Thread(target=_heartbeat, daemon=True).start()
+
         for i, futuro in enumerate(as_completed(futuros), 1):
-            if futuro.result():
-                ok += 1
-            else:
+            try:
+                if futuro.result(timeout=120):
+                    ok += 1
+                else:
+                    erros += 1
+            except Exception:
                 erros += 1
             if i % 20 == 0 or i == total:
                 log(f"    {i}/{total} — {ok} ok, {erros} erros")
