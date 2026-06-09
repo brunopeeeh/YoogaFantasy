@@ -7,15 +7,12 @@ const TokensContext = createContext(null);
 
 export function TokensProvider({ children }) {
   const { mercadoAbertoConfig } = useConfig();
-  const { tokens, usando, usar, refetch: refetchTokens } = useTokens();
+  const { tokens, usando, usar, resgatar, refetch: refetchTokens } = useTokens();
   const bloqueadoMercado = !mercadoAbertoConfig;
 
   const handleUsarToken = useCallback(async (tipo) => {
     if (bloqueadoMercado) {
       toast.error('Mercado fechado. Não é possível ativar tokens agora.');
-      return { ok: false };
-    }
-    if (!window.confirm(`Ativar token "Capitão Triplo" nesta rodada?`)) {
       return { ok: false };
     }
     const res = await usar(tipo);
@@ -27,11 +24,26 @@ export function TokensProvider({ children }) {
     return res;
   }, [usar, bloqueadoMercado]);
 
+  const handleResgatarToken = useCallback(async (tipo) => {
+    if (bloqueadoMercado) {
+      toast.error('Mercado fechado. Não é possível resgatar token agora.');
+      return { ok: false };
+    }
+    const res = await resgatar(tipo);
+    if (res.ok) {
+      toast.success('Token resgatado com sucesso!');
+    } else {
+      toast.error(res.error?.message || 'Falha ao resgatar token.');
+    }
+    return res;
+  }, [resgatar, bloqueadoMercado]);
+
   const value = {
     tokens,
     usando,
     tokenUsando: usando,
     handleUsarToken,
+    handleResgatarToken,
     refetchTokens,
   };
 

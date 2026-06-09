@@ -1,0 +1,56 @@
+name: Processar Rodada
+
+on:
+  workflow_dispatch:
+    inputs:
+      rodada:
+        description: "Número da rodada"
+        required: true
+        type: number
+      forcar:
+        description: "Reprocessar jogos já pontuados"
+        required: false
+        default: false
+        type: boolean
+      sem_abrir:
+        description: "Não abrir próxima rodada ao final"
+        required: false
+        default: false
+        type: boolean
+      deadline:
+        description: "Deadline ISO da próxima rodada (opcional)"
+        required: false
+        type: string
+  schedule:
+    - cron: "0 14 * * 1"  # Segunda-feira 11:00 BRT (14:00 UTC)
+    - cron: "0 14 * * 2"
+    - cron: "0 14 * * 3"
+    - cron: "0 14 * * 4"
+    - cron: "0 14 * * 5"
+
+jobs:
+  processar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r backend/requirements.txt
+
+      - name: Processar rodada
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: |
+          ARGS="--rodada ${{ inputs.rodada || '' }}"
+          if [[ "${{ inputs.forcar }}" == "true" ]]; then ARGS="$ARGS --forcar"; fi
+          if [[ "${{ inputs.sem_abrir }}" == "true" ]]; then ARGS="$ARGS --sem-abrir"; fi
+          if [[ "${{ inputs.deadline }}" != "" ]]; then ARGS="$ARGS --deadline '${{ inputs.deadline }}'"; fi
+          python -m backend.fechar_rodada $ARGS

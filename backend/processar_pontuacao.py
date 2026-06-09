@@ -31,6 +31,19 @@ STAT_KEYS = {
     "clearances": "cortes",
     "bigChanceCreated": "passes_decisivos",
     "dispossessed": "perdas_bola",
+    "saves": "defesas",
+    "interceptions": "interceptacoes",
+    "blockedShots": "chutes_bloqueados",
+    "duelsWon": "duelos_vencidos",
+    "totalDuels": "duelos_tentados",
+    "successfulDribbles": "dribles_certos",
+    "totalDribbles": "dribles_tentados",
+    "accurateLongBalls": "bolas_longas_certas",
+    "totalLongBalls": "bolas_longas_tentadas",
+    "fouls": "faltas_sofridas",
+    "offsides": "impedimentos",
+    "penaltySave": "penalti_defendido",
+    "penaltyMiss": "penalti_perdido",
 }
 
 
@@ -43,15 +56,34 @@ class EnginePontuacao:
         self._cache_posicao: dict[int, str] = {}
         self._cache_selecao: dict[int, int] = {}
 
-    def _get_json(self, url: str) -> dict | None:
+    def _get_json(self, url: str, tentativa: int = 1) -> dict | None:
+        max_tentativas = int(os.getenv("SOFASCORE_RETRY_MAX", "3"))
         try:
             resp = self.scraper.get(url, headers=HEADERS, timeout=30)
+            if resp.status_code == 429:
+                wait = 2 ** tentativa
+                print(f"⏳ Rate limited ({url}), tentativa {tentativa}/{max_tentativas}, aguardando {wait}s")
+                time.sleep(wait)
+                if tentativa < max_tentativas:
+                    return self._get_json(url, tentativa + 1)
+                print(f"❌ Esgotadas tentativas por rate limit: {url}")
+                return None
             if resp.status_code != 200:
                 print(f"⚠️ HTTP {resp.status_code}: {url}")
+                if tentativa < max_tentativas:
+                    wait = 2 ** tentativa
+                    print(f"   Tentativa {tentativa}/{max_tentativas}, retry em {wait}s")
+                    time.sleep(wait)
+                    return self._get_json(url, tentativa + 1)
                 return None
             return resp.json()
         except Exception as exc:
             print(f"❌ Erro ao buscar {url}: {exc}")
+            if tentativa < max_tentativas:
+                wait = 2 ** tentativa
+                print(f"   Tentativa {tentativa}/{max_tentativas}, retry em {wait}s")
+                time.sleep(wait)
+                return self._get_json(url, tentativa + 1)
             return None
 
     def buscar_posicao(self, jogador_id: int) -> str | None:
@@ -280,13 +312,30 @@ class EnginePontuacao:
                 amarelo=row["cartao_amarelo"] + stats.amarelo,
                 vermelho=row["cartao_vermelho"] + stats.vermelho,
                 gols_contra=row["gols_contra"] + stats.gols_contra,
-                gols_sofridos_selecao=max(row["gols_sofridos_selecao"], stats.gols_sofridos_selecao),
+                gols_sofridos_selecao=max(
+                    row["gols_sofridos_selecao"], stats.gols_sofridos_selecao
+                ),
                 passes_tentados=row["passes_tentados"] + stats.passes_tentados,
-                precisao_passes=max(float(row["precisao_passes"]), stats.precisao_passes),
+                precisao_passes=max(
+                    float(row["precisao_passes"]), stats.precisao_passes
+                ),
                 desarmes=row["desarmes"] + stats.desarmes,
                 cortes=row["cortes"] + stats.cortes,
                 passes_decisivos=row["passes_decisivos"] + stats.passes_decisivos,
                 perdas_bola=row["perdas_bola"] + stats.perdas_bola,
+                defesas=row.get("defesas", 0) + stats.defesas,
+                interceptacoes=row.get("interceptacoes", 0) + stats.interceptacoes,
+                chutes_bloqueados=row.get("chutes_bloqueados", 0) + stats.chutes_bloqueados,
+                duelos_vencidos=row.get("duelos_vencidos", 0) + stats.duelos_vencidos,
+                duelos_tentados=row.get("duelos_tentados", 0) + stats.duelos_tentados,
+                dribles_certos=row.get("dribles_certos", 0) + stats.dribles_certos,
+                dribles_tentados=row.get("dribles_tentados", 0) + stats.dribles_tentados,
+                bolas_longas_certas=row.get("bolas_longas_certas", 0) + stats.bolas_longas_certas,
+                bolas_longas_tentadas=row.get("bolas_longas_tentadas", 0) + stats.bolas_longas_tentadas,
+                faltas_sofridas=row.get("faltas_sofridas", 0) + stats.faltas_sofridas,
+                impedimentos=row.get("impedimentos", 0) + stats.impedimentos,
+                penalti_defendido=row.get("penalti_defendido", 0) + stats.penalti_defendido,
+                penalti_perdido=row.get("penalti_perdido", 0) + stats.penalti_perdido,
             )
             pts_total = round(float(row["pontuacao_final_calculada"]) + pts_partida, 2)
             payload = {
@@ -323,10 +372,24 @@ class EnginePontuacao:
             "cortes": stats.cortes,
             "passes_decisivos": stats.passes_decisivos,
             "perdas_bola": stats.perdas_bola,
+            "defesas": stats.defesas,
+            "interceptacoes": stats.interceptacoes,
+            "chutes_bloqueados": stats.chutes_bloqueados,
+            "duelos_vencidos": stats.duelos_vencidos,
+            "duelos_tentados": stats.duelos_tentados,
+            "dribles_certos": stats.dribles_certos,
+            "dribles_tentados": stats.dribles_tentados,
+            "bolas_longas_certas": stats.bolas_longas_certas,
+            "bolas_longas_tentadas": stats.bolas_longas_tentadas,
+            "faltas_sofridas": stats.faltas_sofridas,
+            "impedimentos": stats.impedimentos,
+            "penalti_defendido": stats.penalti_defendido,
+            "penalti_perdido": stats.penalti_perdido,
         }
 
-    def processar_jogos_da_rodada(self, rodada: int, forcar: bool = False) -> int:
-        """Processa todos os jogos de jogos_copa para a rodada."""
+    def processar_jogos_da_rodada(self, rodada: int, forcar: bool = False) -> dict:
+        """Processa todos os jogos de jogos_copa para a rodada.
+        Retorna { total_jogadores, jogos_sucesso, jogos_falha }."""
         query = (
             self.supabase.table("jogos_copa")
             .select("id_sofascore, pontos_processados")
@@ -334,10 +397,13 @@ class EnginePontuacao:
         )
         res = query.execute()
         jogos = res.data or []
-        total = 0
+        total_jogadores = 0
+        jogos_sucesso = 0
+        jogos_falha = 0
 
         for jogo in jogos:
             if jogo.get("pontos_processados") and not forcar:
+                jogos_sucesso += 1
                 continue
             event_id = jogo["id_sofascore"]
             n = self.processar_evento(event_id, rodada)
@@ -348,7 +414,15 @@ class EnginePontuacao:
                         "processado_em": datetime.now(timezone.utc).isoformat(),
                     }
                 ).eq("id_sofascore", event_id).execute()
-                total += n
+                total_jogadores += n
+                jogos_sucesso += 1
+            else:
+                jogos_falha += 1
             time.sleep(1.2)
 
-        return total
+        print(f"\n📊 Rodada {rodada}: {jogos_sucesso} jogos OK, {jogos_falha} falhas, {total_jogadores} jogadores pontuados.")
+        return {
+            "total_jogadores": total_jogadores,
+            "jogos_sucesso": jogos_sucesso,
+            "jogos_falha": jogos_falha,
+        }

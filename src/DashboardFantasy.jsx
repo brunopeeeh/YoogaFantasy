@@ -7,8 +7,6 @@ import Pitch from './components/pitch/Pitch';
 import MercadoDrawer from './components/dashboard/MercadoDrawer';
 import PlayerDetailsModal from './components/player/PlayerDetailsModal';
 
-import TokensBar from './components/dashboard/TokensBar';
-
 import DashboardErrorBoundary from './components/dashboard/DashboardErrorBoundary';
 import MercadoErrorBoundary from './components/dashboard/MercadoErrorBoundary';
 
@@ -36,11 +34,6 @@ export default function DashboardFantasy() {
     handleContratarJogador,
     handleRemoverJogador,
     handleDefinirCapitao,
-    totalSelecionados,
-    tokens,
-    tokenUsando,
-    handleUsarToken,
-    mercadoAbertoConfig,
     mensagensValidacao,
   } = useFantasy();
 
@@ -111,15 +104,6 @@ export default function DashboardFantasy() {
               {mensagensValidacao[0]}
             </p>
           </div>
-        )}
-
-        {capitaoDraftId && (
-          <TokensBar
-            tokens={tokens}
-            mercadoAberto={mercadoAbertoConfig}
-            usando={tokenUsando}
-            onUsar={handleUsarToken}
-          />
         )}
 
         <div className="max-w-[1600px] mx-auto p-3 sm:p-4 lg:p-6 flex flex-col lg:flex-row gap-4 lg:gap-6 lg:items-center lg:justify-center">

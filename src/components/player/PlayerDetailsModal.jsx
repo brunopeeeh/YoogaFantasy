@@ -144,7 +144,19 @@ export default function PlayerDetailsModal({ jogador, isOpen, onClose }) {
                         <div className="w-8 h-6 rounded overflow-hidden shadow-sm">
                           <img src={jogo.flag} alt={jogo.nome} className="w-full h-full object-cover" />
                         </div>
-                        <div className={`w-full h-1.5 rounded-full mt-1 ${colorMapFdr[jogo.nivel] || 'bg-fifa-blue'}`} />
+                        <span className="text-[9px] font-bold text-white/70 truncate w-full text-center leading-tight">
+                          {jogo.nome}
+                        </span>
+                        <div className="flex items-center gap-1 w-full">
+                          <div className={`flex-1 h-1 rounded-full ${colorMapFdr[jogo.nivel] || 'bg-fifa-blue'}`} />
+                          <span className={`text-[7px] font-black uppercase ${
+                            jogo.nivel === 'easy' ? 'text-stat-fit' :
+                            jogo.nivel === 'hard' ? 'text-stat-injured' :
+                            'text-[#009CDE]'
+                          }`}>
+                            {jogo.nivel === 'easy' ? 'Fácil' : jogo.nivel === 'hard' ? 'Difícil' : 'Médio'}
+                          </span>
+                        </div>
                       </div>
                     ))}
                     {proximosJogos.length === 0 && (
@@ -162,23 +174,30 @@ export default function PlayerDetailsModal({ jogador, isOpen, onClose }) {
                     </div>
 
                     <div className="flex items-center justify-between bg-[#11161d] rounded-lg p-3 border border-white/5">
-                      <div className="flex flex-col">
-                        <span className="text-[11px] font-black text-white uppercase tracking-wide">
-                          {jogador.selecao} <span className="text-white/40 mx-1">-</span> {proximosJogos[0].nome}
+                      <div className="flex flex-col gap-1">
+                        <span className="text-[10px] font-bold text-white/50 uppercase tracking-wide">Adversário</span>
+                        <span className="text-[13px] font-black text-white">
+                          {proximosJogos[0].nome}
                         </span>
-                        <div className="flex items-center gap-1 text-[10px] text-white/50 mt-1 font-bold">
+                        <div className="flex items-center gap-1 text-[10px] text-white/50 font-bold">
                           <Calendar size={10} />
                           {proximosJogos[0].data || 'A definir'}
                         </div>
                       </div>
 
-                      <div className="flex items-center gap-1.5">
-                        <div className="w-5 h-5 rounded-full overflow-hidden border border-white/20">
-                          <img src={jogador.bandeira || ''} alt="Home" className="w-full h-full object-cover scale-[1.2]" />
+                      <div className="flex items-center gap-2">
+                        <div className="flex flex-col items-center gap-0.5">
+                          <div className="w-8 h-6 rounded overflow-hidden border border-white/20 shadow-sm">
+                            <img src={jogador.bandeira || ''} alt={jogador.selecao} className="w-full h-full object-cover" />
+                          </div>
+                          <span className="text-[8px] font-bold text-white/50 truncate max-w-[50px]">{jogador.selecao}</span>
                         </div>
-                        <span className="text-[9px] text-white/30 font-black">-</span>
-                        <div className="w-5 h-5 rounded-full overflow-hidden border border-white/20">
-                          <img src={proximosJogos[0].flag || ''} alt="Away" className="w-full h-full object-cover scale-[1.2]" />
+                        <span className="text-[10px] font-black text-white/30">VS</span>
+                        <div className="flex flex-col items-center gap-0.5">
+                          <div className="w-8 h-6 rounded overflow-hidden border border-white/20 shadow-sm">
+                            <img src={proximosJogos[0].flag || ''} alt={proximosJogos[0].nome} className="w-full h-full object-cover" />
+                          </div>
+                          <span className="text-[8px] font-bold text-white/70 truncate max-w-[50px]">{proximosJogos[0].nome}</span>
                         </div>
                       </div>
                     </div>

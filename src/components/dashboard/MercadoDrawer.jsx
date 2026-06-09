@@ -3,7 +3,7 @@
 
 import { useEffect, useState, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, X, ChevronLeft, ChevronRight, Info, Loader2, Trash2 } from 'lucide-react';
+import { Search, X, ChevronLeft, ChevronRight, Info, Loader2, RotateCcw } from 'lucide-react';
 import CardJogador from '../CardJogador';
 import PlayerCardSkeleton from '../mercado/PlayerCardSkeleton';
 import EmptyState from '../ui/EmptyState';
@@ -72,7 +72,7 @@ export default memo(function MercadoDrawer({
             <select
               value={mercado.selecaoSelecionada}
               onChange={(e) => mercado.setSelecaoSelecionada(e.target.value)}
-              className="w-full bg-[#18202b] border border-white/10 text-white text-xs font-bold rounded-lg p-2 outline-none cursor-pointer hover:border-white/20 transition-all appearance-none pr-6 text-center"
+              className="w-full bg-fifa-navy-800 border border-white/10 text-white text-xs font-bold rounded-lg p-2 outline-none cursor-pointer hover:border-white/20 transition-all appearance-none pr-6 text-center"
               style={{
                 backgroundImage: `url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e")`,
                 backgroundRepeat: 'no-repeat',
@@ -80,9 +80,9 @@ export default memo(function MercadoDrawer({
                 backgroundSize: '10px',
               }}
             >
-              <option value="" className="bg-[#18202b] text-white">Time</option>
+              <option value="" className="bg-fifa-navy-800 text-white">Time</option>
               {listaSelecoes.map(sel => (
-                <option key={sel.id} value={sel.id} className="bg-[#18202b] text-white">{sel.nome}</option>
+                <option key={sel.id} value={sel.id} className="bg-fifa-navy-800 text-white">{sel.nome}</option>
               ))}
             </select>
           </div>
@@ -92,7 +92,7 @@ export default memo(function MercadoDrawer({
             <select
               value={mercado.ordemPreco}
               onChange={(e) => mercado.setOrdemPreco(e.target.value)}
-              className="w-full bg-[#18202b] border border-white/10 text-white text-xs font-bold rounded-lg p-2 outline-none cursor-pointer hover:border-white/20 transition-all appearance-none pr-6 text-center"
+              className="w-full bg-fifa-navy-800 border border-white/10 text-white text-xs font-bold rounded-lg p-2 outline-none cursor-pointer hover:border-white/20 transition-all appearance-none pr-6 text-center"
               style={{
                 backgroundImage: `url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e")`,
                 backgroundRepeat: 'no-repeat',
@@ -100,8 +100,8 @@ export default memo(function MercadoDrawer({
                 backgroundSize: '10px',
               }}
             >
-              <option value="DESC" className="bg-[#18202b] text-white">Preço</option>
-              <option value="ASC" className="bg-[#18202b] text-white">Preço (Menor)</option>
+              <option value="DESC" className="bg-fifa-navy-800 text-white">Preço</option>
+              <option value="ASC" className="bg-fifa-navy-800 text-white">Preço (Menor)</option>
             </select>
           </div>
 
@@ -110,7 +110,7 @@ export default memo(function MercadoDrawer({
             <select
               value={mercado.posicaoFiltro}
               onChange={(e) => mercado.setPosicaoFiltro(e.target.value)}
-              className="w-full bg-[#18202b] border border-white/10 text-white text-xs font-bold rounded-lg p-2 outline-none cursor-pointer hover:border-white/20 transition-all appearance-none pr-6 text-center"
+              className="w-full bg-fifa-navy-800 border border-white/10 text-white text-xs font-bold rounded-lg p-2 outline-none cursor-pointer hover:border-white/20 transition-all appearance-none pr-6 text-center"
               style={{
                 backgroundImage: `url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e")`,
                 backgroundRepeat: 'no-repeat',
@@ -118,11 +118,11 @@ export default memo(function MercadoDrawer({
                 backgroundSize: '10px',
               }}
             >
-              <option value="" className="bg-[#18202b] text-white">Posição</option>
-              <option value="G" className="bg-[#18202b] text-white">Goleiro (GOL)</option>
-              <option value="D" className="bg-[#18202b] text-white">Defensor (DEF)</option>
-              <option value="M" className="bg-[#18202b] text-white">Meio-Campista (MEI)</option>
-              <option value="F" className="bg-[#18202b] text-white">Atacante (ATA)</option>
+              <option value="" className="bg-fifa-navy-800 text-white">Posição</option>
+              <option value="G" className="bg-fifa-navy-800 text-white">Goleiro (GOL)</option>
+              <option value="D" className="bg-fifa-navy-800 text-white">Defensor (DEF)</option>
+              <option value="M" className="bg-fifa-navy-800 text-white">Meio-Campista (MEI)</option>
+              <option value="F" className="bg-fifa-navy-800 text-white">Atacante (ATA)</option>
             </select>
           </div>
         </div>
@@ -139,7 +139,7 @@ export default memo(function MercadoDrawer({
               placeholder="Pesquisa"
               value={mercado.pesquisa}
               onChange={(e) => mercado.setPesquisa(e.target.value)}
-              className="w-full bg-[#18202b] border border-white/10 text-gray-200 text-xs rounded-lg p-2 pl-9 outline-none focus:border-fifa-blue transition-colors font-medium"
+              className="w-full bg-fifa-navy-800 border border-white/10 text-gray-200 text-xs rounded-lg p-2 pl-9 outline-none focus:border-fifa-blue transition-colors font-medium"
             />
             {mercado.pesquisa && (
               <button
@@ -158,27 +158,21 @@ export default memo(function MercadoDrawer({
               mercado.setPosicaoFiltro('');
               mercado.setOrdemPreco('DESC');
             }}
-            className="p-2 bg-[#18202b] border border-white/10 hover:border-red-500/50 hover:bg-red-950/20 text-white/60 hover:text-red-400 rounded-lg transition-all flex items-center justify-center flex-shrink-0"
+            className="p-2 bg-fifa-navy-800 border border-white/10 hover:border-red-500/50 hover:bg-red-950/20 text-white/60 hover:text-red-400 rounded-lg transition-all flex items-center justify-center flex-shrink-0"
             title="Limpar todos os filtros"
             aria-label="Limpar todos os filtros"
           >
-            <Trash2 size={14} />
+            <RotateCcw size={14} />
           </button>
         </div>
 
-        {/* Cabeçalho da Tabela (Métricas) */}
-        <div className="flex justify-between items-center text-[9px] text-white/45 font-black uppercase py-2 px-3 tracking-wider border-b border-white/10 font-heading">
-          <div className="flex-1 text-left pl-1">Atleta</div>
+        {/* Cabeçalho da Tabela */}
+        <div className="flex justify-between items-center text-[9px] text-white/45 font-black uppercase py-2 px-3 tracking-wider border-b border-white/10">
+          <div className="flex-1 text-left">Atleta</div>
           <div className="flex items-center gap-2 sm:gap-4 text-center flex-shrink-0">
-            <div className="hidden sm:block w-10">Forma</div>
-            <div className="w-16 text-fifa-blue flex flex-col items-center justify-center relative font-black select-none">
-              <span>Preço</span>
-              <span className="text-[7px] leading-none mt-0.5 text-fifa-blue">▼</span>
-            </div>
-            <div className="w-8">Pts</div>
-            <div className="hidden sm:block w-8">P/R</div>
-            <div className="hidden sm:block w-12">Sel%</div>
-            <div className="hidden sm:block w-20 text-right pr-2">Fdr</div>
+            <div className="min-w-[36px] sm:min-w-[72px] text-center">Próx</div>
+            <div className="w-14 sm:w-16 text-fifa-blue text-center">Preço</div>
+            <div className="w-8 text-center">Pts</div>
           </div>
         </div>
       </div>

@@ -1,246 +1,240 @@
 import { useNavigate } from 'react-router-dom';
-import { Calendar, ChevronRight, Plus, Shield, Trophy, User, Users } from 'lucide-react';
+import { Calendar, ChevronRight, Plus, Trophy, Users, Shirt, Zap } from 'lucide-react';
 import { useFantasy } from '../../contexts/FantasyContext';
 import { usePontuacaoRodada } from '../../hooks/usePontuacaoRodada';
 import { useJogosRodada } from '../../hooks/useJogosRodada';
 import { useEffect, useState } from 'react';
-import { getMeuPerfil } from '../../services/perfilService';
 import { buscarMinhasLigas } from '../../services/ligasService';
-import PerfilModal from '../dashboard/PerfilModal';
-import { useAuth } from '../../contexts/AuthContext';
+import { POSICAO_LABEL, ELENCO_LIMITE } from '../../lib/posicoes';
+import { JogoCard } from '../shared/JogoCard';
 
-function siglaTime(nome) {
-  if (!nome) return '???';
-  const partes = nome.trim().split(/\s+/);
-  if (partes.length === 1) return partes[0].slice(0, 3).toUpperCase();
-  return partes.map((p) => p[0]).join('').slice(0, 3).toUpperCase();
-}
-
-function formatarDataJogo(jogo) {
-  if (jogo.data_local_brt) return jogo.data_local_brt;
-  if (!jogo.timestamp_bruto) return 'Data a definir';
-  return new Date(jogo.timestamp_bruto * 1000).toLocaleString('pt-BR', {
-    weekday: 'short',
-    day: '2-digit',
-    month: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-  });
-}
-
-function JogoCard({ jogo }) {
-  const casa = jogo.time_casa;
-  const fora = jogo.time_fora;
-
-  return (
-    <div className="bg-white rounded-xl border border-gray-100 p-4 shadow-sm hover:shadow-md transition-shadow">
-      <div className="text-center text-[11px] text-gray-400 font-medium mb-3">
-        {formatarDataJogo(jogo)}
-        {jogo.grupo_rodada && (
-          <span className="ml-2 text-gray-300">· {jogo.grupo_rodada}</span>
-        )}
-      </div>
-      <div className="flex items-center justify-between gap-3">
-        <div className="flex-1 flex flex-col items-center gap-1.5 min-w-0">
-          {casa?.bandeira_url ? (
-            <img src={casa.bandeira_url} alt="" className="w-8 h-8 rounded-full object-cover border border-gray-100" />
-          ) : (
-            <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-[10px] font-bold text-gray-400">
-              {siglaTime(casa?.nome)}
-            </div>
-          )}
-          <span className="text-xs font-bold text-gray-800 truncate max-w-full">{siglaTime(casa?.nome)}</span>
-        </div>
-        <span className="text-lg font-light text-gray-300 flex-shrink-0">×</span>
-        <div className="flex-1 flex flex-col items-center gap-1.5 min-w-0">
-          {fora?.bandeira_url ? (
-            <img src={fora.bandeira_url} alt="" className="w-8 h-8 rounded-full object-cover border border-gray-100" />
-          ) : (
-            <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-[10px] font-bold text-gray-400">
-              {siglaTime(fora?.nome)}
-            </div>
-          )}
-          <span className="text-xs font-bold text-gray-800 truncate max-w-full">{siglaTime(fora?.nome)}</span>
-        </div>
-      </div>
-    </div>
-  );
-}
+const POS_ORDEM = ['Goleiro', 'Defensor', 'MeioCampista', 'Atacante'];
+const MAX_JOGOS_LOBBY = 8;
 
 export default function LobbyScreen() {
   const navigate = useNavigate();
-  const { user } = useAuth();
-  const { time, refetch, configRodada, mercadoAbertoConfig, totalSelecionados } = useFantasy();
+  const { totalSelecionados, elencoSalvo, capitaoSalvoId, limitesFase, transferenciasNoDraft, saldoDraft, listaSelecionados, mercadoAbertoConfig, configRodada } = useFantasy();
   const { ultimaRodada, totalTemporada } = usePontuacaoRodada();
   const rodada = configRodada?.rodada_atual;
   const { jogos, loading: carregandoJogos } = useJogosRodada(rodada);
 
-  const [perfil, setPerfil] = useState(null);
   const [ligas, setLigas] = useState([]);
   const [carregandoLigas, setCarregandoLigas] = useState(true);
-  const [perfilAberto, setPerfilAberto] = useState(false);
 
   useEffect(() => {
-    getMeuPerfil().then(setPerfil).catch(() => { });
     buscarMinhasLigas()
       .then(setLigas)
       .catch(() => setLigas([]))
       .finally(() => setCarregandoLigas(false));
   }, []);
 
-  const nomeExibicao = perfil?.nome_exibicao || user?.email?.split('@')[0] || 'Treinador';
-  const nomeTime = time?.nome_time || 'Meu Time';
-  const patrimonio = time?.banco_cartoletas != null ? Number(time.banco_cartoletas) : 100;
-  const jogosPreview = jogos.slice(0, 6);
+  const contagemPorPos = {};
+  for (const pos of POS_ORDEM) {
+    contagemPorPos[pos] = (elencoSalvo?.[pos] || []).filter(Boolean).length;
+  }
+
+  const capitaoJogador = capitaoSalvoId
+    ? listaSelecionados.find(j => Number(j.id) === Number(capitaoSalvoId))
+    : null;
+
+  const gratisp = limitesFase?.transferenciasGratis ?? 3;
+  const restantes = Math.max(0, gratisp - transferenciasNoDraft);
+
+  const jogosPreview = jogos.slice(0, MAX_JOGOS_LOBBY);
+  const temMaisJogos = jogos.length > MAX_JOGOS_LOBBY;
 
   return (
-    <div className="flex-1 bg-[#eef1f5] text-gray-900 overflow-y-auto">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-6">
+    <div className="flex-1 bg-fifa-blue overflow-y-auto">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-5">
 
-        {/* Banner mercado */}
-        <div className={`rounded-xl px-4 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 ${mercadoAbertoConfig ? 'bg-fifa-blue text-white' : 'bg-gray-800 text-white'}`}>
-          <div className="flex items-center gap-2 text-sm font-medium">
-            <Calendar size={16} className="opacity-80" />
-            {mercadoAbertoConfig
-              ? `Mercado aberto · Rodada ${rodada ?? '?'}`
-              : `Mercado fechado · Rodada ${rodada ?? '?'}`}
+        {/* Métricas */}
+        <div className="grid grid-cols-3 gap-3">
+          <div className="glass-panel rounded-xl p-3 sm:p-4 text-center">
+            <div className="text-[9px] text-white/50 uppercase font-bold tracking-wider">Saldo</div>
+            <div className="text-base sm:text-lg font-black text-white mt-0.5 font-display tracking-wide">
+              €{saldoDraft.toFixed(1)}M
+            </div>
           </div>
-          {configRodada?.deadline && mercadoAbertoConfig && (
-            <span className="text-xs opacity-80">
-              Fecha em {new Date(configRodada.deadline).toLocaleString('pt-BR', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}
-            </span>
-          )}
+          <div className="glass-panel rounded-xl p-3 sm:p-4 text-center">
+            <div className="text-[9px] text-white/50 uppercase font-bold tracking-wider">Última</div>
+            <div className="text-base sm:text-lg font-black text-white mt-0.5 font-display tracking-wide">
+              {ultimaRodada != null ? Number(ultimaRodada.pontos_ganhos).toFixed(1) : '—'}
+            </div>
+          </div>
+          <div className="glass-panel rounded-xl p-3 sm:p-4 text-center">
+            <div className="text-[9px] text-white/50 uppercase font-bold tracking-wider">Total</div>
+            <div className="text-base sm:text-lg font-black text-white mt-0.5 font-display tracking-wide">
+              {totalTemporada.toFixed(0)}
+            </div>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Coluna perfil + escalar */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+          {/* Coluna esquerda — Time + Ações */}
           <div className="lg:col-span-1 space-y-4">
-            <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-              <div className="h-24 bg-gradient-to-br from-fifa-blue/20 to-fifa-gold/10" />
-              <div className="px-5 pb-5 -mt-10">
-                <div className="w-16 h-16 rounded-2xl bg-white border-4 border-white shadow-md flex items-center justify-center mb-3">
-                  <Shield size={28} className="text-fifa-blue" />
+            <div className="glass-panel rounded-xl p-5">
+              <div className="flex items-center justify-between mb-3">
+                <h2 className="text-xs font-black uppercase tracking-widest text-white/80">
+                  Meu time
+                </h2>
+                <span className="text-[10px] font-bold text-white/40 font-mono">
+                  R{rodada ?? '?'}
+                </span>
+              </div>
+
+              <div className="space-y-2.5 mb-4">
+                {POS_ORDEM.map((pos) => {
+                  const limite = ELENCO_LIMITE[pos];
+                  const ocupado = contagemPorPos[pos] || 0;
+                  const pct = limite > 0 ? (ocupado / limite) * 100 : 0;
+                  return (
+                    <div key={pos}>
+                      <div className="flex items-center justify-between text-[11px] mb-1">
+                        <span className="font-bold text-white/70 uppercase tracking-wider">
+                          {POSICAO_LABEL[pos]}
+                        </span>
+                        <span className="text-white/40 font-mono">
+                          {ocupado}/{limite}
+                        </span>
+                      </div>
+                      <div className="h-1.5 rounded-full bg-white/5 overflow-hidden">
+                        <div
+                          className="h-full rounded-full bg-fifa-gold/70 transition-all"
+                          style={{ width: `${pct}%` }}
+                        />
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              <div className="flex items-center justify-between border-t border-white/5 pt-3 mb-3">
+                <div className="flex items-center gap-2 text-[11px] text-white/60">
+                  <Shirt size={13} className="text-white/40" />
+                  <span className="font-bold">{totalSelecionados}/15</span>
+                  <span className="text-white/30">escalados</span>
                 </div>
-                <h1 className="text-xl font-black text-gray-900 leading-tight">{nomeTime}</h1>
-                <p className="text-sm text-gray-500 flex items-center gap-1 mt-0.5">
-                  <User size={13} /> {nomeExibicao}
+                <div className="flex items-center gap-1 text-[11px] text-white/60">
+                  <Zap size={13} className="text-fifa-gold" />
+                  <span className="font-bold text-white/80">{restantes}/{gratisp >= 999 ? '∞' : gratisp}</span>
+                  <span className="text-white/30">transf.</span>
+                </div>
+              </div>
+
+              {capitaoJogador && (
+                <div className="text-[11px] text-white/50 mb-3 flex items-center gap-1.5 bg-white/5 rounded-lg px-3 py-2">
+                  <Trophy size={12} className="text-fifa-gold" />
+                  Capitão: <span className="font-bold text-white/80">{capitaoJogador.nome}</span>
+                </div>
+              )}
+
+              <button
+                onClick={() => navigate('/escalar')}
+                className="w-full py-3.5 rounded-xl bg-fifa-gold hover:bg-yellow-500 text-fifa-navy-900 font-black text-xs uppercase tracking-widest shadow-lg shadow-fifa-gold/20 transition-all active:scale-[0.98] flex items-center justify-center gap-2"
+              >
+                <Users size={16} />
+                Escalar meu time
+              </button>
+
+              {totalSelecionados < 15 && mercadoAbertoConfig && (
+                <p className="text-center text-[10px] text-amber-300/80 mt-2 font-medium">
+                  {15 - totalSelecionados} vaga(s) não preenchida(s)
                 </p>
-                <button
-                  onClick={() => setPerfilAberto(true)}
-                  className="mt-3 text-xs font-bold text-fifa-blue uppercase tracking-wider hover:underline"
-                >
-                  Ver perfil
-                </button>
-              </div>
+              )}
             </div>
-
-            <div className="grid grid-cols-3 gap-2">
-              <div className="bg-white rounded-xl border border-gray-100 p-3 text-center shadow-sm">
-                <div className="text-[10px] text-gray-400 uppercase font-bold tracking-wider">Patrimônio</div>
-                <div className="text-sm font-black text-gray-900 mt-1">€{patrimonio.toFixed(1)}M</div>
-              </div>
-              <div className="bg-white rounded-xl border border-gray-100 p-3 text-center shadow-sm">
-                <div className="text-[10px] text-gray-400 uppercase font-bold tracking-wider">Última</div>
-                <div className="text-sm font-black text-gray-900 mt-1">
-                  {ultimaRodada != null ? Number(ultimaRodada.pontos_ganhos).toFixed(1) : '—'}
-                </div>
-              </div>
-              <div className="bg-white rounded-xl border border-gray-100 p-3 text-center shadow-sm">
-                <div className="text-[10px] text-gray-400 uppercase font-bold tracking-wider">Total</div>
-                <div className="text-sm font-black text-gray-900 mt-1">{totalTemporada.toFixed(0)}</div>
-              </div>
-            </div>
-
-            <button
-              onClick={() => navigate('/escalar')}
-              className="w-full py-4 rounded-2xl bg-[#e31837] hover:bg-[#c41230] text-white font-black text-sm uppercase tracking-widest shadow-lg shadow-red-200/50 transition-all active:scale-[0.98] flex items-center justify-center gap-2"
-            >
-              <Users size={18} />
-              Escalar meu time
-            </button>
-            {totalSelecionados < 15 && mercadoAbertoConfig && (
-              <p className="text-center text-xs text-amber-600 font-medium">
-                {15 - totalSelecionados} vaga(s) ainda não preenchida(s) na rodada {rodada ?? '?'}.
-              </p>
-            )}
           </div>
 
-          {/* Coluna ligas + jogos */}
-          <div className="lg:col-span-2 space-y-6">
-            <section className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-              <div className="px-5 py-4 border-b border-gray-50 flex items-center justify-between">
-                <h2 className="font-black text-gray-900 flex items-center gap-2">
-                  <Trophy size={18} className="text-fifa-gold" />
-                  Minhas ligas
+          {/* Coluna direita — Ligas + Jogos */}
+          <div className="lg:col-span-2 space-y-4">
+            <div className="glass-panel rounded-xl overflow-hidden">
+              <div className="px-5 py-3.5 border-b border-white/5 flex items-center justify-between">
+                <h2 className="text-xs font-black uppercase tracking-widest text-white/80 flex items-center gap-2">
+                  <Trophy size={15} className="text-fifa-gold" />
+                  Ligas
                 </h2>
                 <button
                   onClick={() => navigate('/ligas')}
-                  className="text-xs font-bold text-fifa-blue uppercase tracking-wider hover:underline flex items-center gap-0.5"
+                  className="text-[10px] font-bold text-fifa-blue uppercase tracking-wider hover:underline flex items-center gap-0.5"
                 >
-                  Ver todas <ChevronRight size={14} />
+                  Ver todas <ChevronRight size={12} />
                 </button>
               </div>
 
               <div className="p-5">
                 {carregandoLigas ? (
-                  <div className="py-8 text-center text-sm text-gray-400 animate-pulse">Carregando ligas...</div>
+                  <div className="py-6 text-center text-xs text-white/40 animate-pulse">Carregando ligas...</div>
                 ) : ligas.length === 0 ? (
-                  <div className="py-6 text-center">
-                    <p className="text-sm text-gray-500 mb-4">Você ainda não participa de nenhuma liga.</p>
+                  <div className="py-5 text-center">
+                    <p className="text-xs text-white/50 mb-4">Você ainda não participa de nenhuma liga.</p>
                     <div className="flex flex-col sm:flex-row gap-2 justify-center">
                       <button
                         onClick={() => navigate('/ligas', { state: { aba: 'criar' } })}
-                        className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-fifa-blue text-white text-xs font-bold uppercase tracking-wider hover:bg-[#007AB0] transition-colors"
+                        className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-fifa-blue text-white text-[10px] font-bold uppercase tracking-wider hover:bg-[#007AB0] transition-colors"
                       >
-                        <Plus size={14} /> Criar liga
+                        <Plus size={13} /> Criar liga
                       </button>
                       <button
                         onClick={() => navigate('/ligas', { state: { aba: 'entrar' } })}
-                        className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-gray-200 text-gray-700 text-xs font-bold uppercase tracking-wider hover:bg-gray-50 transition-colors"
+                        className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl border border-white/10 text-white/70 text-[10px] font-bold uppercase tracking-wider hover:bg-white/5 transition-colors"
                       >
                         Entrar com código
                       </button>
                     </div>
                   </div>
                 ) : (
-                  <ul className="space-y-2">
-                    {ligas.slice(0, 4).map((liga) => (
-                      <li key={liga.id}>
-                        <button
-                          onClick={() => navigate('/ligas')}
-                          className="w-full flex items-center justify-between px-4 py-3 rounded-xl border border-gray-100 hover:border-fifa-blue/30 hover:bg-fifa-blue/5 transition-colors text-left group"
-                        >
-                          <div>
-                            <div className="font-bold text-gray-900 text-sm">{liga.nome}</div>
-                            <div className="text-[11px] text-gray-400 uppercase tracking-wider mt-0.5">{liga.tipo}</div>
+                  <div className="space-y-2">
+                    {ligas.slice(0, 5).map((liga) => (
+                      <button
+                        key={liga.id}
+                        onClick={() => navigate('/ligas')}
+                        className="w-full flex items-center justify-between px-4 py-3 rounded-xl border border-white/5 hover:border-fifa-blue/40 hover:bg-white/5 transition-all text-left group"
+                      >
+                        <div className="min-w-0 flex-1">
+                          <div className="font-bold text-white text-sm truncate">{liga.nome}</div>
+                          <div className="text-[10px] text-white/40 uppercase tracking-wider mt-0.5">
+                            {liga.tipo === 'privada' ? 'Privada' : 'Pública'}
                           </div>
-                          <ChevronRight size={16} className="text-gray-300 group-hover:text-fifa-blue" />
-                        </button>
-                      </li>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <span className="text-xs font-black text-fifa-gold font-mono">
+                            {Number(liga.meus_pontos || 0).toFixed(1)} pts
+                          </span>
+                          <ChevronRight size={14} className="text-white/20 group-hover:text-fifa-blue transition-colors" />
+                        </div>
+                      </button>
                     ))}
                     <button
                       onClick={() => navigate('/ligas', { state: { aba: 'criar' } })}
-                      className="w-full mt-2 py-2.5 rounded-xl border-2 border-dashed border-gray-200 text-xs font-bold text-gray-500 uppercase tracking-wider hover:border-fifa-blue hover:text-fifa-blue transition-colors flex items-center justify-center gap-1.5"
+                      className="w-full mt-2 py-2.5 rounded-xl border-2 border-dashed border-white/10 text-[10px] font-bold text-white/40 uppercase tracking-wider hover:border-fifa-blue hover:text-fifa-blue transition-all flex items-center justify-center gap-1.5"
                     >
-                      <Plus size={14} /> Nova liga
+                      <Plus size={13} /> Nova liga
                     </button>
-                  </ul>
+                  </div>
                 )}
               </div>
-            </section>
+            </div>
 
-            <section>
+            {/* Jogos da Rodada */}
+            <div className="glass-panel rounded-xl p-5">
               <div className="flex items-center justify-between mb-4">
-                <h2 className="font-black text-gray-900 flex items-center gap-2">
-                  <Calendar size={18} className="text-fifa-blue" />
+                <h2 className="text-xs font-black uppercase tracking-widest text-white/80 flex items-center gap-2">
+                  <Calendar size={15} className="text-fifa-blue" />
                   Jogos da rodada {rodada ?? '?'}
                 </h2>
+                {temMaisJogos && (
+                  <button
+                    onClick={() => navigate('/jogos')}
+                    className="text-[10px] font-bold text-fifa-blue uppercase tracking-wider hover:underline flex items-center gap-0.5"
+                  >
+                    Ver todos ({jogos.length}) <ChevronRight size={12} />
+                  </button>
+                )}
               </div>
 
               {carregandoJogos ? (
-                <div className="py-12 text-center text-sm text-gray-400 animate-pulse">Carregando jogos...</div>
-              ) : jogosPreview.length === 0 ? (
-                <div className="bg-white rounded-2xl border border-gray-100 p-8 text-center text-sm text-gray-500">
+                <div className="py-8 text-center text-xs text-white/40 animate-pulse">Carregando jogos...</div>
+              ) : jogos.length === 0 ? (
+                <div className="py-6 text-center text-xs text-white/40">
                   Nenhum jogo cadastrado para esta rodada.
                 </div>
               ) : (
@@ -250,22 +244,10 @@ export default function LobbyScreen() {
                   ))}
                 </div>
               )}
-            </section>
+            </div>
           </div>
         </div>
       </div>
-
-      <PerfilModal
-        isOpen={perfilAberto}
-        onClose={() => setPerfilAberto(false)}
-        user={user}
-        time={time}
-        onSaved={async () => {
-          await refetch();
-          const p = await getMeuPerfil().catch(() => null);
-          if (p) setPerfil(p);
-        }}
-      />
     </div>
   );
 }

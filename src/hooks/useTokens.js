@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { useUserTime } from './useUserTime';
-import { listarTokensPorTime, usarToken as usarTokenService } from '../services/tokensService';
+import { listarTokensPorTime, usarToken as usarTokenService, resgatarToken as resgatarTokenService } from '../services/tokensService';
 
 export function useTokens() {
   const { user } = useAuth();
@@ -58,6 +58,23 @@ export function useTokens() {
     }
   }, [usando, refetch, refetchTime]);
 
+  const resgatar = useCallback(async (tipo) => {
+    if (usando) return { ok: false, error: new Error('Operação já em andamento') };
+    setUsando(`resgatar_${tipo}`);
+    setError(null);
+    try {
+      const data = await resgatarTokenService(tipo);
+      await refetch();
+      await refetchTime();
+      return { ok: true, data };
+    } catch (e) {
+      setError(e);
+      return { ok: false, error: e };
+    } finally {
+      setUsando(null);
+    }
+  }, [usando, refetch, refetchTime]);
+
   return {
     tokens,
     loading,
@@ -65,6 +82,7 @@ export function useTokens() {
     error,
     refetch,
     usar,
+    resgatar,
     disponiveisPorTipo,
     totalPorTipo,
     usadosNaRodadaPorTipo,

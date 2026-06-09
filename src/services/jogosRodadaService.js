@@ -22,3 +22,14 @@ export async function buscarJogosDaRodada(rodadaNumero) {
   if (error) throw error;
   return data || [];
 }
+
+export async function buscarJogosAgrupados() {
+  const jogos = await buscarJogosDaRodada(null);
+  const grupos = {};
+  for (const jogo of jogos) {
+    const r = jogo.rodada_numero;
+    if (!grupos[r]) grupos[r] = [];
+    grupos[r].push(jogo);
+  }
+  return grupos;
+}

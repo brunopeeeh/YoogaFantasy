@@ -17,3 +17,10 @@ export async function usarToken(tipo) {
   if (error) throw error;
   return data;
 }
+
+export async function resgatarToken(tipo) {
+  if (!tipo) throw new Error('Tipo de token é obrigatório');
+  const { data, error } = await supabase.rpc('resgatar_token', { p_tipo: tipo });
+  if (error) throw error;
+  return data;
+}

@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
-import { LogOut, Wallet, Users, Sparkles, Trophy, UserCircle, HelpCircle, Zap } from 'lucide-react';
+import { LogOut, Wallet, Users, Sparkles, Trophy, UserCircle, Zap, Crown } from 'lucide-react';
+import { getMeuPerfil } from '../../services/perfilService';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useFantasy } from '../../contexts/FantasyContext';
 import { usePontuacaoRodada } from '../../hooks/usePontuacaoRodada';
+import ConfirmarTokenModal from '../shared/ConfirmarTokenModal';
 import SaveConfirmModal from './SaveConfirmModal';
 import PerfilModal from './PerfilModal';
 
@@ -30,6 +32,15 @@ export default function Header() {
         : 'inicio';
   const naEscalacao = viewAtual === 'escalacao';
   const [perfilAberto, setPerfilAberto] = useState(false);
+  const [confirmToken, setConfirmToken] = useState(null);
+  const [avatarUrl, setAvatarUrl] = useState(null);
+
+  useEffect(() => {
+    if (!user?.id) return;
+    getMeuPerfil()
+      .then(p => setAvatarUrl(p?.avatar_url || null))
+      .catch(() => {});
+  }, [user?.id]);
 
   const {
     time,
@@ -57,12 +68,32 @@ export default function Header() {
     limitesFase,
     transferenciasNoDraft,
     rodadaAtual,
+    tokens,
+    tokenUsando,
+    handleUsarToken,
+    handleResgatarToken,
   } = useFantasy();
 
   const { ultimaRodada, totalTemporada } = usePontuacaoRodada();
 
   const deadlineLabel = formatarDeadline(configRodada?.deadline);
   const nomeTime = time?.nome_time || 'Meu Time';
+  const tokenTotal = (tokens || []).filter(t => t.tipo === 'capitao_triplo').length;
+  const tokenDisponiveis = (tokens || []).filter(t => t.tipo === 'capitao_triplo' && t.disponivel).length;
+  const podeResgatar = (tokens || []).some(
+    t => t.tipo === 'capitao_triplo' && !t.disponivel && t.rodada_usado === rodadaAtual
+  );
+
+  function handleConfirmarToken(tipo) {
+    setConfirmToken(tipo);
+  }
+
+  async function handleExecutarAcaoToken() {
+    if (!confirmToken) return;
+    const fn = confirmToken === 'usar' ? handleUsarToken : handleResgatarToken;
+    await fn('capitao_triplo');
+    setConfirmToken(null);
+  }
 
   return (
     <>
@@ -174,34 +205,67 @@ export default function Header() {
                     </div>
                   </div>
                 )}
+
+                {naEscalacao && tokenTotal > 0 && (
+                  <button
+                    onClick={() => {
+                      if (tokenDisponiveis > 0) handleConfirmarToken('usar');
+                      else if (podeResgatar && mercadoAbertoConfig) handleConfirmarToken('resgatar');
+                    }}
+                    className="bg-fifa-navy-800/80 border border-white/10 rounded-md py-1.5 px-2.5 sm:px-3 text-center min-w-[60px] sm:min-w-[70px] transition-all hover:bg-fifa-navy-700/80"
+                    title="Tokens especiais"
+                    aria-label="Tokens especiais"
+                  >
+                    <div className="flex items-center justify-center gap-1">
+                      <Crown
+                        size={12}
+                        strokeWidth={2.5}
+                        className={tokenDisponiveis > 0 && capitaoDraftId ? 'text-yellow-400' : 'text-white/30'}
+                      />
+                      <span className={`text-[11px] sm:text-[13px] font-bold font-mono ${tokenDisponiveis > 0 && capitaoDraftId ? 'text-yellow-400' : 'text-white/40'}`}>
+                        {tokenDisponiveis}/{tokenTotal}
+                      </span>
+                    </div>
+                    <div className="text-[8px] sm:text-[9px] text-white/50 uppercase tracking-[0.5px] mt-0.5">
+                      Tokens
+                    </div>
+                  </button>
+                )}
               </>
             )}
 
             {user?.email && (
               <div className="flex items-center gap-1.5 ml-1 pl-3 border-l border-white/10">
                 <button
-                  onClick={() => navigate('/regras')}
-                  className="bg-white/5 hover:bg-white/10 active:scale-95 border border-white/10 rounded-md p-2.5 text-white/70 hover:text-white transition-all flex items-center justify-center"
-                  title="Como pontuar / Regras"
-                  aria-label="Como pontuar / Regras"
+                  onClick={() => navigate('/perfil')}
+                  className="hidden lg:flex items-center gap-2 hover:opacity-90 transition-opacity"
+                  title="Meu perfil"
                 >
-                  <HelpCircle size={18} className={viewAtual === 'regras' ? 'text-fifa-gold' : 'text-white/70'} />
+                  <div className="w-8 h-8 rounded-full bg-fifa-navy-900 border border-white/20 overflow-hidden flex-shrink-0">
+                    {avatarUrl ? (
+                      <img src={avatarUrl} alt="" className="w-full h-full object-cover" />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center">
+                        <UserCircle size={18} className="text-white/50" />
+                      </div>
+                    )}
+                  </div>
+                  <div className="flex flex-col text-left leading-tight max-w-[100px]">
+                    <div className="text-[10px] text-white font-bold truncate">{nomeTime}</div>
+                    <div className="text-[8px] text-white/50 uppercase tracking-[0.5px] truncate">Meu perfil</div>
+                  </div>
                 </button>
                 <button
-                  onClick={() => setPerfilAberto(true)}
-                  className="hidden lg:flex flex-col text-right leading-tight max-w-[120px] hover:opacity-90 transition-opacity"
-                  title="Editar perfil"
-                >
-                  <div className="text-[9px] text-white/50 uppercase tracking-[0.5px] truncate">{nomeTime}</div>
-                  <div className="text-[10px] text-white font-bold truncate">{user.email}</div>
-                </button>
-                <button
-                  onClick={() => setPerfilAberto(true)}
-                  className="lg:hidden bg-white/5 hover:bg-white/10 active:scale-95 border border-white/10 rounded-md p-2.5 text-white/70 hover:text-white transition-all"
+                  onClick={() => navigate('/perfil')}
+                  className="lg:hidden bg-white/5 hover:bg-white/10 active:scale-95 border border-white/10 rounded-md p-2 text-white/70 hover:text-white transition-all"
                   title="Meu perfil"
                   aria-label="Meu perfil"
                 >
-                  <UserCircle size={20} />
+                  {avatarUrl ? (
+                    <img src={avatarUrl} alt="" className="w-6 h-6 rounded-full object-cover" />
+                  ) : (
+                    <UserCircle size={20} />
+                  )}
                 </button>
                 <button
                   onClick={signOut}
@@ -272,6 +336,14 @@ export default function Header() {
         user={user}
         time={time}
         onSaved={refetch}
+      />
+
+      <ConfirmarTokenModal
+        isOpen={!!confirmToken}
+        onClose={() => setConfirmToken(null)}
+        onConfirm={handleExecutarAcaoToken}
+        tipo={confirmToken}
+        salvando={!!tokenUsando}
       />
     </>
   );

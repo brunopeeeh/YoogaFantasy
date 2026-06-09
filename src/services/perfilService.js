@@ -8,7 +8,7 @@ export async function getMeuPerfil() {
 
   const { data, error } = await supabase
     .from('perfis_usuario')
-    .select('usuario_id, nome_exibicao')
+    .select('usuario_id, nome_exibicao, avatar_url')
     .eq('usuario_id', userId)
     .maybeSingle();
 
@@ -42,9 +42,62 @@ export async function atualizarNomeExibicao(nome) {
 
   const { data, error } = await supabase
     .from('perfis_usuario')
-    .upsert({ usuario_id: userId, nome_exibicao: nome.trim() })
-    .select('usuario_id, nome_exibicao')
+    .update({ nome_exibicao: nome.trim() })
+    .eq('usuario_id', userId)
+    .select('usuario_id, nome_exibicao, avatar_url')
     .single();
+
+  if (error) throw error;
+  return data;
+}
+
+export async function uploadAvatar(file) {
+  const { data: userData } = await supabase.auth.getUser();
+  const userId = userData?.user?.id;
+  if (!userId) throw new Error('Usuário não autenticado.');
+
+  const ext = file.name.split('.').pop().toLowerCase();
+  const filePath = `${userId}/${Date.now()}.${ext}`;
+
+  const { error: uploadError } = await supabase.storage
+    .from('avatars')
+    .upload(filePath, file, {
+      cacheControl: '3600',
+      upsert: true,
+    });
+
+  if (uploadError) throw uploadError;
+
+  const { data: urlData } = supabase.storage
+    .from('avatars')
+    .getPublicUrl(filePath);
+
+  const publicUrl = urlData?.publicUrl;
+  if (!publicUrl) throw new Error('Erro ao obter URL pública do avatar.');
+
+  return publicUrl;
+}
+
+export async function atualizarAvatar(url) {
+  const { data: userData } = await supabase.auth.getUser();
+  const userId = userData?.user?.id;
+  if (!userId) throw new Error('Usuário não autenticado.');
+
+  const { data, error } = await supabase
+    .from('perfis_usuario')
+    .update({ avatar_url: url })
+    .eq('usuario_id', userId)
+    .select('usuario_id, avatar_url')
+    .single();
+
+  if (error) throw error;
+  return data;
+}
+
+export async function sugerirTimeInicial(timeId) {
+  const { data, error } = await supabase.rpc('sugerir_elenco_inicial', {
+    p_time_usuario_id: timeId,
+  });
 
   if (error) throw error;
   return data;

@@ -5,7 +5,9 @@ import OnboardingGate from './components/auth/OnboardingGate';
 import DashboardFantasy from './DashboardFantasy';
 import LigasScreen from './components/leagues/LigasScreen';
 import LobbyScreen from './components/lobby/LobbyScreen';
+import JogosScreen from './components/jogos/JogosScreen';
 import RulesScreen from './components/rules/RulesScreen';
+import ProfileScreen from './components/profile/ProfileScreen';
 import { FantasyProvider, useFantasy } from './contexts/FantasyContext';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/dashboard/Header';
@@ -23,6 +25,8 @@ function AppShell() {
           <Route path="/" element={<LobbyScreen />} />
           <Route path="/escalar" element={<DashboardFantasy />} />
           <Route path="/ligas" element={<LigasScreen />} />
+          <Route path="/jogos" element={<JogosScreen />} />
+          <Route path="/perfil" element={<ProfileScreen />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../services/supabaseClient';
+import { getTeamStrength } from '../services/selecoesService';
 
 export function useJogosCopa() {
   const [jogosPorSelecao, setJogosPorSelecao] = useState({});
@@ -16,6 +17,7 @@ export function useJogosCopa() {
             time_casa_id,
             time_fora_id,
             timestamp_bruto,
+            data_local_brt,
             time_casa:selecoes!time_casa_id(id, nome, bandeira_url),
             time_fora:selecoes!time_fora_id(id, nome, bandeira_url)
           `)
@@ -23,21 +25,22 @@ export function useJogosCopa() {
 
         if (error) throw error;
 
-        // Agrupar jogos por id de seleção
+        const strengthMap = await getTeamStrength().catch(() => ({}));
+
         const map = {};
         for (const jogo of (data || [])) {
           const addGame = (teamId, opponentTeam) => {
             if (!map[teamId]) map[teamId] = { proximo: null, jogos: [] };
-            
-            // Lógica de nível do oponente pode ser refinada depois. Por enquanto mock 'medium' ou aleatório simples
-            // O importante é exibir a flag correta.
+
+            const nivel = strengthMap[opponentTeam.id] || 'medium';
+
             map[teamId].jogos.push({
               nome: opponentTeam.nome,
               flag: opponentTeam.bandeira_url,
-              nivel: 'medium' 
+              nivel,
+              data: jogo.data_local_brt || null,
             });
-            
-            // O primeiro jogo cronologicamente (ordenado por timestamp)
+
             if (!map[teamId].proximo) {
               map[teamId].proximo = opponentTeam.nome;
             }

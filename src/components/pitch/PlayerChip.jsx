@@ -24,7 +24,7 @@ export default memo(function PlayerChip({
   const photoSize = size === 'sm' ? 40 : size === 'lg' ? 64 : 56;
   const isInjured = jogador?.status && jogador?.status.toLowerCase() !== 'disponivel';
   // Cores: Vermelho para lesionados/dúvida, Roxo/Azul para normais
-  const nameBgColor = isInjured ? 'bg-[#EF4444]' : 'bg-[#8B83F6]';
+  const nameBgColor = isInjured ? 'bg-red-500' : 'bg-gradient-to-r from-fifa-blue to-fifa-blue/70';
 
   return (
     <motion.div
@@ -45,7 +45,7 @@ export default memo(function PlayerChip({
             e.stopPropagation();
             onRemove();
           }}
-          className="absolute -top-1 -right-2 z-30 w-8 h-8 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center shadow-lg transition-all opacity-0 group-hover:opacity-100"
+          className="absolute -top-2 -right-3 z-30 w-11 h-11 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center shadow-lg transition-all opacity-0 group-hover:opacity-100"
           title="Remover jogador"
           aria-label="Remover jogador"
         >
@@ -60,7 +60,7 @@ export default memo(function PlayerChip({
             e.stopPropagation();
             onCaptain();
           }}
-          className={`absolute -top-1 -left-2 z-30 w-8 h-8 rounded-full flex items-center justify-center shadow-lg transition-all ${
+          className={`absolute -top-2 -left-3 z-30 w-11 h-11 rounded-full flex items-center justify-center shadow-lg transition-all ${
             isCaptain
               ? 'bg-fifa-gold text-black scale-110 opacity-100'
               : 'bg-fifa-navy-900/80 text-white/70 hover:text-fifa-gold border border-white/20 opacity-0 group-hover:opacity-100'
@@ -89,7 +89,7 @@ export default memo(function PlayerChip({
       >
         {/* Foto Redonda do Jogador */}
         <div
-          className="relative z-10 rounded-full border-[3px] border-white bg-fifa-navy-900 shadow-md"
+          className="relative z-10 rounded-full border-2 border-white/20 bg-fifa-navy-900 shadow-md"
           style={{ width: photoSize, height: photoSize }}
         >
           <img
@@ -132,7 +132,7 @@ export default memo(function PlayerChip({
               </span>
             </div>
             {/* Bloco de Preço (só desktop) */}
-            <div className="w-full py-[1.5px] px-0.5 sm:px-1 bg-[#262626] hidden sm:flex justify-center">
+            <div className="w-full py-[1.5px] px-0.5 sm:px-1 bg-fifa-navy-800 hidden sm:flex justify-center">
               <span className="text-[9px] sm:text-[10px] font-black text-white/90 leading-none">
                 €{Number(jogador?.preco || 0).toFixed(1)}M
               </span>
@@ -176,7 +176,7 @@ export function EmptySlot({ posLabel = 'GOL', onClick, isActive = false, isSelec
 
       {/* Placa Vazia Abaixo */}
       <div className="relative z-0 mt-[-4px] flex flex-col items-center w-[48px] sm:w-[78px] shadow-sm overflow-hidden rounded-sm">
-        <div className={`w-full pt-[5px] pb-[2px] px-0.5 sm:px-1 flex justify-center border border-white/5 bg-[#1F2937]`}>
+        <div className={`w-full pt-[5px] pb-[2px] px-0.5 sm:px-1 flex justify-center border border-white/5 bg-fifa-navy-800`}>
           <span className={`text-[9px] sm:text-[11px] font-bold uppercase tracking-wider leading-none text-white/70`}>
             {posLabel}
           </span>
