@@ -39,7 +39,7 @@ export default memo(function MercadoDrawer({
       <div
         className={`bg-fifa-navy-900/95 backdrop-blur-glass border-white/10 shadow-glass-lg flex flex-col text-gray-200 overflow-hidden h-full ${
           isMobile
-            ? 'fixed inset-x-0 bottom-0 z-50 rounded-t-glass-xl border-t max-h-[85vh]'
+            ? 'fixed inset-x-0 bottom-0 z-50 rounded-t-glass-xl border-t max-h-[85vh] pb-[env(safe-area-inset-bottom,8px)]'
             : 'w-full rounded-xl border lg:h-[80vh] lg:max-h-[900px]'
         }`}
       >
@@ -66,13 +66,13 @@ export default memo(function MercadoDrawer({
 
       <div className="px-5 space-y-3">
         {/* Caixa de Filtros */}
-        <div className="grid grid-cols-3 gap-2">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
           {/* Select de Seleção (Time) */}
           <div className="relative">
             <select
               value={mercado.selecaoSelecionada}
               onChange={(e) => mercado.setSelecaoSelecionada(e.target.value)}
-              className="w-full bg-fifa-navy-800 border border-white/10 text-white text-xs font-bold rounded-lg p-2 outline-none cursor-pointer hover:border-white/20 transition-all appearance-none pr-6 text-center"
+              className="w-full bg-fifa-navy-800 border border-white/10 text-white text-xs font-bold rounded-lg p-2 min-h-[44px] outline-none cursor-pointer hover:border-white/20 transition-all appearance-none pr-6 text-center"
               style={{
                 backgroundImage: `url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e")`,
                 backgroundRepeat: 'no-repeat',
@@ -92,7 +92,7 @@ export default memo(function MercadoDrawer({
             <select
               value={mercado.ordemPreco}
               onChange={(e) => mercado.setOrdemPreco(e.target.value)}
-              className="w-full bg-fifa-navy-800 border border-white/10 text-white text-xs font-bold rounded-lg p-2 outline-none cursor-pointer hover:border-white/20 transition-all appearance-none pr-6 text-center"
+              className="w-full bg-fifa-navy-800 border border-white/10 text-white text-xs font-bold rounded-lg p-2 min-h-[44px] outline-none cursor-pointer hover:border-white/20 transition-all appearance-none pr-6 text-center"
               style={{
                 backgroundImage: `url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e")`,
                 backgroundRepeat: 'no-repeat',
@@ -110,7 +110,7 @@ export default memo(function MercadoDrawer({
             <select
               value={mercado.posicaoFiltro}
               onChange={(e) => mercado.setPosicaoFiltro(e.target.value)}
-              className="w-full bg-fifa-navy-800 border border-white/10 text-white text-xs font-bold rounded-lg p-2 outline-none cursor-pointer hover:border-white/20 transition-all appearance-none pr-6 text-center"
+              className="w-full bg-fifa-navy-800 border border-white/10 text-white text-xs font-bold rounded-lg p-2 min-h-[44px] outline-none cursor-pointer hover:border-white/20 transition-all appearance-none pr-6 text-center"
               style={{
                 backgroundImage: `url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e")`,
                 backgroundRepeat: 'no-repeat',
@@ -171,14 +171,14 @@ export default memo(function MercadoDrawer({
           <div className="flex-1 text-left">Atleta</div>
           <div className="flex items-center gap-2 sm:gap-4 text-center flex-shrink-0">
             <div className="min-w-[36px] sm:min-w-[72px] text-center">Próx</div>
-            <div className="w-14 sm:w-16 text-fifa-blue text-center">Preço</div>
+            <div className="min-w-[64px] sm:min-w-[84px] text-fifa-blue text-center">Preço</div>
             <div className="w-8 text-center">Pts</div>
           </div>
         </div>
       </div>
 
       {/* Lista de Cards */}
-      <div className="flex-1 overflow-y-auto px-5 pt-2 pb-3 space-y-2">
+      <div className="flex-1 overflow-y-auto overscroll-contain px-5 pt-2 pb-3 space-y-2">
         {mercado.carregando ? (
           <div className="space-y-2">
             {Array.from({ length: 5 }).map((_, i) => (
@@ -212,7 +212,7 @@ export default memo(function MercadoDrawer({
           <button
             disabled={mercado.pagina === 0 || mercado.carregando}
             onClick={() => mercado.setPagina(p => Math.max(0, p - 1))}
-            className="px-3 py-2.5 bg-fifa-navy-800 hover:bg-fifa-navy-700 text-xs font-bold text-white/70 rounded-lg border border-white/10 disabled:opacity-30 disabled:hover:bg-fifa-navy-800 transition-all flex items-center gap-1"
+            className="px-3 py-3 min-h-[44px] bg-fifa-navy-800 hover:bg-fifa-navy-700 text-xs font-bold text-white/70 rounded-lg border border-white/10 disabled:opacity-30 disabled:hover:bg-fifa-navy-800 transition-all flex items-center gap-1"
           >
             <ChevronLeft size={12} /> Anterior
           </button>
@@ -223,7 +223,7 @@ export default memo(function MercadoDrawer({
           <button
             disabled={mercado.pagina >= mercado.totalPaginas - 1 || mercado.carregando}
             onClick={() => mercado.setPagina(p => p + 1)}
-            className="px-3 py-2.5 bg-fifa-navy-800 hover:bg-fifa-navy-700 text-xs font-bold text-white/70 rounded-lg border border-white/10 disabled:opacity-30 disabled:hover:bg-fifa-navy-800 transition-all flex items-center gap-1"
+            className="px-3 py-3 min-h-[44px] bg-fifa-navy-800 hover:bg-fifa-navy-700 text-xs font-bold text-white/70 rounded-lg border border-white/10 disabled:opacity-30 disabled:hover:bg-fifa-navy-800 transition-all flex items-center gap-1"
           >
             Próximo <ChevronRight size={12} />
           </button>

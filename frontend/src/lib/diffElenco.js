@@ -1,16 +1,9 @@
-import { ELENCO_LIMITE, ORCAMENTO_MAXIMO, MAX_POR_SELECAO, getLimitesFase } from './posicoes';
+import { ORCAMENTO_MAXIMO, MAX_POR_SELECAO, getLimitesFase, criarElencoVazio, getLimitesPorFormacao, getQtdTitular, FORMACAO_PADRAO } from './posicoes';
 
-export function elencoVazio() {
-  return {
-    Goleiro: Array(ELENCO_LIMITE.Goleiro).fill(null),
-    Defensor: Array(ELENCO_LIMITE.Defensor).fill(null),
-    MeioCampista: Array(ELENCO_LIMITE.MeioCampista).fill(null),
-    Atacante: Array(ELENCO_LIMITE.Atacante).fill(null),
-  };
-}
+export { criarElencoVazio as elencoVazio };
 
 export function clonarElenco(elenco) {
-  if (!elenco) return elencoVazio();
+  if (!elenco) return criarElencoVazio(FORMACAO_PADRAO);
   const clone = {};
   for (const [posicao, slots] of Object.entries(elenco)) {
     clone[posicao] = slots.map((j) => (j ? { ...j } : null));
@@ -55,10 +48,29 @@ export function contarTransferencias(elencoSalvo, elencoDraft) {
   return Math.max(removidos.length, adicionados.length);
 }
 
-export function validarElencoDraft(elencoDraft, { rodada } = {}) {
+export function extrairTitulares(elenco, formacao) {
+  const titulares = {};
+  for (const pos of Object.keys(elenco)) {
+    const qtd = getQtdTitular(formacao, pos);
+    titulares[pos] = elenco[pos].slice(0, qtd);
+  }
+  return titulares;
+}
+
+export function extrairReservas(elenco, formacao) {
+  const reservas = {};
+  for (const pos of Object.keys(elenco)) {
+    const qtd = getQtdTitular(formacao, pos);
+    reservas[pos] = elenco[pos].slice(qtd);
+  }
+  return reservas;
+}
+
+export function validarElencoDraft(elencoDraft, { rodada, formacao } = {}) {
   const limites = rodada != null ? getLimitesFase(rodada) : null;
   const maxPorSel = limites?.maxPorSelecao ?? MAX_POR_SELECAO;
   const orcamentoMax = limites?.orcamentoMaximo ?? ORCAMENTO_MAXIMO;
+  const limitesPos = getLimitesPorFormacao(formacao || FORMACAO_PADRAO);
 
   const erros = [];
   const contagemPorPos = { Goleiro: 0, Defensor: 0, MeioCampista: 0, Atacante: 0 };
@@ -73,12 +85,18 @@ export function validarElencoDraft(elencoDraft, { rodada } = {}) {
     }
   }
 
-  for (const [pos, qtd] of Object.entries(ELENCO_LIMITE)) {
-    if (qtd === 0) continue;
-    if ((contagemPorPos[pos] || 0) > qtd) {
-      erros.push(`Limite de ${qtd} ${pos} excedido (${contagemPorPos[pos]}).`);
+  const total = Object.values(contagemPorPos).reduce((a, b) => a + b, 0);
+  if (total !== 15) {
+    erros.push(`Elenco deve ter exatamente 15 jogadores. Atualmente: ${total}.`);
+  }
+
+  for (const [pos, qtd] of Object.entries(limitesPos)) {
+    const atual = contagemPorPos[pos] || 0;
+    if (atual > qtd) {
+      erros.push(`Limite de ${qtd} ${pos} excedido (${atual}).`);
     }
   }
+
   for (const [sel, qtd] of Object.entries(contagemPorSel)) {
     if (qtd > maxPorSel) {
       erros.push(`Limite de ${maxPorSel} jogadores por seleção excedido para a seleção ${sel} (${qtd}).`);
@@ -90,13 +108,15 @@ export function validarElencoDraft(elencoDraft, { rodada } = {}) {
   return erros;
 }
 
-export function elencoDraftParaPayloadRpc(elencoDraft, capitaoId) {
+export function elencoDraftParaPayloadRpc(elencoDraft, capitaoId, formacao) {
   const lista = elencoParaLista(elencoDraft).map((j) => ({
     id: Number(j.id),
     eh_capitao: Number(j.id) === Number(capitaoId),
+    eh_titular: false, // será preenchido pelo backend ou por lógica extra
   }));
   return {
     jogadores: lista,
     orcamentoGasto: calcularCusto(elencoDraft),
+    formacao: formacao || FORMACAO_PADRAO,
   };
 }

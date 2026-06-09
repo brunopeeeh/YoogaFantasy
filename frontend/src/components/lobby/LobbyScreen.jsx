@@ -5,7 +5,7 @@ import { usePontuacaoRodada } from '../../hooks/usePontuacaoRodada';
 import { useJogosRodada } from '../../hooks/useJogosRodada';
 import { useEffect, useState } from 'react';
 import { buscarMinhasLigas } from '../../services/ligasService';
-import { POSICAO_LABEL, ELENCO_LIMITE } from '../../lib/posicoes';
+import { POSICAO_LABEL, getLimitesPorFormacao, FORMACAO_PADRAO } from '../../lib/posicoes';
 import { JogoCard } from '../shared/JogoCard';
 
 const POS_ORDEM = ['Goleiro', 'Defensor', 'MeioCampista', 'Atacante'];
@@ -84,7 +84,7 @@ export default function LobbyScreen() {
 
               <div className="space-y-2.5 mb-4">
                 {POS_ORDEM.map((pos) => {
-                  const limite = ELENCO_LIMITE[pos];
+                  const limite = getLimitesPorFormacao(FORMACAO_PADRAO)[pos];
                   const ocupado = contagemPorPos[pos] || 0;
                   const pct = limite > 0 ? (ocupado / limite) * 100 : 0;
                   return (

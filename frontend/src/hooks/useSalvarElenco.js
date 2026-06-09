@@ -15,7 +15,7 @@ export function useSalvarElenco({ onSuccess, elencoSalvo, rodadaAtual } = {}) {
   const [salvando, setSalvando] = useState(false);
   const [erro, setErro] = useState(null);
 
-  const salvar = useCallback(async ({ elencoDraft, capitaoId }) => {
+  const salvar = useCallback(async ({ elencoDraft, capitaoId, formacao }) => {
     setErro(null);
     const errosValidacao = validarElencoDraft(elencoDraft, { rodada: rodadaAtual });
     if (errosValidacao.length > 0) {
@@ -43,7 +43,7 @@ export function useSalvarElenco({ onSuccess, elencoSalvo, rodadaAtual } = {}) {
 
     setSalvando(true);
     try {
-      const payload = elencoDraftParaPayloadRpc(elencoDraft, capitaoId);
+      const payload = elencoDraftParaPayloadRpc(elencoDraft, capitaoId, formacao);
       const data = await salvarElencoRpc({ ...payload, transferenciasUsadas });
       if (onSuccess) onSuccess(data);
       return { ok: true, data };

@@ -8,6 +8,7 @@ import LobbyScreen from './components/lobby/LobbyScreen';
 import JogosScreen from './components/jogos/JogosScreen';
 import RulesScreen from './components/rules/RulesScreen';
 import ProfileScreen from './components/profile/ProfileScreen';
+import RankingScreen from './components/ranking/RankingScreen';
 import { FantasyProvider, useFantasy } from './contexts/FantasyContext';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/dashboard/Header';
@@ -20,13 +21,14 @@ function AppShell() {
     <div className="flex flex-col min-h-screen bg-fifa-blue text-white w-full antialiased">
       <Header />
       <MercadoFechadoBanner config={configRodada} />
-      <div className="flex-1 flex flex-col relative overflow-hidden">
+      <div className="flex-1 flex flex-col relative overflow-y-auto">
         <Routes>
           <Route path="/" element={<LobbyScreen />} />
           <Route path="/escalar" element={<DashboardFantasy />} />
           <Route path="/ligas" element={<LigasScreen />} />
           <Route path="/jogos" element={<JogosScreen />} />
           <Route path="/perfil" element={<ProfileScreen />} />
+          <Route path="/ranking" element={<RankingScreen />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>

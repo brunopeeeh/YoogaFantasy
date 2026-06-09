@@ -2,7 +2,7 @@ import { supabase } from './supabaseClient';
 
 const ORCAMENTO_MAXIMO = 100.0;
 
-const SELECT = `
+const SELECT_BASE = `
   id, usuario_id, nome_time, banco_cartoletas,
   created_at, updated_at
 `;
@@ -11,10 +11,17 @@ export async function getMyTime(usuarioId) {
   if (!usuarioId) return null;
   const { data, error } = await supabase
     .from('times_usuarios')
-    .select(SELECT)
+    .select(`${SELECT_BASE}, formacao`)
     .eq('usuario_id', usuarioId)
     .maybeSingle();
-  if (error) throw error;
+  if (error) {
+    const { data: fallback } = await supabase
+      .from('times_usuarios')
+      .select(SELECT_BASE)
+      .eq('usuario_id', usuarioId)
+      .maybeSingle();
+    return fallback;
+  }
   return data;
 }
 

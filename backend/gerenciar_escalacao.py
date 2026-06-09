@@ -35,12 +35,12 @@ class GerenciadorEscalacao:
             print(f"❌ Erro ao criar time: {e}")
             return None
 
-    def salvar_elenco_15_jogadores(self, time_usuario_id, lista_jogadores_escolhidos):
+    def salvar_elenco_15_jogadores(self, time_usuario_id, lista_jogadores_escolhidos, formacao="4-4-2"):
         """
         Aplica as validações de 15 jogadores e, se aprovado, salva no Supabase.
         """
         # 1. Executa a validação tática e financeira que está no arquivo validacoes.py
-        sucesso, mensagens = self.validador.validar_elenco_completo(lista_jogadores_escolhidos)
+        sucesso, mensagens = self.validador.validar_elenco_completo(lista_jogadores_escolhidos, formacao)
         
         if not sucesso:
             print("🚨 Bloqueado! O elenco que tentou montar quebra as regras do Fantasy:")

@@ -1,8 +1,10 @@
 import React from 'react';
 import { useDraggable } from '@dnd-kit/core';
 import { CSS } from '@dnd-kit/utilities';
+import { Plus } from 'lucide-react';
 import { makeCardId } from '../hooks/useDragDropElenco';
 import { AVATAR_FALLBACK } from '../design/tokens';
+import { POSICAO_POR_SIGLA } from '../lib/posicoes';
 
 const MAPA_LETRAS_POSICAO = {
   Goleiro: 'G',
@@ -16,10 +18,13 @@ export default function CardJogador({ jogador, onContratar, onDetalhes, elenco, 
     ? Object.values(elenco).flat().some(j => j && j.id === jogador.id)
     : false;
 
-  const mapaInverso = { G: 'Goleiro', D: 'Defensor', M: 'MeioCampista', F: 'Atacante' };
-  const posicaoJogador = mapaInverso[jogador.posicao];
+  const posicaoJogador = POSICAO_POR_SIGLA[jogador.posicao] || 'Goleiro';
   const posicaoEsperada = slotSelecionado?.posicao;
-  const posicaoIncompativel = posicaoEsperada ? (posicaoJogador !== posicaoEsperada) : false;
+  const posicaoIncompativel = posicaoEsperada
+    ? (posicaoJogador !== posicaoEsperada)
+    : elenco
+      ? !(elenco[posicaoJogador] || []).some(j => j === null)
+      : false;
 
   const pts = jogador.pontos ?? 0;
 
@@ -105,13 +110,13 @@ export default function CardJogador({ jogador, onContratar, onDetalhes, elenco, 
           {fdrJogos.slice(0, 3).map((jogo, idx) => (
             <div
               key={idx}
-              className="w-4 h-5 sm:w-5.5 sm:h-6.5 bg-fifa-navy-800 border border-white/10 rounded flex flex-col items-center justify-between p-[1.5px] flex-shrink-0"
+              className="w-5 h-6 sm:w-5.5 sm:h-6.5 bg-fifa-navy-800 border border-white/10 rounded flex flex-col items-center justify-between p-[1.5px] flex-shrink-0"
               title={`${jogo.nome} — ${jogo.nivel === 'easy' ? 'Fácil' : jogo.nivel === 'hard' ? 'Difícil' : 'Médio'}`}
             >
               <img
                 src={jogo.flag}
                 alt={jogo.nome}
-                className="w-full h-3 sm:h-3.5 object-cover rounded-[1px]"
+                className="w-full h-3.5 sm:h-3.5 object-cover rounded-[1px]"
                 onError={(e) => { e.currentTarget.style.display = 'none'; }}
                 draggable={false}
               />
@@ -120,28 +125,30 @@ export default function CardJogador({ jogador, onContratar, onDetalhes, elenco, 
           ))}
         </div>
 
-        {/* PREÇO */}
-        <div className="w-14 sm:w-16 flex justify-center">
+        {/* PREÇO + ADICIONAR */}
+        <div className="flex items-center gap-1.5 justify-center min-w-[64px] sm:min-w-[84px]">
           {jaNoElenco ? (
-            <span className="text-white/40 text-[10px] font-extrabold select-none">
-              Elenco
-            </span>
+            <span className="text-white/40 text-[10px] font-extrabold select-none">Elenco</span>
           ) : posicaoIncompativel ? (
-            <span className="text-white/30 text-[10px] font-extrabold select-none" title="Posição incompatível">
-              Incomp.
-            </span>
+            <span className="text-white/30 text-[10px] font-extrabold select-none" title="Sem vagas disponíveis">Incomp.</span>
           ) : (
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                onContratar(jogador);
-              }}
-              onPointerDown={(e) => e.stopPropagation()}
-              className="text-[#009CDE] hover:text-[#007AB0] font-black font-mono transition-colors tracking-wide hover:underline cursor-pointer"
-              title="Contratar jogador"
-            >
-              €{Number(jogador.preco).toFixed(1)}M
-            </button>
+            <>
+              <span className="text-[#009CDE] font-black font-mono text-[11px] tracking-wide whitespace-nowrap">
+                €{Number(jogador.preco).toFixed(1)}M
+              </span>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onContratar(jogador);
+                }}
+                onPointerDown={(e) => e.stopPropagation()}
+                className="w-5 h-5 sm:w-5 sm:h-5 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center text-white transition-all flex-shrink-0 active:scale-90"
+                title="Adicionar jogador"
+                aria-label="Adicionar jogador"
+              >
+                <Plus size={12} strokeWidth={2.5} />
+              </button>
+            </>
           )}
         </div>
 

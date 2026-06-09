@@ -29,7 +29,9 @@ export default function Header() {
       ? 'escalacao'
       : location.pathname === '/regras'
         ? 'regras'
-        : 'inicio';
+        : location.pathname === '/ranking'
+          ? 'ranking'
+          : 'inicio';
   const naEscalacao = viewAtual === 'escalacao';
   const [perfilAberto, setPerfilAberto] = useState(false);
   const [confirmToken, setConfirmToken] = useState(null);
@@ -72,6 +74,7 @@ export default function Header() {
     tokenUsando,
     handleUsarToken,
     handleResgatarToken,
+    formacaoDraft,
   } = useFantasy();
 
   const { ultimaRodada, totalTemporada } = usePontuacaoRodada();
@@ -196,7 +199,7 @@ export default function Header() {
                   </div>
                 </div>
                 {naEscalacao && limitesFase && (
-                  <div className="bg-fifa-navy-800/80 border border-white/10 rounded-md py-1.5 px-2.5 sm:px-4 text-center min-w-[70px] sm:min-w-[90px]">
+                  <div className="hidden sm:block bg-fifa-navy-800/80 border border-white/10 rounded-md py-1.5 px-2.5 sm:px-4 text-center min-w-[70px] sm:min-w-[90px]">
                     <div className={`font-display text-base sm:text-[20px] tracking-[1px] leading-none flex items-center justify-center gap-1 ${transferenciasNoDraft > limitesFase.transferenciasGratis ? 'text-stat-injured' : 'text-white'}`}>
                       <Zap size={12} className="text-fifa-gold" /> {transferenciasNoDraft}/{limitesFase.transferenciasGratis >= 999 ? '∞' : limitesFase.transferenciasGratis}
                     </div>
@@ -212,7 +215,7 @@ export default function Header() {
                       if (tokenDisponiveis > 0) handleConfirmarToken('usar');
                       else if (podeResgatar && mercadoAbertoConfig) handleConfirmarToken('resgatar');
                     }}
-                    className="bg-fifa-navy-800/80 border border-white/10 rounded-md py-1.5 px-2.5 sm:px-3 text-center min-w-[60px] sm:min-w-[70px] transition-all hover:bg-fifa-navy-700/80"
+                    className="hidden sm:block bg-fifa-navy-800/80 border border-white/10 rounded-md py-1.5 px-2.5 sm:px-3 text-center min-w-[60px] sm:min-w-[70px] transition-all hover:bg-fifa-navy-700/80"
                     title="Tokens especiais"
                     aria-label="Tokens especiais"
                   >
@@ -280,7 +283,7 @@ export default function Header() {
           </div>
         </div>
 
-        <div className="w-full bg-fifa-navy-950/50 border-t border-white/5 px-4 sm:px-6 flex gap-6 mt-1">
+        <div className="w-full bg-fifa-navy-950/50 border-t border-white/5 px-4 sm:px-6 flex gap-6 mt-1 overflow-x-auto overflow-y-hidden flex-nowrap" style={{ WebkitOverflowScrolling: 'touch' }}>
           <button
             onClick={() => navigate('/')}
             className={`py-2.5 text-xs font-bold tracking-widest uppercase transition-colors relative ${viewAtual === 'inicio' ? 'text-fifa-gold' : 'text-white/60 hover:text-white'}`}
@@ -303,6 +306,14 @@ export default function Header() {
           >
             Ligas
             {viewAtual === 'ligas' && <span className="absolute bottom-0 left-0 w-full h-[2px] bg-fifa-gold rounded-t-sm" />}
+          </button>
+
+          <button
+            onClick={() => navigate('/ranking')}
+            className={`py-2.5 text-xs font-bold tracking-widest uppercase transition-colors relative ${viewAtual === 'ranking' ? 'text-fifa-gold' : 'text-white/60 hover:text-white'}`}
+          >
+            Ranking
+            {viewAtual === 'ranking' && <span className="absolute bottom-0 left-0 w-full h-[2px] bg-fifa-gold rounded-t-sm" />}
           </button>
 
           <button

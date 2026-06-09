@@ -46,7 +46,7 @@ export default memo(function PlayerChip({
             e.stopPropagation();
             onRemove();
           }}
-          className="absolute -top-2 -right-3 z-30 w-11 h-11 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center shadow-lg transition-all opacity-0 group-hover:opacity-100"
+          className="absolute -top-1 -right-2 z-30 w-8 h-8 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center shadow-lg transition-all opacity-0 group-hover:opacity-100"
           title="Remover jogador"
           aria-label="Remover jogador"
         >
@@ -61,7 +61,7 @@ export default memo(function PlayerChip({
             e.stopPropagation();
             onCaptain();
           }}
-          className={`absolute -top-2 -left-3 z-30 w-11 h-11 rounded-full flex items-center justify-center shadow-lg transition-all ${
+          className={`absolute -top-1 -left-2 z-30 w-8 h-8 rounded-full flex items-center justify-center shadow-lg transition-all ${
             isCaptain
               ? 'bg-fifa-gold text-black scale-110 opacity-100'
               : 'bg-fifa-navy-900/80 text-white/70 hover:text-fifa-gold border border-white/20 opacity-0 group-hover:opacity-100'

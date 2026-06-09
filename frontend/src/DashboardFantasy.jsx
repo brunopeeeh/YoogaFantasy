@@ -1,9 +1,9 @@
-// Dashboard principal do app Fantasy.
-
-import { useCallback } from 'react';
+import { useMemo, useCallback } from 'react';
 import { DndContext, DragOverlay, closestCenter } from '@dnd-kit/core';
 
 import Pitch from './components/pitch/Pitch';
+import FormacaoSelector from './components/pitch/FormacaoSelector';
+import BancoReservas from './components/pitch/BancoReservas';
 import MercadoDrawer from './components/dashboard/MercadoDrawer';
 import PlayerDetailsModal from './components/player/PlayerDetailsModal';
 
@@ -13,6 +13,7 @@ import MercadoErrorBoundary from './components/dashboard/MercadoErrorBoundary';
 import { useDragDropElenco } from './hooks/useDragDropElenco';
 import { useFantasy } from './contexts/FantasyContext';
 import { SIGLA_POR_POSICAO } from './lib/posicoes';
+import { extrairTitulares, extrairReservas } from './lib/diffElenco';
 
 export default function DashboardFantasy() {
   const {
@@ -23,6 +24,7 @@ export default function DashboardFantasy() {
     elencoDraft,
     capitaoDraftId,
     draftInicializado,
+    formacaoDraft,
     mercadoAberto,
     setMercadoAberto,
     slotSelecionado,
@@ -34,8 +36,12 @@ export default function DashboardFantasy() {
     handleContratarJogador,
     handleRemoverJogador,
     handleDefinirCapitao,
+    handleTrocarFormacao,
     mensagensValidacao,
   } = useFantasy();
+
+  const titulares = useMemo(() => extrairTitulares(elencoDraft, formacaoDraft), [elencoDraft, formacaoDraft]);
+  const reservas = useMemo(() => extrairReservas(elencoDraft, formacaoDraft), [elencoDraft, formacaoDraft]);
 
   function handleAbrirMercado(posicaoCampo, index) {
     const sigla = SIGLA_POR_POSICAO[posicaoCampo];
@@ -47,6 +53,21 @@ export default function DashboardFantasy() {
   function handleFecharMercado() {
     setMercadoAberto(false);
     setSlotSelecionado(null);
+  }
+
+  function handleAbrirMercadoReserva(posicaoCampo) {
+    const sigla = SIGLA_POR_POSICAO[posicaoCampo];
+    setPosicaoFiltrada(sigla);
+    const qtdTitular = Object.keys(titulares[posicaoCampo] || {}).length;
+    const indexReserva = qtdTitular;
+    setSlotSelecionado({ posicao: posicaoCampo, index: indexReserva });
+    setMercadoAberto(true);
+  }
+
+  function handleRemoverReserva(posicaoCampo) {
+    const qtdTitular = Object.keys(titulares[posicaoCampo] || {}).length;
+    const indexReserva = qtdTitular;
+    handleRemoverJogador(posicaoCampo, indexReserva);
   }
 
   const handleDrop = useCallback(({ jogador, slot }) => {
@@ -106,12 +127,21 @@ export default function DashboardFantasy() {
           </div>
         )}
 
-        <div className="max-w-[1600px] mx-auto p-3 sm:p-4 lg:p-6 flex flex-col lg:flex-row gap-4 lg:gap-6 lg:items-center lg:justify-center">
+        <div className="max-w-6xl mx-auto px-4 pt-3">
+          <FormacaoSelector
+            formacaoAtiva={formacaoDraft}
+            onTrocar={handleTrocarFormacao}
+            desabilitado={false}
+          />
+        </div>
+
+        <div className="max-w-[1600px] mx-auto p-3 sm:p-4 lg:p-6 flex flex-col md:flex-row lg:flex-row gap-4 lg:gap-6 lg:items-start lg:justify-center">
           <DashboardErrorBoundary onReset={refetch}>
-            <div className={`flex-1 w-full bg-fifa-navy-900/40 rounded-xl overflow-y-auto overflow-x-hidden relative transition-all duration-300 shadow-glass border border-white/5 lg:h-[80vh] lg:max-h-[900px] ${mercadoAberto ? 'lg:flex-none lg:w-[55%]' : ''}`}>
-              <div className="min-h-full py-6 flex items-center justify-center px-4 overflow-hidden">
+            <div className={`flex-1 w-full bg-fifa-navy-900/40 rounded-xl overflow-y-auto overflow-x-hidden relative transition-all duration-300 shadow-glass border border-white/5 lg:max-h-[900px] ${mercadoAberto ? 'lg:flex-none lg:w-[55%]' : ''}`}>
+              <div className="py-6 flex flex-col items-center gap-6 px-4">
                 <Pitch
-                  elenco={elencoDraft}
+                  elenco={titulares}
+                  formacao={formacaoDraft}
                   onSlotClick={handleAbrirMercado}
                   onRemoverJogador={handleRemoverJogador}
                   capitaoId={capitaoDraftId}
@@ -128,6 +158,12 @@ export default function DashboardFantasy() {
                     }
                   }}
                   posicaoFiltrada={posicaoFiltrada}
+                  onDetalhes={setDetalheJogador}
+                />
+                <BancoReservas
+                  reservas={reservas}
+                  onSlotClick={handleAbrirMercadoReserva}
+                  onRemoverJogador={handleRemoverReserva}
                   onDetalhes={setDetalheJogador}
                 />
               </div>

@@ -6,7 +6,7 @@ import React from 'react';
 export default function PitchField({ children, formacao }) {
   return (
     <div
-      className="relative w-full rounded-glass overflow-hidden pitch-inset shadow-glass-lg flex flex-col min-h-[380px] sm:min-h-[620px] md:min-h-[700px] lg:min-h-[760px]"
+      className="relative w-full rounded-glass overflow-hidden pitch-inset shadow-glass-lg flex flex-col min-h-[320px] sm:min-h-[620px] md:min-h-[700px] lg:min-h-[760px]"
       style={{
         background: 'linear-gradient(180deg, #3d9b4a 0%, #2d7a3a 35%, #1f5c2a 100%)',
       }}

@@ -21,6 +21,14 @@ export default function ProfileScreen() {
   const [carregando, setCarregando] = useState(true);
   const fileInputRef = useRef(null);
 
+  function handleVoltar() {
+    if (window.history.length > 1) {
+      navigate(-1);
+    } else {
+      navigate('/');
+    }
+  }
+
   useEffect(() => {
     let ativo = true;
     async function carregar() {
@@ -92,7 +100,7 @@ export default function ProfileScreen() {
   return (
     <div className="w-full max-w-lg mx-auto px-4 pb-8">
       <button
-        onClick={() => navigate(-1)}
+        onClick={handleVoltar}
         className="flex items-center gap-1.5 text-white/60 hover:text-white transition-colors py-4 text-xs font-bold uppercase tracking-wider"
       >
         <ArrowLeft size={14} />

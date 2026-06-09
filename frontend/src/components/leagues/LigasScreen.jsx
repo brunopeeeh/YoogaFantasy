@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import { Trophy, Plus, LogIn, Users, Copy, Check, X, Pencil, Trash2 } from 'lucide-react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Trophy, Plus, LogIn, Users, Copy, Check, X, Pencil, Trash2, ArrowLeft } from 'lucide-react';
 import { buscarMinhasLigas, criarLiga, entrarLigaPorCodigo, buscarLeaderboard, atualizarLiga, excluirLiga } from '../../services/ligasService';
 import { useAuth } from '../../contexts/AuthContext';
 import toast from 'react-hot-toast';
@@ -8,6 +8,7 @@ import LigasErrorBoundary from './LigasErrorBoundary';
 
 export default function LigasScreen() {
   const location = useLocation();
+  const navigate = useNavigate();
   const { user } = useAuth();
   const [minhasLigas, setMinhasLigas] = useState([]);
   const [carregando, setCarregando] = useState(true);
@@ -275,6 +276,13 @@ export default function LigasScreen() {
         </div>
       ) : (
         <div className="animate-in fade-in slide-in-from-bottom-4 duration-300">
+          <button
+            onClick={() => navigate('/')}
+            className="flex items-center gap-1.5 text-white/60 hover:text-white transition-colors mb-4 text-xs font-bold uppercase tracking-wider"
+          >
+            <ArrowLeft size={14} />
+            Voltar
+          </button>
           <div className="flex gap-4 border-b border-white/10 mb-8 overflow-x-auto no-scrollbar">
             <button
               onClick={() => setAbaAtiva('minhas')}

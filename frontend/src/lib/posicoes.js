@@ -1,5 +1,7 @@
 // Mapeamentos canônicos de posição entre sigla (banco) e nome (UI/elenco)
 
+export const POSICOES = ['Goleiro', 'Defensor', 'MeioCampista', 'Atacante'];
+
 export const SIGLA_POR_POSICAO = {
   Goleiro: 'G',
   Defensor: 'D',
@@ -28,20 +30,55 @@ export const SIGLA_LABEL = {
   F: 'ATA',
 };
 
-// Limites da formação 2-5-5-3 do elenco (15 jogadores)
-export const ELENCO_LIMITE = {
-  Goleiro: 2,
-  Defensor: 5,
-  MeioCampista: 5,
-  Atacante: 3,
+// Formações disponíveis: [defensores, meias, atacantes]
+export const FORMACOES = {
+  '3-4-3': { label: '3-4-3', defensores: 3, meias: 4, atacantes: 3, descricao: 'Equilibra meio e ataque' },
+  '3-5-2': { label: '3-5-2', defensores: 3, meias: 5, atacantes: 2, descricao: 'Foco no meio-campo' },
+  '4-3-3': { label: '4-3-3', defensores: 4, meias: 3, atacantes: 3, descricao: 'Popular, ofensivo' },
+  '4-4-2': { label: '4-4-2', defensores: 4, meias: 4, atacantes: 2, descricao: 'Padrão, equilibrado' },
+  '4-5-1': { label: '4-5-1', defensores: 4, meias: 5, atacantes: 1, descricao: 'Defensivo, seguro' },
+  '5-3-2': { label: '5-3-2', defensores: 5, meias: 3, atacantes: 2, descricao: 'Linha forte defensiva' },
+  '5-4-1': { label: '5-4-1', defensores: 5, meias: 4, atacantes: 1, descricao: 'Contenção máxima' },
 };
 
-export const ELENCO_SLOTS = {
-  Goleiro: Array(ELENCO_LIMITE.Goleiro).fill(null),
-  Defensor: Array(ELENCO_LIMITE.Defensor).fill(null),
-  MeioCampista: Array(ELENCO_LIMITE.MeioCampista).fill(null),
-  Atacante: Array(ELENCO_LIMITE.Atacante).fill(null),
-};
+export const FORMACOES_LISTA = Object.values(FORMACOES);
+
+export const FORMACAO_PADRAO = '4-4-2';
+
+// Cada posição tem 1 reserva fixo, totalizando 15 jogadores (11 titulares + 4 reservas)
+export function getLimitesPorFormacao(formacao) {
+  const f = FORMACOES[formacao] || FORMACOES[FORMACAO_PADRAO];
+  return {
+    Goleiro: 2,
+    Defensor: f.defensores + 1,
+    MeioCampista: f.meias + 1,
+    Atacante: f.atacantes + 1,
+  };
+}
+
+export function getQtdTitular(formacao, posicao) {
+  if (posicao === 'Goleiro') return 1;
+  const f = FORMACOES[formacao] || FORMACOES[FORMACAO_PADRAO];
+  if (posicao === 'Defensor') return f.defensores;
+  if (posicao === 'MeioCampista') return f.meias;
+  if (posicao === 'Atacante') return f.atacantes;
+  return 0;
+}
+
+export function getTotalTitulares(formacao) {
+  const f = FORMACOES[formacao] || FORMACOES[FORMACAO_PADRAO];
+  return 1 + f.defensores + f.meias + f.atacantes;
+}
+
+export function criarElencoVazio(formacao) {
+  const limites = getLimitesPorFormacao(formacao);
+  return {
+    Goleiro: Array(limites.Goleiro).fill(null),
+    Defensor: Array(limites.Defensor).fill(null),
+    MeioCampista: Array(limites.MeioCampista).fill(null),
+    Atacante: Array(limites.Atacante).fill(null),
+  };
+}
 
 export const ORCAMENTO_MAXIMO = 100.0;
 export const MAX_POR_SELECAO = 3;

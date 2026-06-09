@@ -14,7 +14,7 @@ import {
   clonarElenco,
   contarTransferencias,
 } from '../lib/diffElenco';
-import { ORCAMENTO_MAXIMO, getLimitesFase } from '../lib/posicoes';
+import { ORCAMENTO_MAXIMO, getLimitesFase, POSICAO_POR_SIGLA, FORMACAO_PADRAO, FORMACOES_LISTA, FORMACOES, criarElencoVazio, getLimitesPorFormacao, POSICOES } from '../lib/posicoes';
 
 const ElencoContext = createContext(null);
 
@@ -35,14 +35,17 @@ export function ElencoProvider({ children }) {
   const mercadoAbertoConfigValue = mercadoAbertoConfig;
   const bloqueadoMercado = !mercadoAbertoConfigValue;
 
-  const [elencoDraft, setElencoDraft] = useState(elencoVazio());
+  const [formacaoDraft, setFormacaoDraft] = useState(FORMACAO_PADRAO);
+  const [elencoDraft, setElencoDraft] = useState(criarElencoVazio(FORMACAO_PADRAO));
   const [capitaoDraftId, setCapitaoDraftId] = useState(null);
   const [draftInicializado, setDraftInicializado] = useState(false);
   const [saveModalAberto, setSaveModalAberto] = useState(false);
 
   useEffect(() => {
     if (!timeLoading && !draftInicializado) {
-      setElencoDraft(clonarElenco(elencoSalvo || elencoVazio()));
+      const formInicial = time?.formacao || FORMACAO_PADRAO;
+      setFormacaoDraft(formInicial);
+      setElencoDraft(clonarElenco(elencoSalvo || criarElencoVazio(formInicial)));
       setCapitaoDraftId(capitaoSalvoId || null);
       setDraftInicializado(true);
     }
@@ -66,8 +69,26 @@ export function ElencoProvider({ children }) {
       toast.error('Mercado fechado. Aguarde a próxima rodada.');
       return;
     }
-    const slot = slotOverride || slotSelecionado;
-    if (!slot) return;
+
+    let slot = slotOverride || slotSelecionado;
+
+    if (slot && !slotOverride && elencoDraft[slot.posicao]?.[slot.index] !== null) {
+      slot = null;
+    }
+
+    if (!slot) {
+      const posicaoNome = POSICAO_POR_SIGLA[jogador.posicao];
+      if (!posicaoNome || !elencoDraft[posicaoNome]) {
+        toast.error('Posição inválida!');
+        return;
+      }
+      const vagaIndex = elencoDraft[posicaoNome].findIndex(j => j === null);
+      if (vagaIndex === -1) {
+        toast.error(`Não há vagas disponíveis!`);
+        return;
+      }
+      slot = { posicao: posicaoNome, index: vagaIndex };
+    }
     if (elencoParaLista(elencoDraft).some((j) => Number(j.id) === Number(jogador.id))) {
       toast.error('Jogador já está no elenco!');
       return;
@@ -94,7 +115,7 @@ export function ElencoProvider({ children }) {
     setElencoDraft(updated);
     toast.success(`${jogador.nome} escalado!`);
 
-    if (!slotOverride && isMobile) {
+    if (!slotOverride && slotSelecionado && isMobile) {
       setMercadoAberto(false);
       setSlotSelecionado(null);
     }
@@ -130,29 +151,61 @@ export function ElencoProvider({ children }) {
     });
   }, [elencoDraft, bloqueadoMercado]);
 
+  const handleTrocarFormacao = useCallback((novaFormacao) => {
+    if (bloqueadoMercado) {
+      toast.error('Mercado fechado. Aguarde a próxima rodada.');
+      return;
+    }
+    if (novaFormacao === formacaoDraft) return;
+
+    const novosLimites = getLimitesPorFormacao(novaFormacao);
+    const novoElenco = criarElencoVazio(novaFormacao);
+
+    for (const pos of POSICOES) {
+      const slotsDisponiveis = novosLimites[pos];
+      let idx = 0;
+      for (const jogador of elencoDraft[pos]) {
+        if (jogador && idx < slotsDisponiveis) {
+          novoElenco[pos][idx] = jogador;
+          idx++;
+        }
+      }
+    }
+
+    const perdidos = 15 - elencoParaLista(novoElenco).length;
+    setElencoDraft(novoElenco);
+    setFormacaoDraft(novaFormacao);
+    if (capitaoDraftId && !elencoParaLista(novoElenco).some(j => Number(j.id) === Number(capitaoDraftId))) {
+      setCapitaoDraftId(null);
+    }
+    if (perdidos > 0) {
+      toast(`${perdidos} jogador(es) removido(s) por não caberem na nova formação.`, { icon: '⚠️' });
+    }
+  }, [formacaoDraft, elencoDraft, capitaoDraftId, bloqueadoMercado]);
+
   const handleLimparElenco = useCallback(() => {
     if (bloqueadoMercado) {
       toast.error('Mercado fechado. Aguarde a próxima rodada.');
       return;
     }
     if (!window.confirm('⚠️ Deseja realmente remover todos os jogadores do rascunho?')) return;
-    setElencoDraft(elencoVazio());
+    setElencoDraft(criarElencoVazio(formacaoDraft));
     setCapitaoDraftId(null);
     toast('Elenco limpo', { icon: '🧹' });
-  }, [bloqueadoMercado]);
+  }, [bloqueadoMercado, formacaoDraft]);
 
   const handleDescartar = useCallback(() => {
-    setElencoDraft(clonarElenco(elencoSalvo || elencoVazio()));
+    setElencoDraft(clonarElenco(elencoSalvo || criarElencoVazio(formacaoDraft)));
     setCapitaoDraftId(capitaoSalvoId);
     toast('Mudanças descartadas', { icon: '↩️' });
-  }, [elencoSalvo, capitaoSalvoId]);
+  }, [elencoSalvo, capitaoSalvoId, formacaoDraft]);
 
   const listaSelecionados = useMemo(() => elencoParaLista(elencoDraft), [elencoDraft]);
   const totalSelecionados = listaSelecionados.length;
   const custoDraft = useMemo(() => calcularCusto(elencoDraft), [elencoDraft]);
   const saldoDraft = ORCAMENTO_MAXIMO - custoDraft;
-  const dirty = temMudancas(elencoSalvo || elencoVazio(), elencoDraft, capitaoSalvoId, capitaoDraftId);
-  const mensagensValidacao = useMemo(() => validarElencoDraft(elencoDraft, { rodada: rodadaAtual }), [elencoDraft, rodadaAtual]);
+  const dirty = temMudancas(elencoSalvo || criarElencoVazio(formacaoDraft), elencoDraft, capitaoSalvoId, capitaoDraftId);
+  const mensagensValidacao = useMemo(() => validarElencoDraft(elencoDraft, { rodada: rodadaAtual, formacao: formacaoDraft }), [elencoDraft, rodadaAtual, formacaoDraft]);
   const podeSalvar = dirty && mensagensValidacao.length === 0 && !bloqueadoMercado;
 
   const handleSalvar = useCallback(async () => {
@@ -180,6 +233,7 @@ export function ElencoProvider({ children }) {
     const res = await salvar({
       elencoDraft,
       capitaoId: capitaoDraftId,
+      formacao: formacaoDraft,
     });
 
     if (!res.ok) {
@@ -209,6 +263,7 @@ export function ElencoProvider({ children }) {
     elencoDraft,
     capitaoDraftId,
     draftInicializado,
+    formacaoDraft,
     listaSelecionados,
     totalSelecionados,
     custoDraft,
@@ -225,6 +280,7 @@ export function ElencoProvider({ children }) {
     handleDefinirCapitao,
     handleLimparElenco,
     handleDescartar,
+    handleTrocarFormacao,
     handleSalvar,
     confirmarSalvar,
     fecharModalSalvar,

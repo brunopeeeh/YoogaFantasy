@@ -3,7 +3,7 @@ import { useDroppable } from '@dnd-kit/core';
 
 import PitchField from './PitchField';
 import PlayerChip, { EmptySlot } from './PlayerChip';
-import { POSICAO_LABEL, SIGLA_POR_POSICAO } from '../../lib/posicoes';
+import { POSICAO_LABEL, SIGLA_POR_POSICAO, getQtdTitular, FORMACOES } from '../../lib/posicoes';
 import { makeSlotId, parseSlotId } from '../../hooks/useDragDropElenco';
 import { useMediaQuery, bp } from '../../hooks/useMediaQuery';
 
@@ -39,6 +39,7 @@ function isValidPosicao(sigla, esperado) {
 
 export default memo(function Pitch({
   elenco,
+  formacao = '4-4-2',
   onSlotClick,
   onRemoverJogador,
   capitaoId,
@@ -52,18 +53,12 @@ export default memo(function Pitch({
 }) {
   const isMobile = useMediaQuery(bp.mobile);
 
-  // Calcula total de selecionados
-  const totalSelecionados = Object.values(elenco || {}).reduce(
-    (acc, arr) => acc + (arr?.filter(Boolean).length || 0),
-    0
-  );
-
-  // Lógica de 15 slots fixos (2-5-5-3)
+  // Gera linhas apenas com titulares baseados na formação
   const linhas = [
-    { posicao: 'Goleiro', slots: Array(2).fill(null) },
-    { posicao: 'Defensor', slots: Array(5).fill(null) },
-    { posicao: 'MeioCampista', slots: Array(5).fill(null) },
-    { posicao: 'Atacante', slots: Array(3).fill(null) },
+    { posicao: 'Goleiro', slots: Array(getQtdTitular(formacao, 'Goleiro')).fill(null) },
+    { posicao: 'Defensor', slots: Array(getQtdTitular(formacao, 'Defensor')).fill(null) },
+    { posicao: 'MeioCampista', slots: Array(getQtdTitular(formacao, 'MeioCampista')).fill(null) },
+    { posicao: 'Atacante', slots: Array(getQtdTitular(formacao, 'Atacante')).fill(null) },
   ];
 
   return (

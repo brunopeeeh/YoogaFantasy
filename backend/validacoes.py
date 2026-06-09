@@ -1,12 +1,27 @@
+FORMACOES = {
+    "3-4-3": {"D": 3, "M": 4, "F": 3},
+    "3-5-2": {"D": 3, "M": 5, "F": 2},
+    "4-3-3": {"D": 4, "M": 3, "F": 3},
+    "4-4-2": {"D": 4, "M": 4, "F": 2},
+    "4-5-1": {"D": 4, "M": 5, "F": 1},
+    "5-3-2": {"D": 5, "M": 3, "F": 2},
+    "5-4-1": {"D": 5, "M": 4, "F": 1},
+}
+
+def get_limites_formacao(formacao):
+    f = FORMACOES.get(formacao, FORMACOES["4-4-2"])
+    return {"G": 2, "D": f["D"] + 1, "M": f["M"] + 1, "F": f["F"] + 1}
+
 class ValidadorFantasy:
     def __init__(self, orçamento_maximo=100.0, max_por_selecao=3):
         self.orçamento_maximo = orçamento_maximo
         self.max_por_selecao = max_por_selecao
 
-    def validar_elenco_completo(self, jogadores_selecionados):
+    def validar_elenco_completo(self, jogadores_selecionados, formacao="4-4-2"):
         """
         Valida o elenco de 15 jogadores escolhidos pelo utilizador.
         jogadores_selecionados: Lista de dicionários com os dados dos 15 jogadores.
+        formacao: String no formato 'D-M-F' (ex: '4-4-2')
         """
         erros = []
         
@@ -35,15 +50,16 @@ class ValidadorFantasy:
         if custo_total > self.orçamento_maximo:
             erros.append(f"Orçamento estourado! Custo total: €{custo_total}M. Máximo permitido: €{self.orçamento_maximo}M.")
 
-        # 3. Validação de Posições no Elenco (2 Goleiros, 5 Defensores, 5 Meias, 3 Atacantes)
-        if posicoes["G"] != 2:
-            erros.append(f"O elenco deve ter exatamente 2 Goleiros (G). Encontrados: {posicoes['G']}.")
-        if posicoes["D"] != 5:
-            erros.append(f"O elenco deve ter exatamente 5 Defensores (D). Encontrados: {posicoes['D']}.")
-        if posicoes["M"] != 5:
-            erros.append(f"O elenco deve ter exatamente 5 Meio-campistas (M). Encontrados: {posicoes['M']}.")
-        if posicoes["F"] != 3:
-            erros.append(f"O elenco deve ter exatamente 3 Atacantes (F). Encontrados: {posicoes['F']}.")
+        # 3. Validação de Posições no Elenco (limites dinâmicos por formação)
+        limites = get_limites_formacao(formacao)
+        if posicoes["G"] > limites["G"]:
+            erros.append(f"Limite de {limites['G']} Goleiros excedido (encontrados: {posicoes['G']}).")
+        if posicoes["D"] > limites["D"]:
+            erros.append(f"Para a formação {formacao}, limite de {limites['D']} Defensores excedido (encontrados: {posicoes['D']}).")
+        if posicoes["M"] > limites["M"]:
+            erros.append(f"Para a formação {formacao}, limite de {limites['M']} Meio-campistas excedido (encontrados: {posicoes['M']}).")
+        if posicoes["F"] > limites["F"]:
+            erros.append(f"Para a formação {formacao}, limite de {limites['F']} Atacantes excedido (encontrados: {posicoes['F']}).")
 
         # 4. Validação de Limite por Seleção (Máximo 3 jogadores do mesmo país)
         for sel_id, qtd in contagem_selecoes.items():
