@@ -121,6 +121,15 @@ export default memo(function Pitch({
               </div>
             );
           })}
+          {banco && (
+            <div
+              key="reserva"
+              data-posicao="Reserva"
+              className="flex items-center justify-center w-full"
+            >
+              {banco}
+            </div>
+          )}
         </PitchField>
       </div>
     </div>

@@ -178,9 +178,7 @@ export function ElencoProvider({ children }) {
     if (capitaoDraftId && !elencoParaLista(novoElenco).some(j => Number(j.id) === Number(capitaoDraftId))) {
       setCapitaoDraftId(null);
     }
-    if (perdidos > 0) {
-      toast(`${perdidos} jogador(es) removido(s) por não caberem na nova formação.`, { icon: '⚠️' });
-    }
+
   }, [formacaoDraft, elencoDraft, capitaoDraftId, bloqueadoMercado]);
 
   const handleLimparElenco = useCallback(() => {

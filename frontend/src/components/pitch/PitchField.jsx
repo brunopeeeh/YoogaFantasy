@@ -19,13 +19,14 @@ import React from 'react';
  * Interpolamos linearmente entre esses extremos.
  */
 const LINHAS_CONFIG = {
-  Atacante:     { topPct: 14,   widthPct: 56,  paddingX: 4  },
-  MeioCampista: { topPct: 37,   widthPct: 70,  paddingX: 6  },
-  Defensor:     { topPct: 60,   widthPct: 82,  paddingX: 8  },
-  Goleiro:      { topPct: 83,   widthPct: 44,  paddingX: 16 },
+  Atacante: { topPct: 10, widthPct: 56, paddingX: 4 },
+  MeioCampista: { topPct: 30, widthPct: 70, paddingX: 6 },
+  Defensor: { topPct: 48, widthPct: 82, paddingX: 8 },
+  Goleiro: { topPct: 65, widthPct: 44, paddingX: 16 },
+  Reserva: { topPct: 80, widthPct: 72, paddingX: 8 },
 };
 
-export default function PitchField({ children, banco }) {
+export default function PitchField({ children }) {
   // children vêm como array de linhas, uma por posição.
   // Precisamos mapear cada filho para sua configuração de posição.
   const linhasArray = React.Children.toArray(children);
@@ -68,12 +69,7 @@ export default function PitchField({ children, banco }) {
         })}
       </div>
 
-      {/* ── Banco de Reservas ── */}
-      {banco && (
-        <div className="relative z-20 w-full flex-shrink-0 border-t border-white/10 bg-[#111] shadow-[0_-10px_30px_rgba(0,0,0,0.8)] pb-2 pt-1 sm:pb-0 sm:pt-0">
-          {banco}
-        </div>
-      )}
+
     </div>
   );
 }

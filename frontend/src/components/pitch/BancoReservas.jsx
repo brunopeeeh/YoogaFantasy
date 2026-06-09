@@ -10,7 +10,7 @@ export default function BancoReservas({
   const posicoes = ['Goleiro', 'Defensor', 'MeioCampista', 'Atacante'];
 
   return (
-    <div className="w-full min-h-[95px] flex-shrink-0 px-2 sm:px-3 py-1.5">
+    <div className="w-full px-2 sm:px-3 py-1">
       <div className="text-[8px] font-bold text-white/30 uppercase tracking-widest mb-1 text-center">
         Banco
       </div>
