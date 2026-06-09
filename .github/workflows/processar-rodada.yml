@@ -21,36 +21,47 @@ on:
         description: "Deadline ISO da próxima rodada (opcional)"
         required: false
         type: string
+      modo:
+        description: "Modo de execução"
+        required: false
+        default: "completo"
+        type: choice
+        options:
+          - completo
+          - apenas-pontos
+          - fechar-mercado
+          - abrir-proxima
   schedule:
-    - cron: "0 14 * * 1"  # Segunda-feira 11:00 BRT (14:00 UTC)
-    - cron: "0 14 * * 2"
-    - cron: "0 14 * * 3"
-    - cron: "0 14 * * 4"
-    - cron: "0 14 * * 5"
+    - cron: "30 13 * * 1-5"  # 10:30 BRT — atualiza pontuação diária
 
 jobs:
   processar:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
           cache: "pip"
+      - run: pip install -r backend/requirements.txt
 
-      - name: Install dependencies
-        run: pip install -r backend/requirements.txt
+      - name: Processar rodada (cron — apenas pontuação)
+        if: github.event_name == 'schedule'
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: python -m backend.fechar_rodada --apenas-pontos
 
-      - name: Processar rodada
+      - name: Processar rodada (manual)
+        if: github.event_name != 'schedule'
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
         run: |
-          ARGS="--rodada ${{ inputs.rodada || '' }}"
+          ARGS="--rodada ${{ inputs.rodada }}"
           if [[ "${{ inputs.forcar }}" == "true" ]]; then ARGS="$ARGS --forcar"; fi
           if [[ "${{ inputs.sem_abrir }}" == "true" ]]; then ARGS="$ARGS --sem-abrir"; fi
           if [[ "${{ inputs.deadline }}" != "" ]]; then ARGS="$ARGS --deadline '${{ inputs.deadline }}'"; fi
+          MODO="${{ inputs.modo }}"
+          if [[ "$MODO" != "" && "$MODO" != "completo" ]]; then ARGS="$ARGS --$MODO"; fi
           python -m backend.fechar_rodada $ARGS
