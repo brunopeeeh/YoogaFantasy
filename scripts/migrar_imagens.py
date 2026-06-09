@@ -12,6 +12,8 @@ Requer SUPABASE_URL e SUPABASE_SERVICE_ROLE_KEY no .env
 import os
 import sys
 import time
+import threading
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 from curl_cffi import requests as curl
 from dotenv import load_dotenv
@@ -19,12 +21,17 @@ from supabase import create_client
 
 load_dotenv()
 
-BATCH_SIZE = 20
-DELAY = 0.3
-
+MAX_WORKERS = 5
+SOFASCORE_SEMAPHORE = threading.Semaphore(3)
+PRINT_LOCK = threading.Lock()
 
 SUPABASE_URL: str = ""
 SUPABASE_KEY: str = ""
+
+
+def log(msg: str) -> None:
+    with PRINT_LOCK:
+        print(msg)
 
 
 def conectar():
@@ -37,50 +44,44 @@ def conectar():
     return create_client(SUPABASE_URL, SUPABASE_KEY)
 
 
-def criar_bucket(supabase: Client) -> None:
+def criar_bucket() -> None:
     try:
-        supabase.storage.create_bucket("assets", {"public": True})
-        print("✅ Bucket 'assets' criado")
+        create_client(SUPABASE_URL, SUPABASE_KEY).storage.create_bucket("assets", {"public": True})
+        log("✅ Bucket 'assets' criado")
     except Exception as e:
         msg = str(e).lower()
         if "already exists" in msg or "duplicate" in msg:
-            print("✅ Bucket 'assets' já existe")
+            log("✅ Bucket 'assets' já existe")
         else:
-            print(f"⚠️  {e}")
+            log(f"⚠️  {e}")
 
 
-def baixar(url: str, tentativa: int = 1) -> bytes | None:
+def baixar(url: str) -> bytes | None:
     if not url or "sofascore" not in url.lower():
         return None
-    headers = {
-        "Referer": "https://www.sofascore.com/",
-        "Accept": "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8",
-        "Accept-Language": "pt-BR,pt;q=0.9,en;q=0.8",
-    }
-    try:
-        resp = curl.get(url, headers=headers, timeout=30, impersonate="chrome120")
-        ct = (resp.headers.get("content-type") or "").lower()
-        if resp.status_code == 200 and ("image" in ct or "octet" in ct):
-            return resp.content
-        if resp.status_code == 403:
-            print(f"    ⛔ 403 ({tentativa}/3): {url.rsplit('/', 1)[-1]}")
-        elif resp.status_code == 404:
-            print(f"    ❌ 404: {url.rsplit('/', 1)[-1]}")
-        else:
-            print(f"    ⚠️  HTTP {resp.status_code}: {url.rsplit('/', 1)[-1]}")
-        if resp.status_code == 403 and tentativa < 3:
-            time.sleep(2 ** tentativa)
-            return baixar(url, tentativa + 1)
-        return None
-    except Exception as e:
-        if tentativa < 3:
-            time.sleep(2 ** tentativa)
-            return baixar(url, tentativa + 1)
-        print(f"    ❌ Erro: {e}")
-        return None
+    for tentativa in range(3):
+        try:
+            resp = curl.get(url, headers={
+                "Referer": "https://www.sofascore.com/",
+                "Accept": "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8",
+                "Accept-Language": "pt-BR,pt;q=0.9,en;q=0.8",
+            }, timeout=30, impersonate="chrome120")
+            ct = (resp.headers.get("content-type") or "").lower()
+            if resp.status_code == 200 and ("image" in ct or "octet" in ct):
+                return resp.content
+            if resp.status_code == 403 and tentativa < 2:
+                time.sleep(2 ** tentativa)
+                continue
+            return None
+        except Exception:
+            if tentativa < 2:
+                time.sleep(2 ** tentativa)
+                continue
+            return None
+    return None
 
 
-def upload(caminho: str, conteudo: bytes) -> str | None:
+def upload_single(caminho: str, conteudo: bytes) -> str | None:
     url = f"{SUPABASE_URL}/storage/v1/object/assets/{caminho}"
     url_final = f"{SUPABASE_URL}/storage/v1/object/public/assets/{caminho}"
     headers = {
@@ -92,75 +93,76 @@ def upload(caminho: str, conteudo: bytes) -> str | None:
         resp = curl.put(url, data=conteudo, headers=headers, impersonate="chrome120", timeout=60)
         if resp.status_code in (200, 201):
             return url_final
-        print(f"    ❌ Upload {caminho}: HTTP {resp.status_code} {resp.text[:100]}")
         return None
-    except Exception as e:
-        print(f"    ❌ Upload {caminho}: {e}")
+    except Exception:
         return None
 
 
-def progresso(atual: int, total: int, ok: int, prefixo: str = "") -> None:
-    if (atual) % BATCH_SIZE == 0 or atual == total:
-        print(f"    {prefixo}{atual}/{total} — {ok} ok")
+def processar_item(supabase, tabela: str, coluna_url: str, coluna_id: str, caminho_prefixo: str, item: dict) -> bool:
+    item_id = item[coluna_id]
+    origem = item[coluna_url]
+
+    with SOFASCORE_SEMAPHORE:
+        conteudo = baixar(origem)
+
+    if not conteudo:
+        return False
+
+    nova_url = upload_single(f"{caminho_prefixo}/{item_id}.png", conteudo)
+    if not nova_url:
+        return False
+
+    try:
+        supabase.table(tabela).update({coluna_url: nova_url}).eq(coluna_id, item_id).execute()
+        return True
+    except Exception:
+        return False
 
 
-def migrar_jogadores(supabase: Client) -> None:
-    dados = supabase.table("jogadores").select("id_sofascore, foto_url").execute().data
-    pendentes = [j for j in dados if j.get("foto_url") and "sofascore" in j["foto_url"].lower()]
-    ja_migrados = [j for j in dados if j.get("foto_url", "").startswith(SUPABASE_URL)]
-    print(f"  {len(pendentes)} pendentes, {len(ja_migrados)} já migrados")
+def migrar(tabela: str, coluna_id: str, coluna_url: str, caminho_prefixo: str, label: str) -> None:
+    supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
+    dados = supabase.table(tabela).select(f"{coluna_id}, {coluna_url}").execute().data
+    pendentes = [d for d in dados if d.get(coluna_url) and "sofascore" in d[coluna_url].lower()]
+    ja_feitos = [d for d in dados if d.get(coluna_url, "").startswith(SUPABASE_URL)]
+    total = len(pendentes)
+    log(f"  {label}: {total} pendentes, {len(ja_feitos)} já migrados")
+
+    if not pendentes:
+        return
 
     ok = 0
-    for i, j in enumerate(pendentes, 1):
-        jid = j["id_sofascore"]
-        conteudo = baixar(j["foto_url"])
-        if conteudo:
-            nova_url = upload(f"jogadores/{jid}.png", conteudo)
-            if nova_url:
-                supabase.table("jogadores").update({"foto_url": nova_url}).eq("id_sofascore", jid).execute()
+    erros = 0
+    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as exec:
+        futuros = {
+            exec.submit(processar_item, create_client(SUPABASE_URL, SUPABASE_KEY), tabela, coluna_url, coluna_id, caminho_prefixo, p): p
+            for p in pendentes
+        }
+        for i, futuro in enumerate(as_completed(futuros), 1):
+            if futuro.result():
                 ok += 1
-        progresso(i, len(pendentes), ok)
-        time.sleep(DELAY)
+            else:
+                erros += 1
+            if i % 20 == 0 or i == total:
+                log(f"    {i}/{total} — {ok} ok, {erros} erros")
 
-    print(f"  ✅ {ok}/{len(pendentes)} fotos migradas")
-
-
-def migrar_bandeiras(supabase: Client) -> None:
-    dados = supabase.table("selecoes").select("id, bandeira_url").execute().data
-    pendentes = [s for s in dados if s.get("bandeira_url") and "sofascore" in s["bandeira_url"].lower()]
-    ja_migrados = [s for s in dados if s.get("bandeira_url", "").startswith(SUPABASE_URL)]
-    print(f"  {len(pendentes)} pendentes, {len(ja_migrados)} já migrados")
-
-    ok = 0
-    for i, s in enumerate(pendentes, 1):
-        sid = s["id"]
-        conteudo = baixar(s["bandeira_url"])
-        if conteudo:
-            nova_url = upload(f"bandeiras/{sid}.png", conteudo)
-            if nova_url:
-                supabase.table("selecoes").update({"bandeira_url": nova_url}).eq("id", sid).execute()
-                ok += 1
-        progresso(i, len(pendentes), ok)
-        time.sleep(DELAY)
-
-    print(f"  ✅ {ok}/{len(pendentes)} bandeiras migradas")
+    log(f"  ✅ {ok}/{total} {label.lower()} migradas ({erros} erros)")
 
 
 def main():
     print("\n" + "=" * 50)
     print("  MIGRAÇÃO DE IMAGENS → SUPABASE STORAGE")
     print("=" * 50)
-
-    supabase = conectar()
+    print(f"📦 Workers: {MAX_WORKERS}")
     print(f"📦 Storage: {SUPABASE_URL}/storage/v1/object/public/assets")
 
-    criar_bucket(supabase)
+    conectar()
+    criar_bucket()
 
     print("\n📸 Jogadores...")
-    migrar_jogadores(supabase)
+    migrar("jogadores", "id_sofascore", "foto_url", "jogadores", "Jogadores")
 
     print("\n🏳️ Bandeiras...")
-    migrar_bandeiras(supabase)
+    migrar("selecoes", "id", "bandeira_url", "bandeiras", "Bandeiras")
 
     print("\n🏁 Pronto!")
 
