@@ -84,7 +84,7 @@ As migrations em `supabase/migrations/` cobrem:
 
 - Login via magic link (e-mail)
 - Mercado com filtros, paginação e drag-and-drop
-- Elenco 2-5-5-3, orçamento €100M, máx. 3 por seleção
+- Elenco 2-5-5-3, orçamento R$150M, máx. 3 por seleção
 - Capitão, transferências grátis e penalidade por extras
 - Tokens especiais (Capitão Triplo, Ajuste Rápido, Reconstruir)
 - Banner de mercado fechado com deadline dinâmico

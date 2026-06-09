@@ -86,9 +86,8 @@ export function validarElencoDraft(elencoDraft, { rodada, formacao } = {}) {
   }
 
   const total = Object.values(contagemPorPos).reduce((a, b) => a + b, 0);
-  if (total !== 15) {
-    erros.push(`Elenco deve ter exatamente 15 jogadores. Atualmente: ${total}.`);
-  }
+  // Removido erro bloqueante de 15 jogadores a pedido do usuário
+  // O aviso será exibido no modal de confirmação.
 
   for (const [pos, qtd] of Object.entries(limitesPos)) {
     const atual = contagemPorPos[pos] || 0;
@@ -103,7 +102,7 @@ export function validarElencoDraft(elencoDraft, { rodada, formacao } = {}) {
     }
   }
   if (calcularCusto(elencoDraft) > orcamentoMax) {
-    erros.push(`Orçamento estourado: €${calcularCusto(elencoDraft).toFixed(1)}M (máx €${orcamentoMax.toFixed(1)}M).`);
+    erros.push(`Orçamento estourado: R$${calcularCusto(elencoDraft).toFixed(1)}M (máx R$${orcamentoMax.toFixed(1)}M).`);
   }
   return erros;
 }

@@ -13,7 +13,7 @@ def get_limites_formacao(formacao):
     return {"G": 2, "D": f["D"] + 1, "M": f["M"] + 1, "F": f["F"] + 1}
 
 class ValidadorFantasy:
-    def __init__(self, orçamento_maximo=100.0, max_por_selecao=3):
+    def __init__(self, orçamento_maximo=150.0, max_por_selecao=3):
         self.orçamento_maximo = orçamento_maximo
         self.max_por_selecao = max_por_selecao
 
@@ -48,7 +48,7 @@ class ValidadorFantasy:
 
         # 2. Validação de Orçamento
         if custo_total > self.orçamento_maximo:
-            erros.append(f"Orçamento estourado! Custo total: €{custo_total}M. Máximo permitido: €{self.orçamento_maximo}M.")
+            erros.append(f"Orçamento estourado! Custo total: R${custo_total}M. Máximo permitido: R${self.orçamento_maximo}M.")
 
         # 3. Validação de Posições no Elenco (limites dinâmicos por formação)
         limites = get_limites_formacao(formacao)

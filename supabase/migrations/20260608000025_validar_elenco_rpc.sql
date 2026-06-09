@@ -88,7 +88,7 @@ BEGIN
 
   -- Valida orçamento
   IF v_custo > v_orcamento_max THEN
-    v_erros := array_append(v_erros, format('Orçamento estourado: €%sM (máx €%sM).', round(v_custo, 1)::TEXT, round(v_orcamento_max, 1)::TEXT));
+    v_erros := array_append(v_erros, format('Orçamento estourado: R$%sM (máx R$%sM).', round(v_custo, 1)::TEXT, round(v_orcamento_max, 1)::TEXT));
   END IF;
 
   IF array_length(v_erros, 1) IS NULL OR array_length(v_erros, 1) = 0 THEN

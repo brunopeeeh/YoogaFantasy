@@ -2,18 +2,17 @@ import { useMemo, useCallback } from 'react';
 import { DndContext, DragOverlay, closestCenter } from '@dnd-kit/core';
 
 import Pitch from './components/pitch/Pitch';
-import FormacaoSelector from './components/pitch/FormacaoSelector';
 import BancoReservas from './components/pitch/BancoReservas';
 import MercadoDrawer from './components/dashboard/MercadoDrawer';
 import PlayerDetailsModal from './components/player/PlayerDetailsModal';
 
 import DashboardErrorBoundary from './components/dashboard/DashboardErrorBoundary';
-import MercadoErrorBoundary from './components/dashboard/MercadoErrorBoundary';
 
 import { useDragDropElenco } from './hooks/useDragDropElenco';
 import { useFantasy } from './contexts/FantasyContext';
 import { SIGLA_POR_POSICAO } from './lib/posicoes';
 import { extrairTitulares, extrairReservas } from './lib/diffElenco';
+import { useMediaQuery, bp } from './hooks/useMediaQuery';
 
 export default function DashboardFantasy() {
   const {
@@ -40,6 +39,7 @@ export default function DashboardFantasy() {
     mensagensValidacao,
   } = useFantasy();
 
+  const isMobile = useMediaQuery(bp.mobile);
   const titulares = useMemo(() => extrairTitulares(elencoDraft, formacaoDraft), [elencoDraft, formacaoDraft]);
   const reservas = useMemo(() => extrairReservas(elencoDraft, formacaoDraft), [elencoDraft, formacaoDraft]);
 
@@ -79,7 +79,7 @@ export default function DashboardFantasy() {
 
   if (timeLoading && !draftInicializado) {
     return (
-      <div className="min-h-screen w-full bg-fifa-blue flex items-center justify-center">
+      <div className="min-h-screen w-full bg-[#001D35] flex items-center justify-center">
         <div className="flex flex-col items-center gap-3 text-white">
           <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-white" />
           <p className="text-xs uppercase font-bold tracking-wider">Carregando seu time...</p>
@@ -90,7 +90,7 @@ export default function DashboardFantasy() {
 
   if (timeError) {
     return (
-      <div className="min-h-screen w-full bg-fifa-blue flex items-center justify-center p-6">
+      <div className="min-h-screen w-full bg-[#001D35] flex items-center justify-center p-6">
         <div className="max-w-md w-full bg-stat-injured/20 border border-stat-injured/40 rounded-glass p-6 text-white">
           <h2 className="text-lg font-black mb-2">Erro ao carregar seu time</h2>
           <p className="text-sm text-red-200 mb-3">{timeError.message}</p>
@@ -109,68 +109,62 @@ export default function DashboardFantasy() {
   }
 
   return (
-    <DndContext
-      onDragStart={handleDragStart}
-      onDragOver={handleDragOver}
-      onDragEnd={handleDragEnd}
-      onDragCancel={handleDragCancel}
-      collisionDetection={closestCenter}
-    >
-      <div className="flex-1 overflow-y-auto w-full">
+    <div className="flex-1 min-h-0 w-full flex flex-col">
+      <div className="flex-1 min-h-0 flex flex-col w-full">
+        <DndContext
+          onDragStart={handleDragStart}
+          onDragOver={handleDragOver}
+          onDragEnd={handleDragEnd}
+          onDragCancel={handleDragCancel}
+          collisionDetection={closestCenter}
+        >
+          <div className="flex-1 w-full flex flex-row overflow-hidden relative">
 
-
-        {mensagensValidacao.length > 0 && (
-          <div className="max-w-6xl mx-auto px-4 pt-2">
-            <p className="text-[11px] text-amber-200 bg-amber-950/40 border border-amber-700/40 rounded-lg px-3 py-2">
-              {mensagensValidacao[0]}
-            </p>
-          </div>
-        )}
-
-        <div className="max-w-6xl mx-auto px-4 pt-3">
-          <FormacaoSelector
-            formacaoAtiva={formacaoDraft}
-            onTrocar={handleTrocarFormacao}
-            desabilitado={false}
-          />
-        </div>
-
-        <div className="max-w-[1600px] mx-auto p-3 sm:p-4 lg:p-6 flex flex-col md:flex-row lg:flex-row gap-4 lg:gap-6 lg:items-start lg:justify-center">
-          <DashboardErrorBoundary onReset={refetch}>
-            <div className={`flex-1 w-full bg-fifa-navy-900/40 rounded-xl overflow-y-auto overflow-x-hidden relative transition-all duration-300 shadow-glass border border-white/5 lg:max-h-[900px] ${mercadoAberto ? 'lg:flex-none lg:w-[55%]' : ''}`}>
-              <div className="py-6 flex flex-col items-center gap-6 px-4">
-                <Pitch
-                  elenco={titulares}
-                  formacao={formacaoDraft}
-                  onSlotClick={handleAbrirMercado}
-                  onRemoverJogador={handleRemoverJogador}
-                  capitaoId={capitaoDraftId}
-                  onDefinirCapitao={handleDefinirCapitao}
-                  overSlot={overSlot}
-                  activeJogador={activeDrag?.data?.current?.jogador}
-                  slotSelecionado={slotSelecionado}
-                  onFilterPosicao={(sigla) => {
-                    if (posicaoFiltrada === sigla) {
-                      setPosicaoFiltrada(null);
-                    } else {
-                      setPosicaoFiltrada(sigla);
-                      setMercadoAberto(true);
-                    }
-                  }}
-                  posicaoFiltrada={posicaoFiltrada}
-                  onDetalhes={setDetalheJogador}
-                />
-                <BancoReservas
-                  reservas={reservas}
-                  onSlotClick={handleAbrirMercadoReserva}
-                  onRemoverJogador={handleRemoverReserva}
-                  onDetalhes={setDetalheJogador}
-                />
+            {mensagensValidacao.length > 0 && (
+              <div className="absolute top-2 left-1/2 -translate-x-1/2 z-50 max-w-xl w-full px-4">
+                <p className="text-[11px] text-amber-200 bg-amber-950/40 border border-amber-700/40 rounded-lg px-3 py-2 text-center">
+                  {mensagensValidacao[0]}
+                </p>
               </div>
-            </div>
-          </DashboardErrorBoundary>
+            )}
 
-          <MercadoErrorBoundary>
+            {/* ── CAMPO — FULL WIDTH ── */}
+            <div className={`flex-1 h-full w-full flex flex-col overflow-hidden p-2 transition-all duration-300 ${mercadoAberto && !isMobile ? 'mr-[480px]' : ''}`}>
+              <DashboardErrorBoundary onReset={refetch}>
+                <div className="flex-1 min-h-0 w-full flex flex-col rounded-xl overflow-hidden bg-fifa-navy-900/95 backdrop-blur-glass border border-white/10 shadow-glass-lg max-w-[1000px] mx-auto">
+                  <Pitch
+                    elenco={titulares}
+                    formacao={formacaoDraft}
+                    onSlotClick={handleAbrirMercado}
+                    onRemoverJogador={handleRemoverJogador}
+                    capitaoId={capitaoDraftId}
+                    onDefinirCapitao={handleDefinirCapitao}
+                    overSlot={overSlot}
+                    activeJogador={activeDrag?.data?.current?.jogador}
+                    slotSelecionado={slotSelecionado}
+                    onFilterPosicao={(sigla) => {
+                      if (posicaoFiltrada === sigla) {
+                        setPosicaoFiltrada(null);
+                      } else {
+                        setPosicaoFiltrada(sigla);
+                        setMercadoAberto(true);
+                      }
+                    }}
+                    posicaoFiltrada={posicaoFiltrada}
+                    onDetalhes={setDetalheJogador}
+                    banco={
+                      <BancoReservas
+                        reservas={reservas}
+                        onSlotClick={handleAbrirMercadoReserva}
+                        onRemoverJogador={handleRemoverReserva}
+                        onDetalhes={setDetalheJogador}
+                      />
+                    }
+                  />
+                </div>
+              </DashboardErrorBoundary>
+            </div>
+
             <MercadoDrawer
               aberto={mercadoAberto}
               onFechar={handleFecharMercado}
@@ -180,29 +174,37 @@ export default function DashboardFantasy() {
               mercado={mercado}
               onDetalhes={setDetalheJogador}
             />
-          </MercadoErrorBoundary>
-        </div>
-      </div>
-
-      <PlayerDetailsModal
-        jogador={detalheJogador}
-        isOpen={!!detalheJogador}
-        onClose={() => setDetalheJogador(null)}
-      />
-
-      <DragOverlay>
-        {activeDrag ? (
-          <div className="opacity-90 scale-105 pointer-events-none">
-            <div className="bg-fifa-navy-800 border-2 border-fifa-gold rounded-xl p-3 shadow-glow flex items-center gap-2 max-w-[300px]">
-              <div className="w-10 h-10 rounded-full bg-white/10" />
-              <div>
-                <div className="text-xs font-black text-white">Arrastando...</div>
-                <div className="text-[10px] text-white/50">Solte em um slot compatível</div>
-              </div>
-            </div>
           </div>
-        ) : null}
-      </DragOverlay>
-    </DndContext>
+
+          <PlayerDetailsModal
+            jogador={detalheJogador}
+            isOpen={!!detalheJogador}
+            onClose={() => setDetalheJogador(null)}
+          />
+
+          <DragOverlay>
+            {activeDrag?.jogador ? (
+              <div className="opacity-90 scale-105 pointer-events-none">
+                <div className="bg-fifa-navy-800 border-2 border-fifa-gold rounded-xl p-3 shadow-glow flex items-center gap-3 max-w-[280px]">
+                  <div className="w-10 h-10 rounded-full overflow-hidden bg-fifa-navy-900 border-2 border-white/20 flex-shrink-0">
+                    <img
+                      src={activeDrag.jogador.foto || "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3e%3crect width='100' height='100' fill='%231e3a5f'/%3e%3ccircle cx='50' cy='35' r='18' fill='%23fff' opacity='.25'/%3e%3cpath d='M20 75 Q50 50 80 75' fill='%23fff' opacity='.25'/%3e%3c/svg%3e"}
+                      alt={activeDrag.jogador.nome}
+                      className="w-full h-full object-cover"
+                      draggable={false}
+                    />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <div className="text-xs font-black text-white truncate">{activeDrag.jogador.nome}</div>
+                    <div className="text-[10px] text-fifa-gold font-bold">{activeDrag.jogador.selecao}</div>
+                    <div className="text-[10px] text-white/50">Arraste para um slot</div>
+                  </div>
+                </div>
+              </div>
+            ) : null}
+          </DragOverlay>
+        </DndContext>
+      </div>
+    </div>
   );
 }

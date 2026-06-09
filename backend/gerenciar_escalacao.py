@@ -18,14 +18,14 @@ class GerenciadorEscalacao:
 
     def criar_novo_time_usuario(self, uuid_usuario, nome_time):
         """
-        Cria o registro inicial do time do utilizador com o orçamento de €100M.
+        Cria o registro inicial do time do utilizador com o orçamento de R$150M.
         """
         print(f"🎮 Criando o time '{nome_time}' no banco de dados...")
         try:
             dados_time = {
                 "usuario_id": uuid_usuario,
                 "nome_time": nome_time,
-                "banco_cartoletas": 100.00,
+                "banco_cartoletas": 150.00,
                 "transferencias_gratis": 1
             }
             response = self.supabase.table("times_usuarios").insert(dados_time).execute()

@@ -63,16 +63,26 @@ export default function SaveConfirmModal({
 
             <div className="overflow-y-auto flex-1 px-5 py-4 space-y-4">
               {mensagensValidacao.length > 0 && (
-                <div className="flex gap-2 p-3 rounded-lg bg-amber-950/40 border border-amber-700/40 text-amber-200 text-xs">
+                <div className="flex gap-2 p-3 rounded-lg bg-red-950/40 border border-red-700/40 text-red-200 text-xs">
                   <AlertTriangle size={16} className="shrink-0 mt-0.5" />
                   <p>{mensagensValidacao[0]}</p>
+                </div>
+              )}
+
+              {totalSelecionados < 15 && mensagensValidacao.length === 0 && (
+                <div className="flex gap-2 p-3 rounded-lg bg-amber-950/40 border border-amber-700/40 text-amber-200 text-xs">
+                  <AlertTriangle size={16} className="shrink-0 mt-0.5" />
+                  <p>
+                    <strong>Atenção:</strong> Elenco deve ter exatamente 15 jogadores. Atualmente: {totalSelecionados}.<br/>
+                    Deseja salvar incompleto mesmo assim?
+                  </p>
                 </div>
               )}
 
               <div className="grid grid-cols-3 gap-2">
                 <div className="bg-[#11161d] rounded-lg p-3 border border-white/5 text-center">
                   <Wallet size={14} className="mx-auto text-fifa-gold mb-1" />
-                  <div className="text-sm font-black text-white">€{saldoDraft.toFixed(1)}M</div>
+                  <div className="text-sm font-black text-white">R${saldoDraft.toFixed(1)}M</div>
                   <div className="text-[9px] text-white/40 uppercase">Saldo</div>
                 </div>
                 <div className="bg-[#11161d] rounded-lg p-3 border border-white/5 text-center">
@@ -80,7 +90,7 @@ export default function SaveConfirmModal({
                   <div className="text-[9px] text-white/40 uppercase">Jogadores</div>
                 </div>
                 <div className="bg-[#11161d] rounded-lg p-3 border border-white/5 text-center">
-                  <div className="text-sm font-black text-white">€{custoDraft.toFixed(1)}M</div>
+                  <div className="text-sm font-black text-white">R${custoDraft.toFixed(1)}M</div>
                   <div className="text-[9px] text-white/40 uppercase">Gasto</div>
                 </div>
               </div>
@@ -94,14 +104,14 @@ export default function SaveConfirmModal({
                     <div key={`out-${j.id}`} className="flex items-center gap-2 text-xs bg-red-950/30 border border-red-900/30 rounded-lg px-3 py-2">
                       <span className="text-red-400 font-bold">−</span>
                       <span className="text-white/80 truncate">{j.nome}</span>
-                      <span className="ml-auto text-white/40">€{Number(j.preco).toFixed(1)}M</span>
+                      <span className="ml-auto text-white/40">R${Number(j.preco).toFixed(1)}M</span>
                     </div>
                   ))}
                   {entradas.map(j => (
                     <div key={`in-${j.id}`} className="flex items-center gap-2 text-xs bg-stat-fit/10 border border-stat-fit/30 rounded-lg px-3 py-2">
                       <span className="text-stat-fit font-bold">+</span>
                       <span className="text-white/80 truncate">{j.nome}</span>
-                      <span className="ml-auto text-white/40">€{Number(j.preco).toFixed(1)}M</span>
+                      <span className="ml-auto text-white/40">R${Number(j.preco).toFixed(1)}M</span>
                     </div>
                   ))}
                 </div>

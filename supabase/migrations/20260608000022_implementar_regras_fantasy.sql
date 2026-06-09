@@ -10,21 +10,21 @@ AS $$
 BEGIN
   RETURN CASE
     WHEN p_rodada = 0 THEN
-      jsonb_build_object('transferencias_gratis', 999, 'max_por_selecao', 3, 'orcamento_maximo', 100.0)
+      jsonb_build_object('transferencias_gratis', 999, 'max_por_selecao', 3, 'orcamento_maximo', 150.0)
     WHEN p_rodada BETWEEN 1 AND 3 THEN
-      jsonb_build_object('transferencias_gratis', 3, 'max_por_selecao', 3, 'orcamento_maximo', 100.0)
+      jsonb_build_object('transferencias_gratis', 3, 'max_por_selecao', 3, 'orcamento_maximo', 150.0)
     WHEN p_rodada = 4 THEN
-      jsonb_build_object('transferencias_gratis', 999, 'max_por_selecao', 3, 'orcamento_maximo', 105.0)
+      jsonb_build_object('transferencias_gratis', 999, 'max_por_selecao', 3, 'orcamento_maximo', 160.0)
     WHEN p_rodada = 5 THEN
-      jsonb_build_object('transferencias_gratis', 5, 'max_por_selecao', 4, 'orcamento_maximo', 105.0)
+      jsonb_build_object('transferencias_gratis', 5, 'max_por_selecao', 4, 'orcamento_maximo', 160.0)
     WHEN p_rodada = 6 THEN
-      jsonb_build_object('transferencias_gratis', 5, 'max_por_selecao', 5, 'orcamento_maximo', 105.0)
+      jsonb_build_object('transferencias_gratis', 5, 'max_por_selecao', 5, 'orcamento_maximo', 160.0)
     WHEN p_rodada = 7 THEN
-      jsonb_build_object('transferencias_gratis', 5, 'max_por_selecao', 6, 'orcamento_maximo', 105.0)
+      jsonb_build_object('transferencias_gratis', 5, 'max_por_selecao', 6, 'orcamento_maximo', 160.0)
     WHEN p_rodada = 8 THEN
-      jsonb_build_object('transferencias_gratis', 5, 'max_por_selecao', 7, 'orcamento_maximo', 105.0)
+      jsonb_build_object('transferencias_gratis', 5, 'max_por_selecao', 7, 'orcamento_maximo', 160.0)
     ELSE
-      jsonb_build_object('transferencias_gratis', 3, 'max_por_selecao', 3, 'orcamento_maximo', 100.0)
+      jsonb_build_object('transferencias_gratis', 3, 'max_por_selecao', 3, 'orcamento_maximo', 150.0)
   END;
 END;
 $$;
@@ -84,7 +84,7 @@ BEGIN
 
   IF v_time_id IS NULL THEN
     INSERT INTO public.times_usuarios (usuario_id, nome_time, banco_cartoletas)
-    VALUES (v_usuario_id, 'Meu Time', 100.0)
+    VALUES (v_usuario_id, 'Meu Time', 150.0)
     RETURNING id INTO v_time_id;
   END IF;
 

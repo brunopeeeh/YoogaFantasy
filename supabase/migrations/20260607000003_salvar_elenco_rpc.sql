@@ -16,7 +16,7 @@ DECLARE
   v_ids        BIGINT[];
   v_existentes INT;
   v_orcamento  NUMERIC;
-  v_orcamento_max CONSTANT NUMERIC := 100.0;
+  v_orcamento_max CONSTANT NUMERIC := 150.0;
   v_elenco_max CONSTANT INT := 15;
 BEGIN
   IF v_usuario_id IS NULL THEN
@@ -47,7 +47,7 @@ BEGIN
     RAISE EXCEPTION 'Orçamento gasto inválido: %', p_orcamento_gasto USING ERRCODE = '23514';
   END IF;
   IF p_orcamento_gasto > v_orcamento_max THEN
-    RAISE EXCEPTION 'Orçamento estourado: €%M (máx: €%M)',
+    RAISE EXCEPTION 'Orçamento estourado: R$%M (máx: R$%M)',
       p_orcamento_gasto, v_orcamento_max USING ERRCODE = '23514';
   END IF;
 

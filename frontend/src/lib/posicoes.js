@@ -80,20 +80,20 @@ export function criarElencoVazio(formacao) {
   };
 }
 
-export const ORCAMENTO_MAXIMO = 100.0;
+export const ORCAMENTO_MAXIMO = 150.0;
 export const MAX_POR_SELECAO = 3;
 
 // Limites dinâmicos por fase (rodada)
 const LIMITES_POR_RODADA = {
-  0: { transferenciasGratis: 999, maxPorSelecao: 3, orcamentoMaximo: 100.0 },
-  1: { transferenciasGratis: 3,   maxPorSelecao: 3, orcamentoMaximo: 100.0 },
-  2: { transferenciasGratis: 3,   maxPorSelecao: 3, orcamentoMaximo: 100.0 },
-  3: { transferenciasGratis: 3,   maxPorSelecao: 3, orcamentoMaximo: 100.0 },
-  4: { transferenciasGratis: 999, maxPorSelecao: 3, orcamentoMaximo: 105.0 },
-  5: { transferenciasGratis: 5,   maxPorSelecao: 4, orcamentoMaximo: 105.0 },
-  6: { transferenciasGratis: 5,   maxPorSelecao: 5, orcamentoMaximo: 105.0 },
-  7: { transferenciasGratis: 5,   maxPorSelecao: 6, orcamentoMaximo: 105.0 },
-  8: { transferenciasGratis: 5,   maxPorSelecao: 7, orcamentoMaximo: 105.0 },
+  0: { transferenciasGratis: 999, maxPorSelecao: 3, orcamentoMaximo: 150.0 },
+  1: { transferenciasGratis: 3,   maxPorSelecao: 3, orcamentoMaximo: 150.0 },
+  2: { transferenciasGratis: 3,   maxPorSelecao: 3, orcamentoMaximo: 150.0 },
+  3: { transferenciasGratis: 3,   maxPorSelecao: 3, orcamentoMaximo: 150.0 },
+  4: { transferenciasGratis: 999, maxPorSelecao: 3, orcamentoMaximo: 160.0 },
+  5: { transferenciasGratis: 5,   maxPorSelecao: 4, orcamentoMaximo: 160.0 },
+  6: { transferenciasGratis: 5,   maxPorSelecao: 5, orcamentoMaximo: 160.0 },
+  7: { transferenciasGratis: 5,   maxPorSelecao: 6, orcamentoMaximo: 160.0 },
+  8: { transferenciasGratis: 5,   maxPorSelecao: 7, orcamentoMaximo: 160.0 },
 };
 
 export function getLimitesFase(rodada) {

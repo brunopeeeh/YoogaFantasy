@@ -34,7 +34,7 @@ export default function RulesScreen() {
   };
 
   return (
-    <div className="min-h-screen bg-fifa-blue text-white w-full pb-16 overflow-y-auto selection:bg-fifa-gold selection:text-black">
+    <div className="min-h-screen bg-[#001D35] text-white w-full pb-16 overflow-y-auto selection:bg-fifa-gold selection:text-black">
       {/* Banner de Cabeçalho / Hero */}
       <div className="relative overflow-hidden bg-gradient-to-b from-fifa-navy-950 to-fifa-navy-900 border-b border-white/10 pt-8 pb-12 px-4 sm:px-6 md:px-12">
         {/* Background Decorative Circles */}
@@ -120,11 +120,11 @@ export default function RulesScreen() {
                 <strong className="text-white">Posições do jogador:</strong> Os jogadores têm uma única posição atribuída com base na função mais comum deles em competições recentes. Eles marcarão pontos para essa posição durante todo o torneio, mesmo que sua função mude na vida real.
               </p>
               <p>
-                <strong className="text-white">Orçamento:</strong> Você pode selecionar seu elenco inicial dentro de um orçamento de <strong>€100 milhões</strong>. Qualquer dinheiro não utilizado é colocado automaticamente no seu banco e estará disponível para transferências futuras.
+                <strong className="text-white">Orçamento:</strong> Você pode selecionar seu elenco inicial dentro de um orçamento de <strong>R$150 milhões</strong>. Qualquer dinheiro não utilizado é colocado automaticamente no seu banco e estará disponível para transferências futuras.
               </p>
               <p className="bg-[#009CDE]/10 border border-[#009CDE]/20 text-gray-200 p-3 rounded-lg text-xs flex items-center gap-2">
                 <Info size={16} className="text-[#009CDE] shrink-0" />
-                <span>Assim que a fase de grupos terminar, seu orçamento aumenta em <strong>€5 milhões</strong> de forma automática ao abrir as transferências da fase de mata-mata.</span>
+                <span>Assim que a fase de grupos terminar, seu orçamento aumenta em <strong>R$10 milhões</strong> de forma automática ao abrir as transferências da fase de mata-mata.</span>
               </p>
             </div>
           </div>

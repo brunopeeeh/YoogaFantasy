@@ -3,8 +3,8 @@ import { useDroppable } from '@dnd-kit/core';
 
 import PitchField from './PitchField';
 import PlayerChip, { EmptySlot } from './PlayerChip';
-import { POSICAO_LABEL, SIGLA_POR_POSICAO, getQtdTitular, FORMACOES } from '../../lib/posicoes';
-import { makeSlotId, parseSlotId } from '../../hooks/useDragDropElenco';
+import { POSICAO_LABEL, SIGLA_POR_POSICAO, getQtdTitular } from '../../lib/posicoes';
+import { makeSlotId } from '../../hooks/useDragDropElenco';
 import { useMediaQuery, bp } from '../../hooks/useMediaQuery';
 
 // Droppable slot wrapper
@@ -50,30 +50,33 @@ export default memo(function Pitch({
   onFilterPosicao,
   posicaoFiltrada = null,
   onDetalhes,
+  banco = null,
 }) {
   const isMobile = useMediaQuery(bp.mobile);
 
-  // Gera linhas apenas com titulares baseados na formação
   const linhas = [
-    { posicao: 'Goleiro', slots: Array(getQtdTitular(formacao, 'Goleiro')).fill(null) },
-    { posicao: 'Defensor', slots: Array(getQtdTitular(formacao, 'Defensor')).fill(null) },
-    { posicao: 'MeioCampista', slots: Array(getQtdTitular(formacao, 'MeioCampista')).fill(null) },
     { posicao: 'Atacante', slots: Array(getQtdTitular(formacao, 'Atacante')).fill(null) },
+    { posicao: 'MeioCampista', slots: Array(getQtdTitular(formacao, 'MeioCampista')).fill(null) },
+    { posicao: 'Defensor', slots: Array(getQtdTitular(formacao, 'Defensor')).fill(null) },
+    { posicao: 'Goleiro', slots: Array(getQtdTitular(formacao, 'Goleiro')).fill(null) },
   ];
 
   return (
-    <div className="w-full px-2 sm:px-4 flex flex-col gap-3 sm:gap-4 h-full">
-      {/* O campo em si */}
-      <div className="relative">
-        <PitchField>
+    <div className="w-full h-full flex flex-col">
+      <div className="relative flex-1 min-h-0 flex flex-col w-full">
+        <PitchField banco={banco}>
           {linhas.map((linha) => {
-            let linhaClass = "flex items-center w-full ";
+            // Gaps calibrados para a geometria do campo:
+            // Goleiro no sul do campo, Atacantes no norte (trapézio estreito no topo)
+            let linhaClass = "flex items-center w-full justify-center ";
             if (linha.posicao === 'Goleiro') {
-              linhaClass += "justify-center gap-8 sm:gap-32";
-            } else if (linha.posicao === 'Atacante') {
-              linhaClass += "justify-center gap-4 sm:gap-24";
+              linhaClass += "gap-2 sm:gap-4";
+            } else if (linha.posicao === 'Defensor') {
+              linhaClass += "gap-1 sm:gap-4";
+            } else if (linha.posicao === 'MeioCampista') {
+              linhaClass += "gap-1 sm:gap-4";
             } else {
-              linhaClass += "justify-center flex-wrap gap-x-6 gap-y-2 sm:justify-between sm:flex-nowrap sm:px-16";
+              linhaClass += "gap-1.5 sm:gap-4";
             }
 
             return (
@@ -119,8 +122,6 @@ export default memo(function Pitch({
             );
           })}
         </PitchField>
-
-
       </div>
     </div>
   );

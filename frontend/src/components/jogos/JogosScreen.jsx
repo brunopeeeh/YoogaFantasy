@@ -45,7 +45,7 @@ export default function JogosScreen() {
   const gruposOrdenados = useMemo(() => ordenarGrupos(grupos), [grupos]);
 
   return (
-    <div className="flex-1 bg-fifa-blue overflow-y-auto">
+    <div className="flex-1 bg-[#001D35] overflow-y-auto">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
 
         {/* Header */}

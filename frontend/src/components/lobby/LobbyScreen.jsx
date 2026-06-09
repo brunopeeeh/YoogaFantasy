@@ -44,7 +44,7 @@ export default function LobbyScreen() {
   const temMaisJogos = jogos.length > MAX_JOGOS_LOBBY;
 
   return (
-    <div className="flex-1 bg-fifa-blue overflow-y-auto">
+    <div className="flex-1 bg-[#001D35] overflow-y-auto">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-5">
 
         {/* Métricas */}
@@ -52,7 +52,7 @@ export default function LobbyScreen() {
           <div className="glass-panel rounded-xl p-3 sm:p-4 text-center">
             <div className="text-[9px] text-white/50 uppercase font-bold tracking-wider">Saldo</div>
             <div className="text-base sm:text-lg font-black text-white mt-0.5 font-display tracking-wide">
-              €{saldoDraft.toFixed(1)}M
+              R${saldoDraft.toFixed(1)}M
             </div>
           </div>
           <div className="glass-panel rounded-xl p-3 sm:p-4 text-center">

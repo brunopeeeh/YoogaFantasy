@@ -10,11 +10,11 @@ export default function BancoReservas({
   const posicoes = ['Goleiro', 'Defensor', 'MeioCampista', 'Atacante'];
 
   return (
-    <div className="w-full bg-fifa-navy-900/60 backdrop-blur-sm border border-white/10 rounded-xl p-4">
-      <div className="text-[10px] font-bold text-white/40 uppercase tracking-widest mb-3 text-center">
-        Banco de Reservas
+    <div className="w-full min-h-[95px] flex-shrink-0 px-2 sm:px-3 py-1.5">
+      <div className="text-[8px] font-bold text-white/30 uppercase tracking-widest mb-1 text-center">
+        Banco
       </div>
-      <div className="flex items-center justify-center gap-4 sm:gap-8">
+        <div className="flex items-center justify-center gap-2 sm:gap-3">
         {posicoes.map((pos) => {
           const jogador = reservas[pos]?.[0] || null;
           const sigla = SIGLA_POR_POSICAO[pos];
@@ -32,6 +32,7 @@ export default function BancoReservas({
                 </div>
               ) : (
                 <EmptySlot
+                  compact
                   posLabel={POSICAO_LABEL[pos]}
                   onClick={() => onSlotClick(pos, null)}
                 />

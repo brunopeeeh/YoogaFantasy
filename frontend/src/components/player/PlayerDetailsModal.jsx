@@ -104,7 +104,7 @@ export default function PlayerDetailsModal({ jogador, isOpen, onClose }) {
                   {jogador.nome}
                 </h2>
                 <div className="text-xs font-bold text-white/60 flex items-center gap-1.5 mt-1">
-                  <span className="text-fifa-gold">€{Number(jogador.preco || 0).toFixed(1)}M</span>
+                  <span className="text-fifa-gold">R${Number(jogador.preco || 0).toFixed(1)}M</span>
                   <span>•</span>
                   <span>{posicaoExtenso}</span>
                 </div>

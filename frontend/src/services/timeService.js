@@ -1,6 +1,6 @@
 import { supabase } from './supabaseClient';
 
-const ORCAMENTO_MAXIMO = 100.0;
+const ORCAMENTO_MAXIMO = 150.0;
 
 const SELECT_BASE = `
   id, usuario_id, nome_time, banco_cartoletas,

@@ -26,7 +26,7 @@ DECLARE
   v_free_used            INT;
   v_extras               INT;
   v_token_ilimitado      BOOLEAN := FALSE;
-  v_orcamento_max CONSTANT NUMERIC := 100.0;
+  v_orcamento_max CONSTANT NUMERIC := 150.0;
   v_elenco_max   CONSTANT INT     := 15;
   v_penalidade_por_extra CONSTANT NUMERIC := 5.0;
 BEGIN
@@ -62,7 +62,7 @@ BEGIN
     RAISE EXCEPTION 'Orçamento gasto inválido: %', p_orcamento_gasto USING ERRCODE = '23514';
   END IF;
   IF p_orcamento_gasto > v_orcamento_max THEN
-    RAISE EXCEPTION 'Orçamento estourado: €%M (máx: €%M)',
+    RAISE EXCEPTION 'Orçamento estourado: R$%M (máx: R$%M)',
       p_orcamento_gasto, v_orcamento_max USING ERRCODE = '23514';
   END IF;
 

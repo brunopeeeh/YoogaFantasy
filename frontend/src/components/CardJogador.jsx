@@ -56,7 +56,7 @@ export default function CardJogador({ jogador, onContratar, onDetalhes, elenco, 
       {...attributes}
       {...listeners}
       onClick={() => onDetalhes && onDetalhes(jogador)}
-      className={`flex items-center justify-between py-2 px-3 border-b border-white/5 hover:bg-white/5 transition-all group cursor-pointer active:cursor-grabbing ${
+      className={`flex items-center justify-between py-1.5 px-3 border-b border-white/5 hover:bg-white/5 transition-all group cursor-pointer active:cursor-grabbing ${
         isDragging ? 'opacity-40' : ''
       } ${posicaoIncompativel ? 'opacity-50' : ''}`}
     >
@@ -134,7 +134,7 @@ export default function CardJogador({ jogador, onContratar, onDetalhes, elenco, 
           ) : (
             <>
               <span className="text-[#009CDE] font-black font-mono text-[11px] tracking-wide whitespace-nowrap">
-                €{Number(jogador.preco).toFixed(1)}M
+                R${Number(jogador.preco).toFixed(1)}M
               </span>
               <button
                 onClick={(e) => {

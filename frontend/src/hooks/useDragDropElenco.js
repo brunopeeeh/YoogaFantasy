@@ -13,7 +13,8 @@ export function useDragDropElenco({ onDrop }) {
     const id = event.active.id;
     if (typeof id === 'string' && id.startsWith('card-')) {
       const jogadorId = Number(id.replace('card-', ''));
-      setActiveDrag({ type: 'card', jogadorId });
+      const jogador = event.active.data.current?.jogador;
+      setActiveDrag({ type: 'card', jogadorId, jogador });
     }
   }, []);
 

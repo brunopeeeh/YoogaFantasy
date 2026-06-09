@@ -88,7 +88,7 @@ export default function PlayerHoverCard({ jogador, anchorRect, isCaptain = false
                 </div>
                 <div className="bg-white/5 rounded-md py-1.5">
                   <div className="text-[9px] text-white/50 uppercase">Preço</div>
-                  <div className="text-sm font-black text-fifa-gold">€{Number(jogador.preco || 0).toFixed(1)}M</div>
+                  <div className="text-sm font-black text-fifa-gold">R${Number(jogador.preco || 0).toFixed(1)}M</div>
                 </div>
                 <div className="bg-white/5 rounded-md py-1.5">
                   <div className="text-[9px] text-white/50 uppercase">Pos</div>

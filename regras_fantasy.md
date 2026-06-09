@@ -10,9 +10,9 @@
 
 **Posições do jogador** Os jogadores têm uma única posição atribuída com base na função mais comum deles em competições recentes. Eles marcarão pontos para essa posição durante todo o torneio, mesmo que sua função mude na vida real.
 
-**Orçamento** Você pode selecionar seu elenco inicial dentro de um orçamento de €100 milhões. Qualquer dinheiro não utilizado é colocado automaticamente no seu banco e estará disponível para transferências futuras.
+**Orçamento** Você pode selecionar seu elenco inicial dentro de um orçamento de R$150 milhões. Qualquer dinheiro não utilizado é colocado automaticamente no seu banco e estará disponível para transferências futuras.
 
-Assim que a fase de grupos terminar, seu orçamento aumenta em €5 milhões. Isso acontece automaticamente quando as transferências da fase de mata-mata forem abertas.
+Assim que a fase de grupos terminar, seu orçamento aumenta em R$10 milhões. Isso acontece automaticamente quando as transferências da fase de mata-mata forem abertas.
 
 ---
 

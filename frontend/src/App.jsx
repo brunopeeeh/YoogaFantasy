@@ -18,10 +18,10 @@ function AppShell() {
   const { configRodada } = useFantasy();
 
   return (
-    <div className="flex flex-col min-h-screen bg-fifa-blue text-white w-full antialiased">
+    <div className="flex flex-col h-screen bg-[#001D35] text-white w-full antialiased overflow-hidden">
       <Header />
       <MercadoFechadoBanner config={configRodada} />
-      <div className="flex-1 flex flex-col relative overflow-y-auto">
+      <div className="flex-1 flex flex-col relative min-h-0 overflow-y-auto">
         <Routes>
           <Route path="/" element={<LobbyScreen />} />
           <Route path="/escalar" element={<DashboardFantasy />} />
