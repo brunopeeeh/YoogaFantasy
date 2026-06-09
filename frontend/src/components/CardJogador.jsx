@@ -2,6 +2,7 @@ import React from 'react';
 import { useDraggable } from '@dnd-kit/core';
 import { CSS } from '@dnd-kit/utilities';
 import { makeCardId } from '../hooks/useDragDropElenco';
+import { AVATAR_FALLBACK } from '../design/tokens';
 
 const MAPA_LETRAS_POSICAO = {
   Goleiro: 'G',
@@ -58,11 +59,11 @@ export default function CardJogador({ jogador, onContratar, onDetalhes, elenco, 
       <div className="flex items-center gap-3 flex-1 min-w-0">
         <div className="relative flex-shrink-0 select-none">
           <img
-            src={jogador.foto || 'https://api.sofascore.app/static/images/default-avatar.png'}
+            src={jogador.foto || AVATAR_FALLBACK}
             alt={jogador.nome}
             className="w-10 h-10 rounded-full object-cover bg-fifa-navy-900 border-2 border-white/20 shadow-inner group-hover:border-fifa-blue transition-colors"
             onError={(e) => {
-              e.currentTarget.src = 'https://api.sofascore.app/static/images/default-avatar.png';
+              if (e.currentTarget.src !== AVATAR_FALLBACK) e.currentTarget.src = AVATAR_FALLBACK;
             }}
             draggable={false}
           />
@@ -71,6 +72,7 @@ export default function CardJogador({ jogador, onContratar, onDetalhes, elenco, 
               src={jogador.bandeira}
               alt={jogador.selecao}
               className="absolute -bottom-1 -left-1 w-4.5 h-3 rounded-sm border border-fifa-navy-950 shadow-md object-cover"
+              onError={(e) => { e.currentTarget.style.display = 'none'; }}
               draggable={false}
             />
           )}
@@ -110,6 +112,7 @@ export default function CardJogador({ jogador, onContratar, onDetalhes, elenco, 
                 src={jogo.flag}
                 alt={jogo.nome}
                 className="w-full h-3 sm:h-3.5 object-cover rounded-[1px]"
+                onError={(e) => { e.currentTarget.style.display = 'none'; }}
                 draggable={false}
               />
               <div className={`w-full h-[2px] rounded-full ${colorMapFdr[jogo.nivel] || 'bg-fifa-blue'}`} />

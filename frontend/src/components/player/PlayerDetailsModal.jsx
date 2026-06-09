@@ -4,6 +4,7 @@ import { X, Calendar, ChevronRight, Info } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { getKit } from '../../lib/kits';
 import { popIn } from '../../design/animations';
+import { AVATAR_FALLBACK } from '../../design/tokens';
 import { useJogosCopa } from '../../hooks/useJogosCopa';
 import { buscarStatsJogador } from '../../services/playerStatsService';
 
@@ -29,7 +30,7 @@ export default function PlayerDetailsModal({ jogador, isOpen, onClose }) {
   if (!isOpen || !jogador) return null;
 
   const kit = getKit(jogador.selecaoId, jogador.selecao);
-  const fotoSrc = jogador.foto || 'https://api.sofascore.app/static/images/default-avatar.png';
+  const fotoSrc = jogador.foto || AVATAR_FALLBACK;
 
   const ptsPartida = stats?.ptsPartida ?? '—';
   const forma = stats?.forma ?? '—';
@@ -89,7 +90,7 @@ export default function PlayerDetailsModal({ jogador, isOpen, onClose }) {
                   </div>
                   {jogador.bandeira && (
                     <div className="absolute -bottom-2 -left-2 w-7 h-7 rounded-full border-2 border-white overflow-hidden shadow-md bg-fifa-navy-900 flex items-center justify-center">
-                      <img src={jogador.bandeira} alt={jogador.selecao} className="w-full h-full object-cover scale-[1.2]" />
+                      <img src={jogador.bandeira} alt={jogador.selecao} className="w-full h-full object-cover scale-[1.2]" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
                     </div>
                   )}
                   <div className="absolute -bottom-2 -right-2 w-6 h-6 rounded-full bg-white border-2 border-white flex items-center justify-center shadow-md">
@@ -142,7 +143,7 @@ export default function PlayerDetailsModal({ jogador, isOpen, onClose }) {
                       <div key={i} className="flex flex-col items-center gap-1.5 bg-[#11161d] rounded-lg p-2 border border-white/5">
                         <span className="text-[10px] font-bold text-white/50">R{i + 1}</span>
                         <div className="w-8 h-6 rounded overflow-hidden shadow-sm">
-                          <img src={jogo.flag} alt={jogo.nome} className="w-full h-full object-cover" />
+                          <img src={jogo.flag} alt={jogo.nome} className="w-full h-full object-cover" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
                         </div>
                         <span className="text-[9px] font-bold text-white/70 truncate w-full text-center leading-tight">
                           {jogo.nome}
@@ -188,14 +189,14 @@ export default function PlayerDetailsModal({ jogador, isOpen, onClose }) {
                       <div className="flex items-center gap-2">
                         <div className="flex flex-col items-center gap-0.5">
                           <div className="w-8 h-6 rounded overflow-hidden border border-white/20 shadow-sm">
-                            <img src={jogador.bandeira || ''} alt={jogador.selecao} className="w-full h-full object-cover" />
+                            <img src={jogador.bandeira || ''} alt={jogador.selecao} className="w-full h-full object-cover" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
                           </div>
                           <span className="text-[8px] font-bold text-white/50 truncate max-w-[50px]">{jogador.selecao}</span>
                         </div>
                         <span className="text-[10px] font-black text-white/30">VS</span>
                         <div className="flex flex-col items-center gap-0.5">
                           <div className="w-8 h-6 rounded overflow-hidden border border-white/20 shadow-sm">
-                            <img src={proximosJogos[0].flag || ''} alt={proximosJogos[0].nome} className="w-full h-full object-cover" />
+                            <img src={proximosJogos[0].flag || ''} alt={proximosJogos[0].nome} className="w-full h-full object-cover" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
                           </div>
                           <span className="text-[8px] font-bold text-white/70 truncate max-w-[50px]">{proximosJogos[0].nome}</span>
                         </div>

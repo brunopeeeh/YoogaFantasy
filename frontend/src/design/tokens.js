@@ -95,3 +95,5 @@ export const transitions = {
   slow: '320ms cubic-bezier(0.4, 0, 0.2, 1)',
   spring: { type: 'spring', stiffness: 400, damping: 28 },
 };
+
+export const AVATAR_FALLBACK = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3e%3crect width='100' height='100' fill='%231e3a5f'/%3e%3ccircle cx='50' cy='35' r='18' fill='%23fff' opacity='.25'/%3e%3cpath d='M20 75 Q50 50 80 75' fill='%23fff' opacity='.25'/%3e%3c/svg%3e";

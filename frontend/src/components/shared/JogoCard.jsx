@@ -39,7 +39,7 @@ export const JogoCard = memo(function JogoCard({ jogo }) {
         <div className="flex items-center justify-between gap-3">
           <div className="flex-1 flex flex-col items-center gap-1.5 min-w-0">
             {casa?.bandeira_url ? (
-              <img src={casa.bandeira_url} alt="" className="w-10 h-10 rounded-full object-cover border-2 border-white/[0.06]" />
+              <img src={casa.bandeira_url} alt="" className="w-10 h-10 rounded-full object-cover border-2 border-white/[0.06]" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
             ) : (
               <div className="w-10 h-10 rounded-full bg-fifa-navy-800 flex items-center justify-center text-[10px] font-bold text-white/30">
                 {siglaTime(casa?.nome)}
@@ -52,7 +52,7 @@ export const JogoCard = memo(function JogoCard({ jogo }) {
           <span className="text-base font-light text-white/20 flex-shrink-0 select-none">×</span>
           <div className="flex-1 flex flex-col items-center gap-1.5 min-w-0">
             {fora?.bandeira_url ? (
-              <img src={fora.bandeira_url} alt="" className="w-10 h-10 rounded-full object-cover border-2 border-white/[0.06]" />
+              <img src={fora.bandeira_url} alt="" className="w-10 h-10 rounded-full object-cover border-2 border-white/[0.06]" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
             ) : (
               <div className="w-10 h-10 rounded-full bg-fifa-navy-800 flex items-center justify-center text-[10px] font-bold text-white/30">
                 {siglaTime(fora?.nome)}

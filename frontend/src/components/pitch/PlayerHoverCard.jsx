@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { TrendingUp, TrendingDown, Flag, Shield, Calendar, Activity } from 'lucide-react';
 import { getKit } from '../../lib/kits';
 import { fadeInUp } from '../../design/animations';
+import { AVATAR_FALLBACK } from '../../design/tokens';
 
 const HOVER_DELAY = 400;
 
@@ -29,7 +30,7 @@ export default function PlayerHoverCard({ jogador, anchorRect, isCaptain = false
   if (!jogador) return null;
 
   const kit = getKit(jogador.selecaoId, jogador.selecao);
-  const fotoSrc = jogador.foto || 'https://api.sofascore.app/static/images/default-avatar.png';
+  const fotoSrc = jogador.foto || AVATAR_FALLBACK;
 
   const forma = jogador.forma ?? '—';
   const trend = typeof forma === 'number' ? (forma > 6 ? 'up' : forma < 5 ? 'down' : 'flat') : 'flat';

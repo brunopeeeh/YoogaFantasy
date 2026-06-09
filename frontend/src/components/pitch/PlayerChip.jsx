@@ -2,6 +2,7 @@ import React, { memo } from 'react';
 import { motion } from 'framer-motion';
 import { Crown, X, Plus as PlusIcon, AlertTriangle } from 'lucide-react';
 import { popIn } from '../../design/animations';
+import { AVATAR_FALLBACK } from '../../design/tokens';
 
 export default memo(function PlayerChip({
   jogador,
@@ -20,7 +21,7 @@ export default memo(function PlayerChip({
   dragHandleProps = null,
   compact = false,
 }) {
-  const fotoSrc = jogador?.foto || 'https://api.sofascore.app/static/images/default-avatar.png';
+  const fotoSrc = jogador?.foto || AVATAR_FALLBACK;
   const photoSize = size === 'sm' ? 40 : size === 'lg' ? 64 : 56;
   const isInjured = jogador?.status && jogador?.status.toLowerCase() !== 'disponivel';
   // Cores: Vermelho para lesionados/dúvida, Roxo/Azul para normais
@@ -97,7 +98,7 @@ export default memo(function PlayerChip({
             alt={jogador?.nome || 'Jogador'}
             className="w-full h-full object-cover rounded-full"
             onError={(e) => {
-              e.currentTarget.src = 'https://api.sofascore.app/static/images/default-avatar.png';
+              if (e.currentTarget.src !== AVATAR_FALLBACK) e.currentTarget.src = AVATAR_FALLBACK;
             }}
             draggable={false}
           />
@@ -109,6 +110,7 @@ export default memo(function PlayerChip({
                 src={jogador.bandeira}
                 alt={jogador.selecao || ''}
                 className="w-full h-full object-cover scale-[1.2]"
+                onError={(e) => { e.currentTarget.style.display = 'none'; }}
                 draggable={false}
               />
             </div>
