@@ -9,7 +9,6 @@ Uso:
 Requer SUPABASE_URL e SUPABASE_SERVICE_ROLE_KEY no .env
 """
 
-import io
 import os
 import sys
 import time
@@ -81,24 +80,21 @@ def baixar(url: str, tentativa: int = 1) -> bytes | None:
         return None
 
 
-def upload(supabase: Client, caminho: str, conteudo: bytes) -> str | None:
+def upload(caminho: str, conteudo: bytes) -> str | None:
+    url = f"{SUPABASE_URL}/storage/v1/object/assets/{caminho}"
     url_final = f"{SUPABASE_URL}/storage/v1/object/public/assets/{caminho}"
-    arquivo = io.BytesIO(conteudo)
+    headers = {
+        "authorization": f"Bearer {SUPABASE_KEY}",
+        "content-type": "image/png",
+        "x-upsert": "true",
+    }
     try:
-        supabase.storage.from_("assets").upload(
-            caminho, arquivo,
-            {"content-type": "image/png", "upsert": True}
-        )
-        return url_final
-    except Exception as e:
-        msg = str(e).lower()
-        if "duplicate" in msg or "already exists" in msg:
-            arquivo.seek(0)
-            supabase.storage.from_("assets").update(
-                caminho, arquivo,
-                {"content-type": "image/png"}
-            )
+        resp = curl.put(url, data=conteudo, headers=headers, impersonate="chrome120", timeout=60)
+        if resp.status_code in (200, 201):
             return url_final
+        print(f"    ❌ Upload {caminho}: HTTP {resp.status_code} {resp.text[:100]}")
+        return None
+    except Exception as e:
         print(f"    ❌ Upload {caminho}: {e}")
         return None
 
@@ -119,7 +115,7 @@ def migrar_jogadores(supabase: Client) -> None:
         jid = j["id_sofascore"]
         conteudo = baixar(j["foto_url"])
         if conteudo:
-            nova_url = upload(supabase, f"jogadores/{jid}.png", conteudo)
+            nova_url = upload(f"jogadores/{jid}.png", conteudo)
             if nova_url:
                 supabase.table("jogadores").update({"foto_url": nova_url}).eq("id_sofascore", jid).execute()
                 ok += 1
@@ -140,7 +136,7 @@ def migrar_bandeiras(supabase: Client) -> None:
         sid = s["id"]
         conteudo = baixar(s["bandeira_url"])
         if conteudo:
-            nova_url = upload(supabase, f"bandeiras/{sid}.png", conteudo)
+            nova_url = upload(f"bandeiras/{sid}.png", conteudo)
             if nova_url:
                 supabase.table("selecoes").update({"bandeira_url": nova_url}).eq("id", sid).execute()
                 ok += 1
