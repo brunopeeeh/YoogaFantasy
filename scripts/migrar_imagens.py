@@ -121,7 +121,14 @@ def processar_item(supabase, tabela: str, coluna_url: str, coluna_id: str, camin
 
 def migrar(tabela: str, coluna_id: str, coluna_url: str, caminho_prefixo: str, label: str) -> None:
     supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
-    dados = supabase.table(tabela).select(f"{coluna_id}, {coluna_url}").execute().data
+    dados = []
+    de = 0
+    while True:
+        batch = supabase.table(tabela).select(f"{coluna_id}, {coluna_url}").range(de, de + 999).execute().data
+        if not batch:
+            break
+        dados.extend(batch)
+        de += 1000
     pendentes = [d for d in dados if d.get(coluna_url) and "sofascore" in d[coluna_url].lower()]
     ja_feitos = [d for d in dados if d.get(coluna_url, "").startswith(SUPABASE_URL)]
     total = len(pendentes)
