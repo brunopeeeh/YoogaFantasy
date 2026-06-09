@@ -9,11 +9,12 @@ Uso:
 Requer SUPABASE_URL e SUPABASE_SERVICE_ROLE_KEY no .env
 """
 
+import io
 import os
 import sys
 import time
 
-import cloudscraper
+from curl_cffi import requests as curl
 from dotenv import load_dotenv
 from supabase import create_client
 
@@ -49,55 +50,52 @@ def criar_bucket(supabase: Client) -> None:
             print(f"⚠️  {e}")
 
 
-def baixar(scraper, url: str) -> bytes | None:
+def baixar(url: str, tentativa: int = 1) -> bytes | None:
     if not url or "sofascore" not in url.lower():
         return None
     headers = {
-        "User-Agent": (
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-            "AppleWebKit/537.36 (KHTML, like Gecko) "
-            "Chrome/120.0.0.0 Safari/537.36"
-        ),
         "Referer": "https://www.sofascore.com/",
         "Accept": "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8",
         "Accept-Language": "pt-BR,pt;q=0.9,en;q=0.8",
     }
-    for tentativa in range(3):
-        try:
-            resp = scraper.get(url, headers=headers, timeout=30)
-            ct = (resp.headers.get("content-type") or "").lower()
-            if resp.status_code == 200 and ("image" in ct or "octet" in ct):
-                return resp.content
-            if resp.status_code == 403:
-                print(f"    ⛔ 403: {url.rsplit('/', 1)[-1]}")
-            elif resp.status_code == 404:
-                print(f"    ❌ 404: {url.rsplit('/', 1)[-1]}")
-            else:
-                print(f"    ⚠️  HTTP {resp.status_code}: {url.rsplit('/', 1)[-1]}")
-            return None
-        except Exception as e:
-            if tentativa < 2:
-                time.sleep(2 ** tentativa)
-                continue
-            print(f"    ❌ Erro: {e}")
-            return None
-    return None
+    try:
+        resp = curl.get(url, headers=headers, timeout=30, impersonate="chrome120")
+        ct = (resp.headers.get("content-type") or "").lower()
+        if resp.status_code == 200 and ("image" in ct or "octet" in ct):
+            return resp.content
+        if resp.status_code == 403:
+            print(f"    ⛔ 403 ({tentativa}/3): {url.rsplit('/', 1)[-1]}")
+        elif resp.status_code == 404:
+            print(f"    ❌ 404: {url.rsplit('/', 1)[-1]}")
+        else:
+            print(f"    ⚠️  HTTP {resp.status_code}: {url.rsplit('/', 1)[-1]}")
+        if resp.status_code == 403 and tentativa < 3:
+            time.sleep(2 ** tentativa)
+            return baixar(url, tentativa + 1)
+        return None
+    except Exception as e:
+        if tentativa < 3:
+            time.sleep(2 ** tentativa)
+            return baixar(url, tentativa + 1)
+        print(f"    ❌ Erro: {e}")
+        return None
 
 
 def upload(supabase: Client, caminho: str, conteudo: bytes) -> str | None:
-    bucket_url = f"{SUPABASE_URL}/storage/v1/object/public/assets"
-    url_final = f"{bucket_url}/{caminho}"
+    url_final = f"{SUPABASE_URL}/storage/v1/object/public/assets/{caminho}"
+    arquivo = io.BytesIO(conteudo)
     try:
         supabase.storage.from_("assets").upload(
-            caminho, conteudo,
-            {"content-type": "image/png", "upsert": "true"}
+            caminho, arquivo,
+            {"content-type": "image/png", "upsert": True}
         )
         return url_final
     except Exception as e:
         msg = str(e).lower()
-        if "duplicate" in msg or "already exists" in msg or "row level security" in msg:
+        if "duplicate" in msg or "already exists" in msg:
+            arquivo.seek(0)
             supabase.storage.from_("assets").update(
-                caminho, conteudo,
+                caminho, arquivo,
                 {"content-type": "image/png"}
             )
             return url_final
@@ -110,7 +108,7 @@ def progresso(atual: int, total: int, ok: int, prefixo: str = "") -> None:
         print(f"    {prefixo}{atual}/{total} — {ok} ok")
 
 
-def migrar_jogadores(supabase: Client, scraper) -> None:
+def migrar_jogadores(supabase: Client) -> None:
     dados = supabase.table("jogadores").select("id_sofascore, foto_url").execute().data
     pendentes = [j for j in dados if j.get("foto_url") and "sofascore" in j["foto_url"].lower()]
     ja_migrados = [j for j in dados if j.get("foto_url", "").startswith(SUPABASE_URL)]
@@ -119,7 +117,7 @@ def migrar_jogadores(supabase: Client, scraper) -> None:
     ok = 0
     for i, j in enumerate(pendentes, 1):
         jid = j["id_sofascore"]
-        conteudo = baixar(scraper, j["foto_url"])
+        conteudo = baixar(j["foto_url"])
         if conteudo:
             nova_url = upload(supabase, f"jogadores/{jid}.png", conteudo)
             if nova_url:
@@ -131,7 +129,7 @@ def migrar_jogadores(supabase: Client, scraper) -> None:
     print(f"  ✅ {ok}/{len(pendentes)} fotos migradas")
 
 
-def migrar_bandeiras(supabase: Client, scraper) -> None:
+def migrar_bandeiras(supabase: Client) -> None:
     dados = supabase.table("selecoes").select("id, bandeira_url").execute().data
     pendentes = [s for s in dados if s.get("bandeira_url") and "sofascore" in s["bandeira_url"].lower()]
     ja_migrados = [s for s in dados if s.get("bandeira_url", "").startswith(SUPABASE_URL)]
@@ -140,7 +138,7 @@ def migrar_bandeiras(supabase: Client, scraper) -> None:
     ok = 0
     for i, s in enumerate(pendentes, 1):
         sid = s["id"]
-        conteudo = baixar(scraper, s["bandeira_url"])
+        conteudo = baixar(s["bandeira_url"])
         if conteudo:
             nova_url = upload(supabase, f"bandeiras/{sid}.png", conteudo)
             if nova_url:
@@ -162,13 +160,11 @@ def main():
 
     criar_bucket(supabase)
 
-    scraper = cloudscraper.create_scraper()
-
     print("\n📸 Jogadores...")
-    migrar_jogadores(supabase, scraper)
+    migrar_jogadores(supabase)
 
     print("\n🏳️ Bandeiras...")
-    migrar_bandeiras(supabase, scraper)
+    migrar_bandeiras(supabase)
 
     print("\n🏁 Pronto!")
 
