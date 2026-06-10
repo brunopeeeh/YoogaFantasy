@@ -7,8 +7,8 @@ import { POSICAO_POR_SIGLA } from '../lib/posicoes';
 
 // Converte a resposta crua do banco (linhas de elencos_usuarios) na forma
 // { Goleiro: [j, j, ...], Defensor: [...], ... } que o componente usa.
-function elencoRowsParaObjeto(rows) {
-  const elenco = elencoVazio();
+function elencoRowsParaObjeto(rows, formacao) {
+  const elenco = elencoVazio(formacao);
   let capitaoId = null;
   for (const row of rows) {
     const j = row.jogadores;
@@ -49,7 +49,7 @@ export function useUserTime() {
       const t = await ensureMyTime(user.id);
       setTime(t);
       const rows = await getElencoByTimeId(t.id);
-      const { elenco, capitaoId } = elencoRowsParaObjeto(rows);
+      const { elenco, capitaoId } = elencoRowsParaObjeto(rows, t.formacao);
       setElencoSalvo(elenco);
       setCapitaoSalvoId(capitaoId);
     } catch (e) {

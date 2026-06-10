@@ -2,11 +2,18 @@ import { ORCAMENTO_MAXIMO, MAX_POR_SELECAO, getLimitesFase, criarElencoVazio, ge
 
 export { criarElencoVazio as elencoVazio };
 
-export function clonarElenco(elenco) {
-  if (!elenco) return criarElencoVazio(FORMACAO_PADRAO);
+export function clonarElenco(elenco, formacao) {
+  if (!elenco) return criarElencoVazio(formacao || FORMACAO_PADRAO);
+  const limites = formacao ? getLimitesPorFormacao(formacao) : null;
   const clone = {};
   for (const [posicao, slots] of Object.entries(elenco)) {
-    clone[posicao] = slots.map((j) => (j ? { ...j } : null));
+    const targetLength = limites ? limites[posicao] : slots.length;
+    clone[posicao] = Array(targetLength).fill(null);
+    for (let i = 0; i < targetLength; i++) {
+      if (slots[i]) {
+        clone[posicao][i] = { ...slots[i] };
+      }
+    }
   }
   return clone;
 }

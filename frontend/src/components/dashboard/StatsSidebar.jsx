@@ -126,34 +126,35 @@ export default function StatsSidebar({ aberto, onFechar }) {
                 </button>
               )}
 
-              <div className="border-t border-white/10 pt-3 space-y-2">
-                {temMudancas && (
-                  <button
-                    onClick={handleDescartar}
-                    disabled={salvando}
-                    className="w-full bg-transparent hover:bg-white/5 border border-white/20 rounded-md py-2 text-xs font-bold text-white/70 hover:text-white uppercase tracking-wider transition-all disabled:opacity-50"
-                  >
-                    Descartar
-                  </button>
-                )}
+              <div className="border-t border-white/10 pt-3 space-y-3">
+                {/* Indicador de Status do Auto-Salvamento */}
+                <div className="bg-fifa-navy-800/80 border border-white/10 rounded-md p-2.5 text-center flex flex-col items-center justify-center gap-1 min-h-[44px]">
+                  {salvando ? (
+                    <div className="flex items-center gap-1.5 text-xs font-semibold text-white/70">
+                      <div className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                      Salvando alterações...
+                    </div>
+                  ) : !podeSalvar && temMudancas ? (
+                    <div className="text-xs font-semibold text-stat-injured">
+                      ⚠️ Corrija os erros para salvar
+                    </div>
+                  ) : temMudancas ? (
+                    <div className="text-xs font-semibold text-amber-400">
+                      Aguardando para salvar...
+                    </div>
+                  ) : (
+                    <div className="text-xs font-semibold text-stat-fit flex items-center gap-1">
+                      <span>✓</span> Alterações salvas!
+                    </div>
+                  )}
+                </div>
+
                 <button
                   onClick={handleLimparElenco}
                   disabled={salvando || !mercadoAbertoConfig}
                   className="w-full bg-stat-injured hover:bg-red-700 border border-red-700/30 rounded-md py-2 text-xs font-bold text-white uppercase tracking-wider transition-all disabled:opacity-50"
                 >
                   Limpar Elenco
-                </button>
-                <button
-                  onClick={handleSalvar}
-                  disabled={salvando || !mercadoAbertoConfig}
-                  className={`w-full border rounded-md py-2 text-xs font-bold text-white uppercase tracking-wider transition-all disabled:opacity-50 flex items-center justify-center gap-1.5 ${temMudancas && podeSalvar ? 'bg-[#009CDE] hover:bg-[#007AB0] border-[#009CDE]/50' : 'bg-[#009CDE]/40 border-[#009CDE]/30'}`}
-                >
-                  {salvando ? (
-                    <div className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                  ) : (
-                    <Sparkles size={14} className="text-fifa-gold" />
-                  )}
-                  {salvando ? 'Salvando...' : 'Salvar Time'}
                 </button>
               </div>
             </div>

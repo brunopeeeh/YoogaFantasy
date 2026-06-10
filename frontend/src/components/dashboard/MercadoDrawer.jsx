@@ -27,16 +27,7 @@ export default memo(function MercadoDrawer({
   const { jogosPorSelecao } = useJogosCopa();
   const panelRef = useRef(null);
 
-  useEffect(() => {
-    if (!aberto || isMobile) return;
-    function handleClickOutside(e) {
-      if (panelRef.current && !panelRef.current.contains(e.target)) {
-        onFechar();
-      }
-    }
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [aberto, isMobile, onFechar]);
+
 
   useEffect(() => {
     if (!aberto) return;
@@ -67,13 +58,15 @@ export default memo(function MercadoDrawer({
         <h3 className="text-sm font-black text-gray-100 uppercase tracking-widest text-center">
           Procurar atletas
         </h3>
-        <button
-          onClick={onFechar}
-          className="absolute right-5 top-4 text-white/40 hover:text-white transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
-          aria-label="Fechar"
-        >
-          <X size={20} />
-        </button>
+        {isMobile && (
+          <button
+            onClick={onFechar}
+            className="absolute right-5 top-4 text-white/40 hover:text-white transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
+            aria-label="Fechar"
+          >
+            <X size={20} />
+          </button>
+        )}
       </div>
 
       <div className="px-5 space-y-1.5">

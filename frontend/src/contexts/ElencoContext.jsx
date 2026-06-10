@@ -45,7 +45,7 @@ export function ElencoProvider({ children }) {
     if (!timeLoading && !draftInicializado) {
       const formInicial = time?.formacao || FORMACAO_PADRAO;
       setFormacaoDraft(formInicial);
-      setElencoDraft(clonarElenco(elencoSalvo || criarElencoVazio(formInicial)));
+      setElencoDraft(clonarElenco(elencoSalvo || criarElencoVazio(formInicial), formInicial));
       setCapitaoDraftId(capitaoSalvoId || null);
       setDraftInicializado(true);
     }
@@ -72,7 +72,7 @@ export function ElencoProvider({ children }) {
 
     let slot = slotOverride || slotSelecionado;
 
-    if (slot && !slotOverride && elencoDraft[slot.posicao]?.[slot.index] !== null) {
+    if (slot && !slotOverride && elencoDraft[slot.posicao]?.[slot.index] !== null && elencoDraft[slot.posicao]?.[slot.index] !== undefined) {
       slot = null;
     }
 
@@ -193,7 +193,7 @@ export function ElencoProvider({ children }) {
   }, [bloqueadoMercado, formacaoDraft]);
 
   const handleDescartar = useCallback(() => {
-    setElencoDraft(clonarElenco(elencoSalvo || criarElencoVazio(formacaoDraft)));
+    setElencoDraft(clonarElenco(elencoSalvo || criarElencoVazio(formacaoDraft), formacaoDraft));
     setCapitaoDraftId(capitaoSalvoId);
     toast('Mudanças descartadas', { icon: '↩️' });
   }, [elencoSalvo, capitaoSalvoId, formacaoDraft]);
@@ -205,6 +205,22 @@ export function ElencoProvider({ children }) {
   const dirty = temMudancas(elencoSalvo || criarElencoVazio(formacaoDraft), elencoDraft, capitaoSalvoId, capitaoDraftId);
   const mensagensValidacao = useMemo(() => validarElencoDraft(elencoDraft, { rodada: rodadaAtual, formacao: formacaoDraft }), [elencoDraft, rodadaAtual, formacaoDraft]);
   const podeSalvar = mensagensValidacao.length === 0 && !bloqueadoMercado;
+
+  // Auto-salvamento com debounce de 1500ms
+  useEffect(() => {
+    if (!draftInicializado || bloqueadoMercado) return;
+    if (!dirty || !podeSalvar) return;
+
+    const timer = setTimeout(async () => {
+      await salvar({
+        elencoDraft,
+        capitaoId: capitaoDraftId,
+        formacao: formacaoDraft,
+      });
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, [elencoDraft, capitaoDraftId, formacaoDraft, dirty, podeSalvar, draftInicializado, bloqueadoMercado, salvar]);
 
   const handleSalvar = useCallback(async () => {
     if (salvando) return;

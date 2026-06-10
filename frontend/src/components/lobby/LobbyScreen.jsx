@@ -13,7 +13,7 @@ const MAX_JOGOS_LOBBY = 8;
 
 export default function LobbyScreen() {
   const navigate = useNavigate();
-  const { totalSelecionados, elencoSalvo, capitaoSalvoId, limitesFase, transferenciasNoDraft, saldoDraft, listaSelecionados, mercadoAbertoConfig, configRodada } = useFantasy();
+  const { time, totalSelecionados, elencoSalvo, capitaoSalvoId, limitesFase, transferenciasNoDraft, saldoDraft, listaSelecionados, mercadoAbertoConfig, configRodada } = useFantasy();
   const { ultimaRodada, totalTemporada } = usePontuacaoRodada();
   const rodada = configRodada?.rodada_atual;
   const { jogos, loading: carregandoJogos } = useJogosRodada(rodada);
@@ -84,7 +84,8 @@ export default function LobbyScreen() {
 
               <div className="space-y-2.5 mb-4">
                 {POS_ORDEM.map((pos) => {
-                  const limite = getLimitesPorFormacao(FORMACAO_PADRAO)[pos];
+                  const formacaoAtiva = time?.formacao || FORMACAO_PADRAO;
+                  const limite = getLimitesPorFormacao(formacaoAtiva)[pos];
                   const ocupado = contagemPorPos[pos] || 0;
                   const pct = limite > 0 ? (ocupado / limite) * 100 : 0;
                   return (

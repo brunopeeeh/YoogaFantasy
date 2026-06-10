@@ -129,7 +129,7 @@ export default function DashboardFantasy() {
             )}
 
             {/* ── CAMPO — FULL WIDTH ── */}
-            <div className={`flex-1 h-full w-full flex flex-col overflow-hidden p-2 transition-all duration-300 ${mercadoAberto && !isMobile ? 'mr-[480px]' : ''}`}>
+            <div className={`flex-1 h-full w-full flex flex-col overflow-hidden p-2 transition-all duration-300 ${!isMobile ? 'mr-[480px]' : ''}`}>
               <DashboardErrorBoundary onReset={refetch}>
                 <div className="flex-1 min-h-0 w-full flex flex-col rounded-xl overflow-hidden bg-fifa-navy-900/95 backdrop-blur-glass border border-white/10 shadow-glass-lg max-w-[1000px] mx-auto">
                   <Pitch
@@ -166,7 +166,7 @@ export default function DashboardFantasy() {
             </div>
 
             <MercadoDrawer
-              aberto={mercadoAberto}
+              aberto={isMobile ? mercadoAberto : true}
               onFechar={handleFecharMercado}
               elenco={elencoDraft}
               slotSelecionado={slotSelecionado}

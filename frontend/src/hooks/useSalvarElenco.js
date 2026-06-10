@@ -18,7 +18,7 @@ export function useSalvarElenco({ onSuccess, elencoSalvo, rodadaAtual } = {}) {
 
   const salvar = useCallback(async ({ elencoDraft, capitaoId, formacao }) => {
     setErro(null);
-    const errosValidacao = validarElencoDraft(elencoDraft, { rodada: rodadaAtual });
+    const errosValidacao = validarElencoDraft(elencoDraft, { rodada: rodadaAtual, formacao });
     if (errosValidacao.length > 0) {
       const e = new Error(errosValidacao.join('\n'));
       setErro(e);

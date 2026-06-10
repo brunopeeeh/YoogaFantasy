@@ -1,18 +1,21 @@
+import React, { lazy, Suspense } from 'react';
 import ErrorBoundary from './components/ErrorBoundary';
 import { useAuth } from './contexts/AuthContext';
-import LoginScreen from './components/auth/LoginScreen';
 import OnboardingGate from './components/auth/OnboardingGate';
-import DashboardFantasy from './DashboardFantasy';
-import LigasScreen from './components/leagues/LigasScreen';
-import LobbyScreen from './components/lobby/LobbyScreen';
-import JogosScreen from './components/jogos/JogosScreen';
-import RulesScreen from './components/rules/RulesScreen';
-import ProfileScreen from './components/profile/ProfileScreen';
-import RankingScreen from './components/ranking/RankingScreen';
 import { FantasyProvider, useFantasy } from './contexts/FantasyContext';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/dashboard/Header';
 import MercadoFechadoBanner from './components/dashboard/MercadoFechadoBanner';
+
+// Lazy loading screens
+const LoginScreen = lazy(() => import('./components/auth/LoginScreen'));
+const DashboardFantasy = lazy(() => import('./DashboardFantasy'));
+const LigasScreen = lazy(() => import('./components/leagues/LigasScreen'));
+const LobbyScreen = lazy(() => import('./components/lobby/LobbyScreen'));
+const JogosScreen = lazy(() => import('./components/jogos/JogosScreen'));
+const RulesScreen = lazy(() => import('./components/rules/RulesScreen'));
+const ProfileScreen = lazy(() => import('./components/profile/ProfileScreen'));
+const RankingScreen = lazy(() => import('./components/ranking/RankingScreen'));
 
 function AppShell() {
   const { configRodada } = useFantasy();
@@ -22,15 +25,21 @@ function AppShell() {
       <Header />
       <MercadoFechadoBanner config={configRodada} />
       <div className="flex-1 flex flex-col relative min-h-0 overflow-y-auto">
-        <Routes>
-          <Route path="/" element={<LobbyScreen />} />
-          <Route path="/escalar" element={<DashboardFantasy />} />
-          <Route path="/ligas" element={<LigasScreen />} />
-          <Route path="/jogos" element={<JogosScreen />} />
-          <Route path="/perfil" element={<ProfileScreen />} />
-          <Route path="/ranking" element={<RankingScreen />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
+        <Suspense fallback={
+          <div className="flex-1 flex items-center justify-center bg-[#001D35]">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white" />
+          </div>
+        }>
+          <Routes>
+            <Route path="/" element={<LobbyScreen />} />
+            <Route path="/escalar" element={<DashboardFantasy />} />
+            <Route path="/ligas" element={<LigasScreen />} />
+            <Route path="/jogos" element={<JogosScreen />} />
+            <Route path="/perfil" element={<ProfileScreen />} />
+            <Route path="/ranking" element={<RankingScreen />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </Suspense>
       </div>
     </div>
   );
@@ -52,20 +61,30 @@ function AuthGate() {
   }
 
   if (!isAuthenticated && !isBypass) {
-    return <LoginScreen />;
+    return (
+      <Suspense fallback={
+        <div className="min-h-screen w-full bg-[#009CDE] flex items-center justify-center" />
+      }>
+        <LoginScreen />
+      </Suspense>
+    );
   }
 
   return (
     <OnboardingGate>
       <BrowserRouter>
-        <Routes>
-          <Route path="/regras" element={<RulesScreen />} />
-          <Route path="*" element={
-            <FantasyProvider>
-              <AppShell />
-            </FantasyProvider>
-          } />
-        </Routes>
+        <Suspense fallback={
+          <div className="min-h-screen w-full bg-[#001D35] flex items-center justify-center" />
+        }>
+          <Routes>
+            <Route path="/regras" element={<RulesScreen />} />
+            <Route path="*" element={
+              <FantasyProvider>
+                <AppShell />
+              </FantasyProvider>
+            } />
+          </Routes>
+        </Suspense>
       </BrowserRouter>
     </OnboardingGate>
   );
