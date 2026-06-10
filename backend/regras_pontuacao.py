@@ -99,7 +99,7 @@ def calcular_pontos_partida(stats: StatsJogador, posicao: str, minuto_vermelho: 
         pts += (stats.gols_sofridos_selecao // 2) * -1.0
 
     # Precisão de passes
-    if stats.passes_tentados >= 40 and stats.precisao_passes > 90.0:
+    if stats.passes_tentados >= 40 and stats.precisao_passes >= 90.0:
         pts += 1.0
 
     # Desarmes, cortes, passes decisivos, perdas
@@ -119,15 +119,15 @@ def calcular_pontos_partida(stats: StatsJogador, posicao: str, minuto_vermelho: 
     pts += stats.chutes_bloqueados // 2
 
     # Duelos vencidos
-    if stats.duelos_tentados >= 3 and stats.duelos_vencidos / max(stats.duelos_tentados, 1) >= 0.5:
+    if stats.duelos_vencidos >= 3 and stats.duelos_vencidos / max(stats.duelos_tentados, 1) >= 0.5:
         pts += 1.0
 
     # Dribles certos
-    if stats.dribles_tentados >= 3 and stats.dribles_certos / max(stats.dribles_tentados, 1) >= 0.6:
+    if stats.dribles_certos >= 3 and stats.dribles_certos / max(stats.dribles_tentados, 1) >= 0.6:
         pts += 1.0
 
     # Bolas longas
-    if stats.bolas_longas_tentadas >= 3 and stats.bolas_longas_certas / max(stats.bolas_longas_tentadas, 1) >= 0.6:
+    if stats.bolas_longas_certas >= 3 and stats.bolas_longas_certas / max(stats.bolas_longas_tentadas, 1) >= 0.6:
         pts += 1.0
 
     # Faltas sofridas
