@@ -131,6 +131,32 @@ export default function PlayerDetailsModal({ jogador, isOpen, onClose }) {
                   ))}
                 </div>
 
+                {/* Estatísticas Acumuladas no Torneio */}
+                <div className="flex flex-col">
+                  <div className="flex items-center gap-2 mb-2.5">
+                    <div className="h-[1px] flex-1 bg-white/10" />
+                    <span className="text-[10px] font-bold text-white/50 uppercase tracking-widest">Resumo Estatístico</span>
+                    <div className="h-[1px] flex-1 bg-white/10" />
+                  </div>
+
+                  <div className="grid grid-cols-5 gap-1.5 bg-[#11161d] rounded-lg p-2.5 border border-white/5 text-center">
+                    {[
+                      { label: 'Gols', value: jogador.gols ?? stats?.gols ?? 0 },
+                      { label: 'Assis.', value: jogador.assistencias ?? stats?.assistencias ?? 0 },
+                      { label: 'CA', value: stats?.amarelos ?? 0, color: 'text-yellow-400 font-bold' },
+                      { label: 'CV', value: stats?.vermelhos ?? 0, color: 'text-red-500 font-bold' },
+                      { label: 'Minutos', value: `${stats?.minutos ?? 0}'` },
+                    ].map((stat) => (
+                      <div key={stat.label} className="flex flex-col items-center">
+                        <span className="text-[8px] font-bold text-white/40 uppercase">{stat.label}</span>
+                        <span className={`text-[13px] font-black mt-0.5 ${stat.color || 'text-white'}`}>
+                          {carregandoStats ? '…' : stat.value}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
                 <div className="flex flex-col">
                   <div className="flex items-center gap-2 mb-3">
                     <div className="h-[1px] flex-1 bg-white/10" />
