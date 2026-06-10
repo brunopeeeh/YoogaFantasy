@@ -17,20 +17,22 @@ export async function getElencoByTimeId(timeId) {
   return data || [];
 }
 
-export async function salvarElencoRpc({ jogadores, orcamentoGasto, transferenciasUsadas = 0 }) {
+export async function salvarElencoRpc({ jogadores, orcamentoGasto, transferenciasUsadas = 0, formacao }) {
   const { data, error } = await supabase.rpc('salvar_elenco', {
     p_jogadores: jogadores,
     p_orcamento_gasto: orcamentoGasto,
     p_transferencias_usadas: transferenciasUsadas,
+    p_formacao: formacao,
   });
   if (error) throw error;
   return data;
 }
 
-export async function validarElencoRpc(jogadores, rodada) {
+export async function validarElencoRpc(jogadores, rodada, limites = null) {
   const { data, error } = await supabase.rpc('validar_elenco', {
     p_jogadores: jogadores,
     p_rodada: rodada,
+    p_limites: limites,
   });
   if (error) throw error;
   return data;

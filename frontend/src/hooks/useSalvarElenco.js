@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react';
 import { salvarElencoRpc, validarElencoRpc } from '../services/elencoService';
 import { elencoParaLista, validarElencoDraft, elencoDraftParaPayloadRpc, contarTransferencias } from '../lib/diffElenco';
+import { SIGLA_POR_POSICAO, getLimitesPorFormacao } from '../lib/posicoes';
 
 function elencoParaPayloadValidacao(elencoDraft) {
   return elencoParaLista(elencoDraft).map(j => ({
@@ -26,7 +27,14 @@ export function useSalvarElenco({ onSuccess, elencoSalvo, rodadaAtual } = {}) {
 
     if (rodadaAtual != null) {
       const payloadRpc = elencoParaPayloadValidacao(elencoDraft);
-      validarElencoRpc(payloadRpc, rodadaAtual)
+      const limites = getLimitesPorFormacao(formacao);
+      const limitesSiglas = {
+        G: limites.Goleiro,
+        D: limites.Defensor,
+        M: limites.MeioCampista,
+        F: limites.Atacante,
+      };
+      validarElencoRpc(payloadRpc, rodadaAtual, limitesSiglas)
         .then((res) => {
           if (!res?.valido && res?.erros?.length > 0) {
             console.warn('[Validação RPC] Discrepância com validação JS:', res.erros);

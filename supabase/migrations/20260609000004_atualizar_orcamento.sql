@@ -30,11 +30,13 @@ BEGIN
 END;
 $$;
 
--- ===== 2. salvar_elenco com R$ nas mensagens =====
+-- ===== 2. salvar_elenco com formacao =====
+DROP FUNCTION IF EXISTS public.salvar_elenco(JSONB, NUMERIC, INT);
 CREATE OR REPLACE FUNCTION public.salvar_elenco(
-  p_jogadores            JSONB,
-  p_orcamento_gasto      NUMERIC,
-  p_transferencias_usadas INT DEFAULT 0
+  p_jogadores             JSONB,
+  p_orcamento_gasto       NUMERIC,
+  p_transferencias_usadas INT DEFAULT 0,
+  p_formacao              TEXT DEFAULT '4-4-2'
 ) RETURNS JSONB
 LANGUAGE plpgsql
 SECURITY DEFINER
@@ -191,6 +193,7 @@ BEGIN
   v_saldo := GREATEST(0, v_orcamento_max - p_orcamento_gasto);
   UPDATE public.times_usuarios
   SET banco_cartoletas = v_saldo,
+      formacao = p_formacao,
       updated_at = NOW()
   WHERE id = v_time_id;
 
@@ -206,7 +209,7 @@ BEGIN
 END;
 $$;
 
-GRANT EXECUTE ON FUNCTION public.salvar_elenco(JSONB, NUMERIC, INT) TO authenticated;
+GRANT EXECUTE ON FUNCTION public.salvar_elenco(JSONB, NUMERIC, INT, TEXT) TO authenticated;
 
 -- ===== 3. abrir_proxima_rodada com aumento de R$10M =====
 CREATE OR REPLACE FUNCTION public.abrir_proxima_rodada(p_novo_deadline TIMESTAMPTZ DEFAULT NULL)
@@ -259,10 +262,12 @@ $$;
 
 GRANT EXECUTE ON FUNCTION public.abrir_proxima_rodada(TIMESTAMPTZ) TO service_role;
 
--- ===== 4. validar_elenco com R$ nas mensagens =====
+-- ===== 4. validar_elenco com limites dinâmicos por formação =====
+DROP FUNCTION IF EXISTS public.validar_elenco(p_jogadores JSONB, p_rodada INT);
 CREATE OR REPLACE FUNCTION public.validar_elenco(
   p_jogadores JSONB,
-  p_rodada INT
+  p_rodada INT,
+  p_limites JSONB DEFAULT '{"G":2,"D":5,"M":5,"F":3}'::JSONB
 ) RETURNS JSONB
 LANGUAGE plpgsql
 IMMUTABLE
@@ -286,6 +291,7 @@ DECLARE
   v_total         INT := 0;
   v_keys          TEXT[];
   v_key           TEXT;
+  v_limite_max    INT;
 BEGIN
   v_limites := public.get_limites_fase(p_rodada);
   v_max_por_sel := (v_limites->>'max_por_selecao')::INT;
@@ -313,21 +319,29 @@ BEGIN
     v_erros := array_append(v_erros, format('O elenco deve ter exatamente %s jogadores. Atualmente tem %s.', v_elenco_max, v_total));
   END IF;
 
+  -- Limites dinâmicos por posição (enviados pelo frontend conforme formação)
+  v_limite_max := COALESCE((p_limites->>'G')::INT, 2);
   v_qtd_pos := COALESCE((v_contagem_pos->>'G')::INT, 0);
-  IF v_qtd_pos > 2 THEN
-    v_erros := array_append(v_erros, format('Limite de 2 Goleiros excedido (%s).', v_qtd_pos));
+  IF v_qtd_pos > v_limite_max THEN
+    v_erros := array_append(v_erros, format('Limite de %s Goleiros excedido (%s).', v_limite_max, v_qtd_pos));
   END IF;
+
+  v_limite_max := COALESCE((p_limites->>'D')::INT, 5);
   v_qtd_pos := COALESCE((v_contagem_pos->>'D')::INT, 0);
-  IF v_qtd_pos > 5 THEN
-    v_erros := array_append(v_erros, format('Limite de 5 Defensores excedido (%s).', v_qtd_pos));
+  IF v_qtd_pos > v_limite_max THEN
+    v_erros := array_append(v_erros, format('Limite de %s Defensores excedido (%s).', v_limite_max, v_qtd_pos));
   END IF;
+
+  v_limite_max := COALESCE((p_limites->>'M')::INT, 5);
   v_qtd_pos := COALESCE((v_contagem_pos->>'M')::INT, 0);
-  IF v_qtd_pos > 5 THEN
-    v_erros := array_append(v_erros, format('Limite de 5 Meio-campistas excedido (%s).', v_qtd_pos));
+  IF v_qtd_pos > v_limite_max THEN
+    v_erros := array_append(v_erros, format('Limite de %s Meio-campistas excedido (%s).', v_limite_max, v_qtd_pos));
   END IF;
+
+  v_limite_max := COALESCE((p_limites->>'F')::INT, 3);
   v_qtd_pos := COALESCE((v_contagem_pos->>'F')::INT, 0);
-  IF v_qtd_pos > 3 THEN
-    v_erros := array_append(v_erros, format('Limite de 3 Atacantes excedido (%s).', v_qtd_pos));
+  IF v_qtd_pos > v_limite_max THEN
+    v_erros := array_append(v_erros, format('Limite de %s Atacantes excedido (%s).', v_limite_max, v_qtd_pos));
   END IF;
 
   v_keys := ARRAY(SELECT jsonb_object_keys(v_contagem_sel));

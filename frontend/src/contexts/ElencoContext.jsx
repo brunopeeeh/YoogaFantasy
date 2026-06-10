@@ -204,7 +204,7 @@ export function ElencoProvider({ children }) {
   const saldoDraft = ORCAMENTO_MAXIMO - custoDraft;
   const dirty = temMudancas(elencoSalvo || criarElencoVazio(formacaoDraft), elencoDraft, capitaoSalvoId, capitaoDraftId);
   const mensagensValidacao = useMemo(() => validarElencoDraft(elencoDraft, { rodada: rodadaAtual, formacao: formacaoDraft }), [elencoDraft, rodadaAtual, formacaoDraft]);
-  const podeSalvar = dirty && mensagensValidacao.length === 0 && !bloqueadoMercado;
+  const podeSalvar = mensagensValidacao.length === 0 && !bloqueadoMercado;
 
   const handleSalvar = useCallback(async () => {
     if (salvando) return;
@@ -212,14 +212,8 @@ export function ElencoProvider({ children }) {
       toast.error('Mercado fechado. Aguarde a próxima rodada.');
       return;
     }
-    if (!podeSalvar) {
-      if (!dirty) {
-        toast.error('Nenhuma alteração para salvar.');
-        return;
-      }
-      if (mensagensValidacao.length > 0) {
-        toast.error(mensagensValidacao[0]);
-      }
+    if (mensagensValidacao.length > 0) {
+      toast.error(mensagensValidacao[0]);
       return;
     }
     setSaveModalAberto(true);
